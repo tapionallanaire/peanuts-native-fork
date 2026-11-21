@@ -40,7 +40,14 @@ On the Mac (2026-10-29): the accessibility settings, the EA SPORTS and FC 27 log
 - **What sets 30 on the Switch:** three things, each needed. Frostbite's `SimulationTimeSettings` (`ForceSimRate` 30, `MaxSimFps` 30) caps the simulation's ticks; the game's frame regulator, an object at `[main+0xda20e38]` whose tick (`main+0x99ea580`) waits 1 / `[+0x8]` s from the last frame (the constructor sets 60.0 at `main+0x99e80c8`), gets 30.0 in `[+0x8]` and `[+0x10]` from `main+0x5d501c0` whenever `GameRenderSettings.Enable` is 1, a constant of this build; and `BaseDisplaySettings.PresentInterval` is 2.
 - **What the host does:** the simulation settings are found by name in `main`'s reflection data, on any build ([Frostbite's simulation rate, found by name](../../../docs/reference/frame-rate.md#frostbites-simulation-rate-found-by-name)); the regulator is a build-gated row of `hle_fpslock.c` (the game sets 30 again at some screen changes; the host writes 60 back); `present_interval display` ignores the interval. Only the simulation and the regulator at 60 together give 60 at the right speed: the regulator and present interval alone gave 60 frames a second with the match clock at half speed (3.65 game seconds a second); the simulation at 60 with the regulator at 30 (a build without the row) gives 30 fps at the right speed.
 - **Not needed:** `GameplayFeatures.DeltaTicks` (4.0; it becomes the int at `main+0xd10b6d8` that sets the gameplay rate `60 / DeltaTicks` at `[regulator]+0x1e54c`) stays as the game sets it. Forcing that int to 1 instead crashed the match at kick-off (`main+0x4ccd66c`).
-- **Open:** a new build needs the regulator row carried over (`nso_fnmap.py`, then check `main+0x5d501c0` and the regulator's global by disassembly): `main` has unwind entries for only 405 functions, so a function-matched cut cannot follow it. Until then such a build runs at 30 fps at the right speed.
+- **1.8d.6523:** `main+0x5d66b50` writes 30.0 to the two rate fields using the pointer at `main+0xda450d8`. `main+0x9a09100` reads the first rate field. The host has a separate regulator row keyed to this update's main build ID. <!-- PEANUTS -->
+- **1.8d.f570 (v524288, `main` 464512b3…, `sdk` the same build):** the regulator row carried over on 2026-11-19 by disassembly of this `main` alone (the earlier mains were not at hand for `nso_fnmap.py`): the setter at `main+0x5d75d90` is the earlier builds' instruction for instruction (`GameRenderSettings.Enable` at `+0x1f5`, then `fmov v1.2d, #30.0; stur q1, [x9, #8]` at `main+0x5d75db8`, the only such store in the text), the regulator's global is `main+0xda5d0f8` (bss), and the tick at `main+0x9a1ddc0` reads the rate as `ldr d0, [x8, #8]` from it. Its targeted split (2026-11-19) holds all 7,876 shaders of 1.8d.6523's tables and 8 pixel shaders more, in `Patch/NX/superbundlelayout/installpackage_03/cas_01.cas`: the map lists them with the source prefix `/v524288/` and `shader_versions` names both updates, as a split of both versions writes them (1.8d.6523's dump was not at hand for that split, so the 8 rows were added from 1.8d.f570's split by hand). Not yet run on the phone. <!-- PEANUTS -->
+- **Open:** each new build needs the regulator row carried over the same way (`nso_fnmap.py` when the previous `main` is at hand, then the setter and the regulator's global by disassembly): `main` has unwind entries for only 405 functions, so a function-matched cut cannot follow it. Until then such a build runs at 30 fps at the right speed. <!-- PEANUTS -->
+
+## Android bring-up
+
+- **AYN Thor, Turnip v26.2.0 R5, update 1.8d.6523:** The game reaches and starts an offline Classic Match between Atlanta United and Orlando City. In five-second samples the match presented at 59.7–59.9 fps before a brief dip to 57.8, and at 29.9 fps after switching back. The match clock advanced 84 seconds in 11.2 seconds at the 60 fps target and 80 seconds in 11.1 seconds at 30 fps.
+- **Resolved:** The pitch, players, ball and stands render in the Classic Match after [sparse pool buffer bindings resolve their physical backing](../../../docs/reference/nvn-objects.md#sparse-pool-buffers-on-the-vulkan-replay). The original runs showed a black or incomplete 3D scene and reported skipped draws and zeroed vertex streams. The fixed run presented at 59.8–59.9 fps across five-second gameplay samples on Turnip R5. The stadium introduction dipped to about 39 fps.
 
 ## On the Mac
 
@@ -52,6 +59,7 @@ On the Mac (2026-10-29): the accessibility settings, the EA SPORTS and FC 27 log
 
 General changes first needed here; each applies to every game on the same path:
 
+- **Resolved: a first run's black pitch blamed on the GPU driver** (Android) → [Background pipeline builds blamed on the GPU driver](../../../docs/reference/rendering.md#background-pipeline-builds-blamed-on-the-gpu-driver-android). <!-- PEANUTS -->
 - **Resolved: a text longer than a branch reaches** (185.6 MB): the rewriter splits the patch area in two → [Two patch areas for a text longer than a branch reaches](../../../docs/reference/rewriter.md#two-patch-areas-for-a-text-longer-than-a-branch-reaches).
 - **Resolved: no shader container found** → [CompiledBytecode resources in Frostbite superbundles](../../../docs/reference/shaders.md#compiledbytecode-resources-in-frostbite-superbundles) (`dm/gfx/tools/frostbite.py`).
 - **Resolved: `vi::CreateLayer` with `LayerCreationSettings` (SDK 22)** → [`vi::CreateLayer` with `LayerCreationSettings` (SDK 22)](../../../docs/reference/services.md#vicreatelayer-with-layercreationsettings-sdk-22).
@@ -68,3 +76,10 @@ General changes first needed here; each applies to every game on the same path:
 - **iPhone:** not built or tested. The 7 GB block is more than the 5 GB proven on a phone without the extended-virtual-addressing entitlement, so the game's arenas likely need less address space there (open: whether its command line or `MemoryInit.ini` can size them).
 - **Gameplay:** a whole match, its result screens, other modes (Career, Ultimate Team offline parts, Tournaments), other stadiums and weather, local multiplayer and other languages are untested.
 - Online play needs EA's servers: offline only.
+
+<!-- PEANUTS begin: picture shapes -->
+## Picture shapes (Android)
+
+**Untested.** Game settings › Display offers **Fill the screen** on 1.8d.6523 through 1 `aspect_plan` row that nobody has seen on a device (`aspect_plan_untested 1`, and the Fill choice says so). They are every place this build's main has the packed 1920x1080 sizes in code and the 16/9 float words, from a scan of the code on 2026-11-21 with each expected word read on the pack; no community patch stands behind them. With Fill the 3D view may follow the screen, the HUD and menus may not, or the game may draw wrongly or not start. Fit and Stretch are unchanged. Open: every screen, at any shape.
+
+<!-- PEANUTS end -->

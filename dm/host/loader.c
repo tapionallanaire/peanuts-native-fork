@@ -310,24 +310,27 @@ static void oot_patches_apply(void) {
 // The settings in the state page, written when the game starts (main.c, after host loading): on iOS the loading runs at app launch, before the launcher has set DM_FPS_TARGET and
 // DM_RENDER_SCALE (Launcher.swift), and nothing reads the page before the game runs
 __attribute__((weak)) void dm_fps_step_fold(void) {}   // hle_fpslock.c; tests that link the loader alone have no limiter
-#if PLAT_ANDROID
-static int fpslocker_clock_selected(void);
-#else
-static int fpslocker_clock_selected(void) { return 0; }
-#endif
+static int fpslocker_clock_selected(void);   // PEANUTS: defined below for every platform (the Mac host had a second definition here)
 void dm_fps_state_apply(void) {
     oot_patches_apply();
     if (!dm_fps_state) return;
     const char *e = getenv("DM_FPS_TARGET"); int t = e ? atoi(e) : DM_GAME_FPS_TARGET;
     if (t != 0 && t != 30 && t != 60) { LOG("[RED] DM_FPS_TARGET=%s: must be 0, 30 or 60; using the game's own frame step", e); t = 0; }
     float f = (float)t; memcpy(dm_fps_state, &f, sizeof f);
+    // PEANUTS: These exact builds have reviewed elapsed-time clocks on Android.
+    if (PLAT_ANDROID && t && (!strcmp(dm_main_build(), "4b159f0f7a360669738390ee8657b4f0") ||
+                             !strcmp(dm_main_build(), "277178b7dba1b6d4949a84778d4abc58"))) {
+        __atomic_store_n((uint32_t *)(dm_fps_state + 0x3c), 1, __ATOMIC_RELAXED);
+    }
     // Render scale of the 3D views (the stubs at Tears of the Kingdom's main+0xd5cc0, Breath of the Wild's main+0x1266880): 1.0 keeps the game's own size and dynamic resolution;
     // another factor fixes the size at that fraction (DM_RENDER_SCALE, 0.5 to 1.0). Independent of the frame step: written at target 0 too
     const char *rs = getenv("DM_RENDER_SCALE"); float sc = 1.0f;
     if (rs) { char *end; sc = strtof(rs, &end); if (end == rs || *end || !(sc >= 0.5f && sc <= 1.0f)) { LOG("[RED] DM_RENDER_SCALE=%s: must be 0.5 to 1.0; keeping the game's size", rs); sc = 1.0f; } else LOG("%s: 3D views rendered at %.2f of the game's size (DM_RENDER_SCALE)", g_fps_mod, sc); }
     memcpy(dm_fps_state + 0x10, &sc, sizeof sc);
     char cap[32]; snprintf(cap, sizeof cap, ", capped at %d fps", t);
-    LOG("%s: frame step %s%s (%s)", g_fps_mod, !t ? "as the game sets it" : "in whole vsyncs decided by the host", t ? cap : "", e ? "DM_FPS_TARGET" : "game profile fps_target");
+    // PEANUTS: Report the active clock mode in the launch log.
+    const char *mode = t == 0 ? "as the game sets it" : dm_fps_elapsed_step() ? "from elapsed time" : "in whole vsyncs decided by the host";
+    LOG("%s: frame step %s%s (%s)", g_fps_mod, mode, t && !dm_fps_elapsed_step() ? cap : "", e ? "DM_FPS_TARGET" : "game profile fps_target");
     // The frame limit (DM_FPS_LIMIT, on Android the profile's fps_limit) caps the step too (hle_fpslock.c dm_fps_step_fold)
     if (fpslocker_clock_selected()) { memset(dm_fps_state,0,4); dm_fps_state=NULL; LOG("FPSLocker fractional clock selected; legacy whole-vsync frame step disabled"); return; }
     dm_fps_step_fold();
@@ -983,7 +986,23 @@ static uint64_t fpslocker_reserve(module_t *m,uint64_t size) {
     if (!owned && p->aux) { m->fpslocker_code_off=size;m->fpslocker_data_off=size+FPW_AUX_PAGE;size+=2*FPW_AUX_PAGE; }
     return size;
 }
+// PEANUTS: aspect rows (game.tsv aspect_plan, aspect_plan.h): the game's own 16:9 number becomes the picture's shape, before code is sealed.
+#include "aspect_plan.h"
+static void aspect_apply_plan(module_t *m) {
+    if (strcmp(m->name,"main") || m->nro) return;
+    const char *spec=getenv("DM_ASPECT_PLAN");if (!spec || !*spec) return;
+    double shape=asp_shape(getenv("DM_VK_PICTURE_ASPECT"));if (!shape) return;   // 16:9 or no shape: the game as shipped
+    struct asp_plan p;int n=asp_plan_parse(spec,m->build_id,&p);
+    if (n<0) die("Aspect plan is malformed");
+    if (!n) { LOG("[RED] aspect plan: no rows for main build %s; the %.4f picture keeps the game's 16:9 view",m->build_id,shape);return; }
+    uint64_t original=m->fpslocker_code_off?m->fpslocker_code_off:m->size;
+    n=asp_plan_apply(&p,m->base,original,shape);
+    if (n<0) die("Aspect plan for %s failed its expected-word/bounds/width check (%d); nothing written",m->build_id,n);
+    for (unsigned i=0;i<p.n;i++) if (p.row[i].off<m->text_end) plat_icache_invalidate(m->base+p.row[i].off,4);
+    LOG("%s: aspect plan: %d words for the %.4f picture (restart to change)",m->name,n,shape);
+}
 static void fpslocker_apply_plan(module_t *m) {
+    aspect_apply_plan(m);   // PEANUTS: aspect rows, at the same pre-seal point
     struct fpw_plan *p=m->fpslocker_plan;if (!p) return;
     uint64_t original=m->fpslocker_code_off?m->fpslocker_code_off:m->size;
     int n=fpw_plan_apply(p,m->base,original,m->fpslocker_code_off,m->fpslocker_data_off,!m->fpslocker_active);

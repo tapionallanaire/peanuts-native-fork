@@ -2,7 +2,7 @@
 
 `peanuts_build.py` takes a game from its files to the phone:
 
-1. **Import**: `.nsp` / `.xci` files become a `.nup` (`nximport_cli`, built from `dm/peanuts/import` with cmake the first time).
+1. **Import**: `.nsp`, `.xci`, `.nsz` or `.xcz` files become a `.nup` (`nximport_cli`, built from `dm/peanuts/import` with cmake the first time).
 2. **Pack**: `scripts/pack_android.py` makes the pack from the `.nup` (or from a dump folder, which skips step 1).
 3. **Push** (`--push`): `peanuts/scripts/push-pack.py` copies the pack and the game to the phone over adb.
 
@@ -23,6 +23,18 @@ On macOS and Linux the importer also needs zlib's headers (part of the Xcode com
 `peanuts_build.py` itself uses only the standard library and Python 3.9 syntax, but it runs `scripts/pack_android.py` with the same interpreter, and the packer needs its environment (Python 3.14, `android/environment.yml`). The launchers take care of that; run the script directly only with that environment's Python.
 
 Set `NX_KEYS` to your `prod.keys`, or pass `--keys`. The default is `~/.switch/prod.keys`.
+
+### Desktop shader translator
+
+Peanuts Native 0.1.6 builds its desktop shader translator from source the first time a pack needs a new shader library. Install the .NET **SDK 10.0.114** for that first build. If the packer environment contains only the runtime, set `PEANUTS_DOTNET_SDK` to the full path of the SDK’s `dotnet` executable. The launcher preserves an explicit `XLATE` selection. Later builds reuse the verified translator under `peanuts/.build/pc-translator/`. Cached shader libraries and code-only packs can be used without preparing a translator.
+
+For an offline build set `PEANUTS_NUGET_SOURCE` to a local NuGet feed containing the packages required by `dm/third_party/ryujinx/Directory.Packages.props` and their dependencies. A populated NuGet global-packages folder works as a local feed. To prepare explicitly and print the value for `XLATE`, run:
+
+```sh
+python3 peanuts/scripts/prepare_pc_translator.py --source "$HOME/.nuget/packages"
+```
+
+The helper verifies the three portable DLL fingerprints and the translator’s embedded source digest against `dm/gfx/tools/dmsh_chain.lock` before publishing its cache directory. SDK 10.0.114 reproduced all three locked DLLs byte for byte on x86-64 Linux. Other platforms check the same fingerprints. Both the Peanuts desktop launchers and direct calls to `scripts/pack_android.py` select the result automatically. On Windows use the packer environment’s `python` and a Windows path for the feed.
 
 ### Linux
 
@@ -58,6 +70,18 @@ peanuts\scripts\peanuts-build.bat "D:\Games\Game folder" --update 131072 --push
 
 Other inputs: a `.nup` (`... "Game [01006BB00C6F0000][v131072].nup" --push --dest "/sdcard/Peanut Roms/Game"`), a dump folder (`... "Dump folder" --dry-run`), and anything after `--` goes to `pack_android.py` (`... "Game.nup" -- -j 8`).
 
+### Compressed files (.nsz, .xcz)
+
+Files compressed with nsz go in like `.nsp` and `.xci`, mixed with them as you like (an `.nsz` base with an `.nsp` update, say). The `.nup` is the same, byte for byte, as the one from the uncompressed files.
+
+- Every compressed NCA is rebuilt and checked against the SHA-256 the game's own metadata records before anything is written. A damaged or cut-off file stops the import with its name; nothing is changed.
+- A **block** file (nsz `-B`, the `.xcz` default) is read where it is: no extra space.
+- A **solid** file (the `.nsz` default) cannot be read out of order, so the importer unpacks it once into a temporary file beside the `.nup`, in the hidden folder `.<name>.nup.tmp.unpack`, and deletes it when the import ends. While it imports the folder needs about the game's size twice (the `.nup` and the unpacked copy); the builder says how much before it starts. `NXIMPORT_TMPDIR` puts the temporary file on another drive.
+- A solid file whose zstd window is larger than 128 MiB is refused (nsz's levels ask for 8 MiB at the default and 128 MiB at most; another tool might ask for more): compress it again with nsz.
+- When a folder holds both the `.nsp` and the `.nsz` of a game, the `.nsp` is used (nothing to unpack).
+- To check a compressed file without importing it: `nximport_cli --keys prod.keys check Game.nsz` (`peanuts/.build/nximport/nximport_cli` once the builder has built it).
+- Ctrl-C during the import stops it cleanly: no `.nup`, no temporary file.
+
 ## Flags
 
 - `--keys PATH`, `--importer PATH` (or `NX_IMPORTER`), `--nup PATH`: the keys, a prebuilt importer, the `.nup` to write or reuse. If `--nup` is an existing folder, the `.nup` goes there under its default name (title, title ID, version), so a caller never has to invent the name; a file path works as before.
@@ -77,20 +101,24 @@ A game whose profile (`dm/games/<titleID>/shader_map.tsv`) has `/glslc_capture/`
 
 ## Oodle and Unreal games a Linux PC builds itself
 
-On Linux the builder does that step itself for four games, each checked on a PC against its profile's shader keys:
+On Linux the builder does that step itself for the games below. Each game's shader keys were checked on a PC against its profile.
 
 | Game | What the PC does | Checked |
 |---|---|---|
 | Pokémon Legends: Arceus (`01001F5010DFA000`) | decodes its Oodle Kraken archives with `unoodle` | 12,851 of 12,851 shader keys |
+| Pokémon Legends: Z-A (`0100F43008C44000`) | decodes its Trinity packs with `unoodle` | 28,603 of 28,603 shader keys on 2.0.2 with Mega Dimension |
+| Captain Tsubasa 2: World Fighters (`01009720213B0000`) | decodes its IoStore shader libraries with `unoodle` | 21,903 of 21,903 shader keys on version 1.0.6 |
+| Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2 (`0100AD80208A8000`) | reads inline IoStore shaders with `unoodle` | 128,449 shader keys on 1.80 |
 | FINAL FANTASY RESONANCE (`0100606026F12000`) | decodes its Unreal shader libraries (Oodle Mermaid) with `unoodle` | 73,496 of 73,496 keys; the shader package is the phone's byte for byte |
 | OCTOPATH TRAVELER 0 (`01005270232F2000`) | the same | its 10,596 streams and 10,324 keys; a build from its game files was not run on a PC yet |
 | DRAGON QUEST III HD-2D Remake (`01003E601E324000`) | reads its Unreal shader archives (LZ4, no Oodle) | 47,298 of 47,298 keys |
 
 - **`unoodle`** is a small worker built from the open-source ooz decoder in [`dm/third_party/ooz`](../../dm/third_party/ooz/README.md). It is GPL-3.0-or-later and a program of its own: the builder's tools start it and talk to it over a pipe (`DM_OODLE_OOZ`). It is for the PC builder only: it is not in the APK, not in the on-device build and not in any release file. Its licence as that folder's README records it: the decoder's source file carries a GPL-3.0-or-later notice, but the ooz project has no licence file, and its files without a notice that hold decoder code are left out. The builder compiles it into `peanuts/.build/ooz` the first time such a game is built. It needs x86-64, g++ or clang++, and the `patch` program.
-- The three Unreal games also need the `_nxaes` module (AES for the pak index), which the builder compiles for its own Python into `peanuts/.build/pymod`. It needs gcc or clang and Python's headers (`python3-dev` or `python3-devel`). The split then decodes the archives itself (`DM_UE_DECODE`, into `<TITLE ID>-work/android-shaders/ue_shaders`, reused while the game's paks are the same).
+- The builder compiles the `_nxaes` module for Unreal games so it can read encrypted pak indexes. It needs gcc or clang and Python's headers (`python3-dev` or `python3-devel`). The split decodes the archives into `<TITLE ID>-work/android-shaders/ue_shaders` and reuses them while the game's paks are the same.
 - **ooz is not the game's own decoder**, and an Oodle stream has no checksum. So the pack is made only if the shader keys that come out of the split are exactly the ones in the game's profile; each key is a hash of its shader's bytes. With one key missing or one key more the build stops with a `[RED]` message that names the ooz decoder, and nothing it decoded is used. The usual cause is game files of another version than the profile's; build on the device then.
-- Where the worker cannot be built (arm64, no compiler), the Unreal games are refused as above and Arceus stops before the import with the reason. On macOS and Windows nothing changes: these games are refused as before. Other games with Oodle-compressed files (for example Pokémon Legends: Z-A, Bayonetta 3) are not on the list, because their decode was not checked on a PC; they still stop at the shader split.
+- Where the worker cannot be built (arm64, no compiler), the Unreal games are refused as above and Arceus and Z-A stop before the import with the reason. On macOS and Windows nothing changes: these games are refused as before. Other games with Oodle-compressed files (for example Bayonetta 3) are not on the list, because their decode was not checked on a PC; they still stop at the shader split.
 - `DM_OODLE_OOZ` set by you (a worker you built with `dm/third_party/ooz/build.sh`) is used for any game, with the same key check.
+- Double Dragon Revive (`01006AE02236C000`): set `DM_OODLE_OOZ` to that worker to decode its IoStore libraries, or supply the decoded `DM_UE_SHADERS` folder for the version being packed. Its [two-build split](../../dm/games/01006AE02236C000/README.md#shaders) contains 18,510 keys, including 13 read directly from NROs.
 
 ## .NET
 
@@ -99,7 +127,7 @@ The shader translator needs .NET. The builder points the tools it starts at the 
 ## Where things go
 
 - The `.nup` goes beside the first input file, named `<Name> [<TITLE ID>][v<version>].nup`. Characters Windows does not allow in the name become `-`.
-- The title's icon goes beside the `.nup` as `<the .nup's name without .nup>.png` (`nximport_cli icon`, from the base file, else the update). It is written for `.nsp` / `.xci` inputs, also when the `.nup` is reused and only the PNG is missing (`--force-nup` writes it again). A failure is a warning, not an error. `--push` copies it beside the `.nup` on the phone, where the Peanuts library takes it as the game's icon (a `.nup` holds none) when the game has none yet: it must be a PNG of at most 4 MiB, and once the library has an icon for a title it keeps it.
+- The title's icon goes beside the `.nup` as `<the .nup's name without .nup>.png` (`nximport_cli icon`, from the base file, else the update). It is written for `.nsp`, `.xci`, `.nsz` and `.xcz` inputs, also when the `.nup` is reused and only the PNG is missing (`--force-nup` writes it again). A failure is a warning, not an error. `--push` copies it beside the `.nup` on the phone, where the Peanuts library takes it as the game's icon when the game has none yet: it must be a PNG of at most 4 MiB, and once the library has an icon for a title it keeps it. Since issue #158 the `.nup` also carries the icon itself (its base package's meta block, which `nximport` writes); the library reads the PNG beside it first, then the icon inside.
 - The pack goes to `<folder of the .nup>/<TITLE ID>-work/android-pack`.
 - The importer is built into `peanuts/.build/nximport`, the Oodle worker into `peanuts/.build/ooz` and `_nxaes` into `peanuts/.build/pymod` (all git-ignored).
 

@@ -238,6 +238,9 @@ uint64_t vks_bytes_nolock(void);
 int vka_addr(uint64_t addr, uint64_t len, VkBuffer *buf, VkDeviceSize *off, VkDeviceAddress *bda);   // 1 = [addr, addr + len) lies in one placed segment
 int vka_mem_release(uintptr_t lo, uintptr_t hi);    // the host gives [lo, hi) back: segments there are given back first; 0 = the host releases the range itself   // PEANUTS: a segment it covers part of stays, less that part (vka_holes.h)
 uint64_t vka_addr_run(uint64_t addr, uint64_t len, VkBuffer *buf, VkDeviceSize *off);   // bytes from addr (at most len) in the segment that holds addr, 0 = none
+// PEANUTS: GPU-only lookups also resolve NVN virtual pools; their virtual addresses are still inaccessible to the CPU.
+uint64_t vka_gpu_addr_run(uint64_t addr, uint64_t len, VkBuffer *buf, VkDeviceSize *off);
+int vka_gpu_addr(uint64_t addr, uint64_t len, VkBuffer *buf, VkDeviceSize *off);
 extern _Atomic uint32_t vka_seg_gen;   // vka_mem.c: bumped when a segment's buffer is destroyed (views over segment buffers are made again)
 void vka_mem_join_due(void);   // the replay thread at a submission's start: joins the parts of pools placed by parts that a range given to the GPU lies across (vka_mem.c)
 int vka_pool_bda(uint64_t addr, VkDeviceAddress *bda);   // the device address of a pool byte (the table the binding side reads)
@@ -281,6 +284,7 @@ typedef struct vka_img {
     // Content from guest storage (vka_tex.c storage_mode): track = re-uploaded when the CPU writes its pages (write-protected after each upload, nvn_dirty.c),
     // stamp = the dirty-page generation taken before the last upload, span = the tracked pool range that holds the storage
     int track, wb_pending; uint64_t stamp; const void *span;
+    uint32_t tiled_wb_levels;   // PEANUTS: render-written mips pending block-linear write-back
     uint64_t wb_fence;       // the fence of the submission that holds the last copy of its GPU content back into its storage (vka_tex_writeback; 0: none): vka_wbfollow.h
     int wbf_waiting;         // the prepare's last scan found it waiting for that copy-back; a scan that only runs for waiting images visits just these (wbf_visit)
     int wt;                  // the game writes it through WriteTexels (vka_tex.c mtl_tex_write_region): never tracked again
@@ -376,8 +380,9 @@ vka_img *vka_tex_ref(vka_img *im);                  // one more reference to im 
 void vka_tex_drop_pool(const void *pool);            // drop all images belonging to a finalized memory pool
 // The GPU writes im (render target, clear, copy destination, storage image): its content is the GPU's from now on (no re-upload from storage), and a linear texture's level 0
 // is copied back into its storage when the submission ends (vka_tex_writeback), where the CPU reads it as it would on the Switch
-void vka_img_written_at(vka_img *im, const char *file, int line);
-#define vka_img_written(im) vka_img_written_at(im, __FILE_NAME__, __LINE__)   // (the site is logged for a large image's first write, DM_VK_BIGIMG_MB)
+void vka_img_written_at(vka_img *im, int color_level, const char *file, int line);   // PEANUTS: color_level, the colour target mip written (-1: any other write)
+#define vka_img_written(im) vka_img_written_at(im, -1, __FILE_NAME__, __LINE__)   // (the site is logged for a large image's first write, DM_VK_BIGIMG_MB)
+#define vka_img_color_written(im, lv) vka_img_written_at(im, (int)(lv), __FILE_NAME__, __LINE__)
 // Before a write is recorded into im (an attachment, a clear, a copy destination, a storage image): a zero-shared image gets memory of its own, cleared (vka_tex.c img_own).
 // Call it before taking a view of im for the write. Any thread that records (takes the table lock); no render pass may be open in cb unless upload batches are on
 void vka_tex_own(vka_img *im, VkCommandBuffer cb);
@@ -404,6 +409,7 @@ VkImageView vka_view(vka_img *im, VkFormat fmt, VkImageViewType type, VkImageAsp
 void vka_tex_prepare(VkCommandBuffer cb);           // at submit begin: dirty CPU textures re-uploaded, registered descriptors written
 void vka_tex_uploads(VkCommandBuffer cb);
 VkDescriptorSet vka_bindless_set(void);
+uint32_t vka_bindless_tex_slots(void);        // PEANUTS: the pool's sampled-image table length, 0 without the pool set
 VkDescriptorSetLayout vka_bindless_layout(void);
 void vka_barrier_at(VkCommandBuffer cb, const char *file, int line);   // a full memory barrier (the replay orders every transfer op after the previous one)
 void vka_xp_ts(VkCommandBuffer cb, int site);   // DM_VK_XP_TS experiment (vka_tex.c)
@@ -467,6 +473,7 @@ VkImageView vka_tbuf_image_view(int id, uint8_t dim);   // that image's view (af
 void vka_tbuf_wrote(uint64_t addr, uint64_t n);     // GPU work that writes guest memory [addr, addr+n) was recorded (vka_tex.c gw_add): images of buffer textures over it are copied again at their next use
 int vka_tex_id_pending(int id);                     // texture ID id is registered and its image is not made yet (its first use records commands)
 VkImageView vka_tex_id_view_rec(int id, VkCommandBuffer cb, uint8_t dim, int storage, VkImageLayout *layout);   // the same on the recording thread, through a memo (DM_VK_TEX_MEMO)
+VkImageView vka_tex_id_view_samp_rec(int id, int sid, VkCommandBuffer cb, uint8_t dim, int storage, VkImageLayout *layout);   // PEANUTS(upstream-candidate): the same through sampler ID sid (0: not known), whose pinned level a view of the pass's own target follows (vka_tex.c fb_view_levels)
 VkFormat vka_tex_id_vkfmt(int id);   // the format texture ID id is viewed in, not its (possibly shared) image's (vka_tex.c)
 VkImageView vka_tex_id_view_bits(int id, VkCommandBuffer cb, VkImageLayout *layout);   // a storage view of its image as R32_UINT (4-byte texels), not written into the bindless table (vka_tex.c)
 int vka_tex_id_pending_rec(int id, uint8_t dim);
@@ -484,10 +491,11 @@ VkSampler vka_samp_default(void);                   // the sampler an unbound sa
 #include "vka_shlib.h"
 #include "vka_bind.h"
 #include "vka_memu.h"
+#define VKA_MOD_TERRAIN_NORMAL 5       // PEANUTS (PR #164): runtime-only single-sample variant; never stored in the shader library or prewarm keys
 typedef struct vka_shader {
     uint64_t key; const dmsh_vk_entry *e; const dmsh_vk_bind *b;
     const vka_shlib *lib;               // the library the entry is in (its header's translator answers; its other modules)
-    VkShaderModule mods[5];             // by DMSH_VK_MOD_* variant, made when a pipeline first asks (the base when the shader is made)
+    VkShaderModule mods[VKA_MOD_TERRAIN_NORMAL + 1]; // PEANUTS: library and runtime variants; the base is made when the shader is made
     struct vka_vinmod *vin;             // vertex modules with integer-fed inputs retyped, by masks (vka_shader_vin_module)
     struct vka_vinmod *fout;            // pixel modules with float outputs retyped for integer targets, by masks (vka_shader_fout_module)
     vka_span c1; VkDeviceSize c1_len;   // the c1 bytes in static memory (none when c1_len is 0)
@@ -514,6 +522,11 @@ int vka_shader_variant_key(uint64_t key);   // 1 when a key is no library key bu
 typedef struct { vka_shader *sh[VKA_NSTAGE]; unsigned bad; } vka_progsh;   // by NVN stage; bad: stages whose shader is refused (bit = NVN stage) or VKA_BAD_MISSING (their draws are skipped)
 #define VKA_BAD_MISSING (1u << VKA_NSTAGE)   // vka_progsh.bad: a stage's shader is not in the library (its NVN stage unknown)
 int vka_prog_shaders(const prog_t *p, vka_progsh *out);      // 1 = resolved (stages the program lacks are NULL); 0 = no library or no program
+void vka_pso_prefetch(const uint8_t md[6][8], unsigned n);   // PEANUTS: a program's shader parts made from now (vka_pso.c pf_main), from nvnProgramSetShaders
+int vka_shaders_by_keys(const uint8_t md[6][8], unsigned n, vka_shader *sh[VKA_NSTAGE]);   // PEANUTS: (vka_shader.c)
+void vka_pso_prefetch_line(char *out, size_t n);   // PEANUTS
+void vka_tex_bindless_ready(void);   // PEANUTS: (vka_tex.c) before a pipeline layout is made
+size_t vka_shader_drop_modules(void);   // PEANUTS: (vka_shader.c) the end of the preparing step
 void vka_prog_put(uint64_t serial, const vka_progsh *ps);   // a program made by the host itself (the selftest), by serial
 vka_shader *vka_shader_make(const vka_shlib *L, uint64_t key);
 const char *vka_shader_lib_path(void);   // the library file loaded ("" before or without one): this version's, or an older one of the same ABI or of a compatible older one (vka_abi_compat.h)
@@ -555,6 +568,8 @@ int vka_layout_of(vka_shader *const sh[VKA_NSTAGE], int compute, vka_layout *out
 VkPipeline vka_gfx_pipeline(vka_shader *const sh[VKA_NSTAGE], const vka_layout *lay, const vka_gkey *k);
 VkPipeline vka_gfx_pipeline_now(vka_shader *const sh[VKA_NSTAGE], int why, long long count, uint32_t w, uint32_t h);   // PEANUTS: the last lookup's pipeline made on the frame path when a background thread was to make it (DM_VK_PSO_ASYNC; vka_psosync.h)
 VkPipeline vka_cs_pipeline(vka_shader *cs, const vka_layout *lay);
+int vka_pso_last_pending(void);   // PEANUTS: the frame path's last lookup returned no pipeline because a background thread is to make it (DM_VK_PSO_ASYNC), not a refusal
+int vka_pso_waiting(void);        // PEANUTS: pipelines the asynchronous threads have queued or are making
 VkPipeline vka_cs_pipeline_frame(vka_shader *cs, const vka_layout *lay);   // a dispatch's: VK_NULL_HANDLE while the asynchronous threads make it (DM_VK_CS_ASYNC), the dispatch then skipped
 VkPipeline vka_cs_pipeline_img(vka_shader *cs, const vka_layout *lay, uint64_t umask, uint64_t smask);   // with vka_shader_img_module's module; VK_NULL_HANDLE = none (then the base one)
 void vka_pso_save(int force);         // the VkPipelineCache and the prewarm list to the app's files (DM_TEMP): due DM_VK_PCACHE_SAVE_S after the last save, on the saver thread; force 1 = now, on the caller's; 2 = after a slow pipeline (due DM_VK_PCACHE_SAVE_SLOW_S)
@@ -653,6 +668,8 @@ void vka_tex_gw_fill(uint64_t dst, uint64_t n, uint32_t value);
 void vka_tex_gw_update(uint64_t dst, uint64_t n, const void *data);
 void vka_tex_gw_opaque(uint64_t dst, uint64_t n);   // bytes the host does not know at recording (shader stores, texture → buffer copies)
 void vka_tex_gw_tbuf(uint64_t dst, uint64_t n);   // PEANUTS: an opaque write made by stores through a storage texel buffer (vka_tbuf.h)
+uint64_t vka_tex_gw_seq(void);   // PEANUTS: the newest GPU write's sequence number
+int vka_tex_gw_since(uint64_t addr, uint64_t n, uint64_t seq);   // PEANUTS: a GPU write recorded after seq overlaps the range
 int vka_tex_gw_tbuf_pending(uint64_t addr, uint64_t n);   // PEANUTS: 1 = such a write over [addr, addr + n) is not done yet: the CPU does not have its bytes
 int vka_tex_gw_read(uint64_t addr, uint64_t n, void *out);   // [addr, addr + n) as the GPU sees it now (guest RAM + pending gw_t writes); out NULL = only whether known (no opaque write)
 int vka_tex_gml_take(VkDescriptorBufferInfo *bi);  // a raw global memory write log for one draw or dispatch, read when its submission is done (0 = none free)

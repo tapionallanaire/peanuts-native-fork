@@ -15,9 +15,9 @@
 #define SF_MAX 64
 // A service's own answer to a command: its result, and a kernel handle to copy to the client in *copy (0: none). NULL: success, zeroed output (olsc:u)
 typedef Result (*sf_answer)(unsigned cmd, uint32_t *copy);
-static struct { char name[16]; int used, domain; unsigned seen; sf_answer answer; } g_sf[SF_MAX];
+static struct { char name[16]; int used, domain; uint64_t seen; sf_answer answer; } g_sf[SF_MAX];   // PEANUTS: seen is a 64-bit set of the objects / commands logged
 static pthread_mutex_t g_sf_mu = PTHREAD_MUTEX_INITIALIZER;
-static const char *const sf_served[] = {"olsc:u", "caps:su", "caps:u", "caps:a", "caps:c", "caps:sc", "caps:ss"};
+static const char *const sf_served[] = {"olsc:u", "caps:su", "caps:u", "caps:a", "caps:c", "caps:sc", "caps:ss", "bt", "btm:u"};   // PEANUTS(upstream-candidate): offline Bluetooth
 
 static int sf_slot(uint32_t h) {
     unsigned i = h - SF_H0;
@@ -31,6 +31,36 @@ static uint32_t sf_new(const char *name, int domain, sf_answer answer) {
     pthread_mutex_unlock(&g_sf_mu);
     return SF_H0 + i;
 }
+
+// PEANUTS begin (upstream-candidate): Scarlet and Violet 4.0.0 initialize BLE during boot. Model a console with no nearby or connected devices.
+// Command and reply layouts checked against nx2android v0.4.0's hle_sf.c and its Scarlet bring-up.
+static Result bluetooth_answer(const char *name, int domain, unsigned object, unsigned cmd,
+                               uint32_t *copy, uint32_t *move, uint32_t *child, uint32_t *value) {
+    if (!strcmp(name, "bt")) {
+        if (cmd != 9) return RES_FAIL;
+        *copy = hle_new_event(NULL);
+        return RES_OK;
+    }
+    if (!strcmp(name, "btm:u") && (!domain || object == 1)) {
+        if (cmd != 0) return RES_FAIL;   // IBtmUser::GetCore
+        if (domain) *child = 2;
+        else *move = sf_new("btm:core", 0, NULL);
+        return RES_OK;
+    }
+    if (strcmp(name, "btm:core") && (strcmp(name, "btm:u") || object != 2)) return RES_FAIL;
+    switch (cmd) {
+    case 0: case 17: case 21: case 26: case 33:
+        *copy = hle_new_event(NULL);
+        *value = 1;   // the SDK checks that it acquired the event
+        return RES_OK;
+    case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8: case 9: case 10:
+    case 20: case 25: case 27: case 28: case 29: case 30: case 31: case 32: case 36: case 37:
+        return RES_OK;   // scans and registrations succeed, enumeration is empty
+    default:
+        return RES_FAIL;   // connection, pairing or configuration of an absent device
+    }
+}
+// PEANUTS end
 
 // A host session the host hands out itself, not through sm: answered like the served services
 uint32_t dm_sf_host_session(const char *name) { uint32_t h = sf_new(name, 0, NULL); LOG("sf: %s → host session %#x (every request succeeds with zeroed output)", name, h); return h; }
@@ -64,10 +94,10 @@ HLE_FORCE("_ZN2nn6camera3sdk19CreateCameraContextEPNS_5gsdrv18UniqueNativeHandle
 
 HLE_FORCE("_ZN2nn2sf4hipc31InitializeHipcServiceResolutionEv", "service name resolution (connects to sm); the host resolves the names it serves itself", Result, h_sf_InitRes, void) { return RES_OK; }
 HLE_FORCE("_ZN2nn2sf4hipc29FinalizeHipcServiceResolutionEv", "service name resolution (sm)", void, h_sf_FinRes, void) {}
-HLE_FORCE("_ZN2nn2sf4hipc20ConnectToHipcServiceEPNS_3svc6HandleEPKc", "connect to a service through sm → a host session for the services the host serves", Result, h_sf_Connect,
+HLE_FORCE_BIG("_ZN2nn2sf4hipc20ConnectToHipcServiceEPNS_3svc6HandleEPKc", "connect to a service through sm → a host session for the services the host serves", Result, h_sf_Connect,   // PEANUTS: big stack (LOG)
           uint32_t *out, const char *name) {
     for (size_t k = 0; k < sizeof sf_served / sizeof *sf_served; k++)
-        if (!strncmp(name, sf_served[k], 8)) { *out = sf_new(sf_served[k], 0, NULL); LOG("sf: %s → host session %#x (every request succeeds with zeroed output)", sf_served[k], *out); return RES_OK; }
+        if (!strncmp(name, sf_served[k], 8)) { *out = sf_new(sf_served[k], 0, NULL); LOG("sf: %s → host session %#x", sf_served[k], *out); return RES_OK; }   // PEANUTS(upstream-candidate): Bluetooth has command-specific replies
     LOG("[RED] sf: the game connects to service %.8s itself, which the host does not serve", name);
     return 0xe15u;   // sm ResultNotRegistered
 }
@@ -96,7 +126,7 @@ HLE_FORCE("_ZN2nn2sf4hipc6client16DuplicateSessionEPNS_3svc6HandleES4_", "contro
 HLE_FORCE("_ZN2nn2sf4hipc6client18DuplicateSessionExEPNS_3svc6HandleES4_j", "control request: clone a session (with a tag) → a new host session to the same service", Result, h_sf_DupEx,
           uint32_t *out, uint32_t h, unsigned tag) { (void)tag; return h_sf_Dup(out, h); }
 
-HLE_FORCE("_ZN2nn2sf4hipc15SendSyncRequestENS_3svc6HandleEPvm", "send a request on a session (svcSendSyncRequest) → answered by the host for its sessions", Result, h_sf_Send,
+HLE_FORCE_BIG("_ZN2nn2sf4hipc15SendSyncRequestENS_3svc6HandleEPvm", "send a request on a session (svcSendSyncRequest) → answered by the host for its sessions", Result, h_sf_Send,   // PEANUTS: big stack (LOG)
           uint32_t h, uint32_t *m, uint64_t size) {
     int i = sf_slot(h);
     if (i < 0 || size < 0x40) { LOG("[RED] sf: SendSyncRequest on %#x (%llu bytes), not a host session", h, (unsigned long long)size); return 0xe401u; }   // kernel ResultInvalidHandle
@@ -118,16 +148,26 @@ HLE_FORCE("_ZN2nn2sf4hipc15SendSyncRequestENS_3svc6HandleEPvm", "send a request 
     if (dtype == 2) { memset(base, 0, 16); return RES_OK; }   // a domain object closed: nothing to answer
     if (magic != 0x49434653) { LOG("[RED] sf: %s: request without SFCI (%#x)", g_sf[i].name, magic); return 0xe401u; }
     unsigned key = (obj & 0xff) << 16 | (cmd & 0xffff);   // log each object / command once
-    pthread_mutex_lock(&g_sf_mu); int first = g_sf[i].seen != key; g_sf[i].seen = key; pthread_mutex_unlock(&g_sf_mu);
-    uint32_t copy = 0; Result res = g_sf[i].answer ? g_sf[i].answer(cmd & 0xffff, &copy) : RES_OK;
-    if (first || trace) LOG("sf: %s object %u command %u (%u data words in): %s%s", g_sf[i].name, obj, cmd, ndw, res ? "fails" : "success, zeroed output", copy ? ", a copied handle" : "");
+    pthread_mutex_lock(&g_sf_mu); uint64_t bit = 1ull << ((key * 2654435761u) >> 26); int first = !(g_sf[i].seen & bit); g_sf[i].seen |= bit; pthread_mutex_unlock(&g_sf_mu);   // PEANUTS: a set, not the last key
+    // PEANUTS begin (upstream-candidate): BLE events, moved IBtmCore sessions and domain replies.
+    uint32_t copy = 0, move = 0, child = 0, value = 0;
+    const char *name = g_sf[i].name;
+    Result res = RES_OK;
+    if (g_sf[i].answer) res = g_sf[i].answer(cmd & 0xffff, &copy);
+    else if (!strcmp(name, "bt") || !strcmp(name, "btm:u") || !strcmp(name, "btm:core"))
+        res = bluetooth_answer(name, dom, obj, cmd, &copy, &move, &child, &value);
+    if (first || trace) LOG("sf: %s object %u command %u (%u data words in): result %#x", name, obj, cmd, ndw, res);
     // The response: no descriptors. Without a handle there is no special header, so the data words start at +8; a copied handle takes a special header (its copy count) and the handle,
     // so they start at +0x10. The CMIF part starts at +0x10 either way (16-byte aligned); everything after the headers up to the buffer's end reads as zero
-    size_t end = size < 0x1000 ? size : 0x1000, dw = copy ? 0x10 : 8;
+    size_t end = size < 0x1000 ? size : 0x1000, dw = copy || move ? 0x10 : 8;
     memset(base, 0, end);
     m[1] = (uint32_t)((end - dw) / 4 < 0x3ff ? (end - dw) / 4 : 0x3ff);
     if (copy) { m[1] |= 1u << 31; m[2] = 1u << 1; m[3] = copy; }   // special header: no process ID, 1 copy handle, 0 move handles
+    if (move) { m[1] |= 1u << 31; m[2] = 1u << 5; m[3] = move; }
     size_t out = 0x10 + (dom ? 16 : 0);
     uint32_t *o = (uint32_t *)(base + out); o[0] = 0x4f434653; o[1] = ver; o[2] = res; o[3] = 0;   // "SFCO"; a domain's out-object count before it stays 0
+    if (child) { m[4] = 1; o[4] = child; }
+    if (value) o[4] = value;
+    // PEANUTS end
     return RES_OK;
 }

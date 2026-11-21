@@ -17,6 +17,9 @@ Update 1.1.0 (v131072) over the base game, SDK 8.2.0. Grezzo's engine on Nintend
 
 The default remains 60 fps with the existing Grezzo controller lock. The choices are Game owned, 30 and 60 fps, all using the original game timing. Game owned leaves the native controller and timing alone.
 
+<!-- PEANUTS -->
+For [issue #113](https://github.com/igawa6/peanuts-native/issues/113), the launcher now sends the matching engine target at launch and when switching between 30 and 60 fps in play. Removing the experimental plan had left manual 30 fps changing only the host limiter, while the Grezzo controller stayed at 60 fps. The launcher policy is covered by JVM tests. Gameplay timing on the reporting device still needs verification.
+
 The experimental 120 fps mode was removed after the owner reported broken gameplay. Its main-module timing patches and associated controller-memory override are no longer shipped. The precise timing failure remains unresolved; title-screen frame counts did not validate gameplay. Previously saved 120 fps selections resolve to the 60 fps default on the next launch through the launcher's existing cap normalization. Game files are unchanged; restart any running session to use the updated profile.
 
 ## Rendering
@@ -60,6 +63,13 @@ Game-specific findings; the general host changes they led to are listed under [F
 - RomFS: bfres models and maps (`region_common/map`, `region_common/actor`), shaders in `region_common/shader/*.bfsha` (BNSH), particle effects in `region_common/effect/*.ptcl`, layouts in `*/ui/*.arc` (SARC).
 - 9,698 shaders from the bfsha archives, effects and layouts.
 - **GLSLC.** `subsdk0` is NVN's runtime GLSL compiler and `main` imports `glslcCompile*`; `game.tsv` says the `*_uber.bfsha` are compiled at run time through it, but up to the house, the beach and the menus every shader the game loaded was in the offline tables.
+
+<!-- PEANUTS begin: picture shapes -->
+## Picture shapes (Android)
+
+**Untested.** Game settings › Display offers **Fill the screen** on 1.1.0 through 3 `aspect_plan` rows that nobody has seen on a device (`aspect_plan_untested 1`, and the Fill choice says so). They are every place this build's main has the packed 1920x1080 sizes in code and the 16/9 float words, from a scan of the code on 2026-11-21 with each expected word read on the pack; no community patch stands behind them. With Fill the 3D view may follow the screen, the HUD and menus may not, or the game may draw wrongly or not start. Fit and Stretch are unchanged. Open: every screen, at any shape.
+
+<!-- PEANUTS end -->
 
 ## Mac routes
 

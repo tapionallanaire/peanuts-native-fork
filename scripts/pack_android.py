@@ -93,6 +93,15 @@ def child_env(**kw):
 def peanuts_env(step):
     """step 'split': DM_SPLIT_DIRECT=1 (the targeted split reads a file's recorded containers only); 'shaders': DMSH_VK_ZSTD_LEVEL=6 (the phone's level)"""
     kw = dict(DM_SPLIT_DIRECT='1') if step == 'split' else dict(DMSH_VK_ZSTD_LEVEL='6')
+    # PEANUTS: a desktop checkout can build the locked translator. The phone has its own native one.
+    helper = REPO / 'peanuts/scripts'
+    if step == 'shaders' and 'XLATE' not in os.environ and (helper / 'prepare_pc_translator.py').is_file():
+        sys.path.insert(0, str(helper))
+        import prepare_pc_translator
+        try:
+            kw['XLATE'] = str(prepare_pc_translator.resolve())
+        except (OSError, RuntimeError, subprocess.SubprocessError) as error:
+            raise Error(f'desktop translator: {error}') from error
     return {k: v for k, v in kw.items() if k not in os.environ}
 # PEANUTS end
 
@@ -365,9 +374,9 @@ def other_version_keys(g, ver):
     return keys
 
 
-def may_lack(g, ver=None):
-    """The keys a dump of version ver may lack: shader_optional.tsv's, and the other listed versions' own (other_version_keys)"""
-    return optional_keys(g) | other_version_keys(g, ver)
+def may_lack(g, ver=None, other=None):
+    """The keys a dump of version ver may lack: shader_optional.tsv's, and the other listed versions' own (other_version_keys, or the caller's already read set)"""
+    return optional_keys(g) | (other_version_keys(g, ver) if other is None else other)
 # PEANUTS end
 
 
@@ -756,7 +765,7 @@ def ooz_split_checked(ooz, g, tmp, ver=None):
     check there is. So the split in <tmp> counts only when its keys are exactly the profile's, but for the keys shader_optional.tsv gives to another build; one
     key missing or one key more stops the pack, and nothing of that split is used. (vk_android_build.py then hashes every record against its key again.)"""
     want, have = map_keys(g.dir / 'shader_map.tsv'), map_keys(tmp / 'shader_map.tsv')
-    lost, more = sorted(k for k in want - have if k not in may_lack(g, ver)), sorted(have - want)
+    lost, more = sorted((want - have) - may_lack(g, ver)), sorted(have - want)   # PEANUTS: load the optional-key tables once per split
     if lost or more:
         eg = lambda ks: f' (e.g. {", ".join(ks[:3])})' if ks else ''
         raise Error(f'the shaders decoded with the ooz Oodle decoder ({ooz}, DM_OODLE_OOZ) are not the profile\'s: {len(lost)} of the {len(want)} keys in its shader_map.tsv '
@@ -866,10 +875,11 @@ def split_shaders(a, g, vdir, pkg, parts=None, aoc=(), nros=None):   # parts: th
     if (g.dir / 'shader_map.tsv').is_file():
         want, have = map_keys(g.dir / 'shader_map.tsv'), map_keys(tmp / 'shader_map.tsv')
         missing = sorted(want - have)
-        if hard := [k for k in missing if k not in may_lack(g, ver)]:   # PEANUTS: may_lack (was optional_keys): the other listed versions' shaders are checked first
+        other = other_version_keys(g, ver)   # PEANUTS: read the profile's version table once, even when thousands of keys differ
+        if hard := sorted(set(missing) - may_lack(g, ver, other)):   # PEANUTS: keys from other listed versions may be absent
             raise Error(lacking_shaders(g, rd, hard, len(want), getattr(a, 'dlc_count', None), tmp, shader_versions(g) != [f'v{ver}']))   # PEANUTS: names DLC that was not imported as a possible reason, only for tables of this one version
         # PEANUTS: the one plain line for a dump of one of the versions the tables are the union of (the phone's: PackService.splitMatchesProfile)
-        if theirs := [k for k in missing if k in other_version_keys(g, ver)]:
+        if theirs := set(missing) & other:   # PEANUTS: reuse the same version table
             print(f'shaders: {len(theirs):,} of {len(want):,} shaders in this app\'s table belong to other versions of the game ({", ".join(other_versions(g, ver))}): not needed for v{ver}', flush=True)
         for f in ('shader_map.tsv', 'shader_facts.tsv', 'shader_pairs.tsv'):
             if (g.dir / f).is_file() and table_lines(g.dir / f) != table_lines(tmp / f):   # the comment lines name the game and the split's wording at the time
@@ -912,13 +922,15 @@ def pack_shaders(a, g, work, out, vdir, parts=None, aoc=()):
         if keys is not None:
             if not keys: raise Error('the profile\'s shader_seen.tsv names none of the shaders of its shader_map.tsv')   # PEANUTS(upstream-candidate): no substitutions.
             print(f'shaders: the profile selects {len(keys):,} shaders (shader_seen.tsv) and the pixel shaders paired with them, as the phone builds', flush=True)
-        if absent := absent_optional(g, pkg, getattr(a, 'pack_ver', None)):   # a registered build without some of the map's shaders (shader_optional.tsv; PEANUTS: or another listed version's own, may_lack): the library is built without them
-            print(f'shaders: {len(absent)} of the profile\'s shaders are not in this build of the game (shader_optional.tsv); the library leaves them out '
-                  '(the [RED] "not in the package" line below counts them)', flush=True)
-            env['DMSH_VK_REQUIRE_ALL'] = '0'
-            if keys is not None: keys = [k for k in keys if k not in absent]
-        # PEANUTS(upstream-candidate): each child owns its selection file, even with sibling caches and concurrent builds.
+        absent = absent_optional(g, pkg, getattr(a, 'pack_ver', None))
+        # PEANUTS: pass the validated keys to each child, so pair expansion cannot restore them.
         with tempfile.TemporaryDirectory(prefix='selection-', dir=swork) as selection_dir:
+            env.pop('DMSH_VK_ABSENT_FILE', None)
+            if absent:
+                excluded = Path(selection_dir) / 'absent.tsv'
+                write_lf(excluded, ''.join(k + '\n' for k in sorted(absent)))
+                env['DMSH_VK_ABSENT_FILE'] = str(excluded)
+                print(f'shaders: excluding {len(absent):,} validated missing shaders from this build', flush=True)
             args = []
             if keys:   # on Windows a file the wrapper reads (vk_android_win.py "@<file>"): thousands of keys pass a command line's 32,767 characters there
                 if WINDOWS:

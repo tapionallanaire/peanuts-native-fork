@@ -103,6 +103,13 @@ Game-specific findings; the general host changes they led to are listed under [F
 - Focus handling mode 2 (focus notifications are sent). Mario never throws C++ exceptions.
 - Ghidra: `main` (28 MB) took about 35 minutes to analyse, 138k functions.
 
+<!-- PEANUTS begin: picture shapes -->
+## Picture shapes (Android)
+
+**Untested.** Game settings › Display offers **Fill the screen** on 1.2.1 through 1 `aspect_plan` row that nobody has seen on a device (`aspect_plan_untested 1`, and the Fill choice says so). They are every place this build's main has the packed 1920x1080 sizes in code and the 16/9 float words, from a scan of the code on 2026-11-21 with each expected word read on the pack; no community patch stands behind them. With Fill the 3D view may follow the screen, the HUD and menus may not, or the game may draw wrongly or not start. Fit and Stretch are unchanged. Open: every screen, at any shape.
+
+<!-- PEANUTS end -->
+
 ## Mac routes
 
 - `DM_KEYS="12:A,14:A,20:A,26:A,32:A"` reaches the opening course.
@@ -111,6 +118,8 @@ Game-specific findings; the general host changes they led to are listed under [F
 - 1.2.1 from [#377](https://github.com/seedds/nxnative/issues/377)'s save (World 1, at the Badge House on the map), through `DM_CTL` from about 35 s after start: `L+R~0.3`, `A` (the user), `A` (one player), `A` (Mario), `A` (OK); on the map `A` enters the Badge House, then `LLeft~0.8` and `LRight~0.9`, and the Poplin's dialogue opens; screenshots every 0.3 s there gave the 1.2.1 counts.
 
 ## Found on this game
+
+- [Version-specific pixel shaders in an Android build](../../../docs/reference/shaders.md#other-versions-pixel-shaders-return-during-android-translation). <!-- PEANUTS -->
 
 - **Resolved: button icons as "?" on Android** ("Press ? + ? to start"): [Button icons drawn as "?" on Android](../../../docs/reference/services.md#button-icons-drawn-as--on-android).
 - **One save file only:** its save files are per user, and a new one is made for a user the user selector offers without a save; the host had one user. [More than one user, each with a save of its own](../../../docs/reference/services.md#more-than-one-user-each-with-a-save-of-its-own) (the launcher's Settings › Users); not yet checked in the game.

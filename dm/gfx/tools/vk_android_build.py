@@ -188,7 +188,7 @@ def check_translator(xlate=None):
 
 # dmsh_build.py runs as a script; the functions that read packages and control sections and build the translator's jobs are taken from its source by name, so there is one copy
 BUILD = os.path.join(HERE, 'dmsh_build.py')
-BORROWED = ('record_index', 'vertex_ab', 'early_fragment_tests', 'tf_layout', 'job_for', 'decode_tex', 'const_sampler', 'decode_ubo_tex', 'c2_array', 'load_pairs', 'build_keys')
+BORROWED = ('record_index', 'vertex_ab', 'early_fragment_tests', 'tf_layout', 'job_for', 'decode_tex', 'const_sampler', 'decode_ubo_tex', 'ubo_tex_step', 'c2_array', 'load_pairs', 'build_keys')   # PEANUTS: ubo_tex_step
 
 
 def borrow(namespace: dict[str, Any]) -> dict[str, Any]:   # PEANUTS(upstream-candidate): exec adds callable values to this namespace.
@@ -432,6 +432,20 @@ def ubo_img(nm):
     return (bank - 3, (h & 0x3fff) * 4) if 3 <= bank <= 16 and h >> 28 == 0 else None
 
 
+# PEANUTS begin: a type-1 handle whose texture word is in the game's own uniform buffer and whose separate sampler word is in the driver table c2 (decode_ubo_tex takes a
+# type-1 sampler only from another game uniform buffer, and decode_tex places textures only in c2, so the texture half had no slot and read as unbound)
+def ubo_tex_c2_sampler(name):
+    """fp_t2d_cb196615_10568000: texture handles in c7 from byte 0 (an array: element k at byte 8k), sampler from c2 word 0x15A (separate sampler slot 0). Unreal Engine 4's
+    material textures in Hogwarts Legacy: 139,302 bindings. → ((uniform slot, byte offset), separate sampler slot) or None"""
+    m = re.match(r'[a-z]+_t\w*?_cb(\d+)_([0-9A-F]+)', name)
+    if not m: return None
+    slots, h = int(m.group(1)), int(m.group(2), 16)
+    if not (3 <= slots & 0xffff <= 16 and (slots >> 16) - 1 == 2 and h >> 28 == 1): return None
+    d = NS['decode_tex'](name)
+    return ((slots & 0xffff) - 3, (h & 0x3fff) * 4), d[1] if d and d[1] is not None else None
+# PEANUTS end
+
+
 def classify(stage, r, res, m):
     """A descriptor variable → its binding record (dict): the kind and slot from its name (dmsh_build.py reflect's rules, on the SPIR-V names the MSL members come from)"""
     nm, desc = r['name'], r['desc']
@@ -453,7 +467,7 @@ def classify(stage, r, res, m):
         ut, us = NS['decode_ubo_tex'](nm)
         if desc == spv.VK_SAMPLER: e.update(kind=abi.KIND_SAMP_ID, reg=us[1]) if us[0] == 'id' else e.update(kind=abi.KIND_SAMP_UBO, reg=us[0], off=us[1])
         elif desc == spv.VK_UNIFORM_TEXEL: e['kind'] = abi.KIND_UNKNOWN   # a bindless buffer texture: not implemented in the replay (as on Metal)
-        else: e.update(kind=abi.KIND_TEX_UBO, reg=ut[0], off=ut[1])
+        else: e.update(kind=abi.KIND_TEX_UBO, reg=ut[0], off=ut[1], step=NS['ubo_tex_step'](nm))   # PEANUTS: step (an array read by record)
     elif desc in (spv.VK_STORAGE_IMAGE, spv.VK_STORAGE_TEXEL) and (iu := ubo_img(nm)):
         e.update(kind=abi.KIND_IMG_UBO, reg=iu[0], off=iu[1])
     elif texlike and r['count'] > 1 and NS['c2_array'](nm, 'array<'):
@@ -461,6 +475,9 @@ def classify(stage, r, res, m):
         e.update(kind=abi.KIND_SAMP_C2A if desc == spv.VK_SAMPLER else abi.KIND_TEX_C2A, off=off)
         if desc == spv.VK_COMBINED: e.update(skind=abi.KIND_SAMP_C2A, soff=soff if soff is not None else 0xFFFF, off=off)
         elif soff is not None: e['soff'] = soff
+    elif texlike and desc != spv.VK_UNIFORM_TEXEL and ubo_tex_c2_sampler(nm):   # PEANUTS: texture in a game uniform buffer, sampler in c2 (its sampler half: sampler_half, KIND_SAMP)
+        (treg, toff), s = ubo_tex_c2_sampler(nm)
+        e.update(kind=abi.KIND_SAMP, reg=s) if desc == spv.VK_SAMPLER else e.update(kind=abi.KIND_TEX_UBO, reg=treg, off=toff)
     elif texlike:
         d = NS['decode_tex'](nm)
         if not d: e['kind'] = abi.KIND_UNKNOWN
@@ -616,6 +633,7 @@ def finish(key, w, job, c1):
     if not hmma: spv.promote_locals(m)   # simplify GlobalToStorage helpers (binary search, CAS, branchless inPool) and promote single-store locals
     if not hmma: spv.loop_pool_search(m)   # the raw helpers' pool table search one loop of one step (vk_android_spv.py loop_pool_search)
     spv.buffer_textures_split(m)   # a buffer texture's combined image and sampler of Dim Buffer → a texel buffer (vk_android_spv.py)
+    spv.nonuniform_arrays(m)   # PEANUTS: a descriptor array read at a computed index marked NonUniform (vk_android_spv.py nonuniform_arrays)
     binds = [classify(stage, r, res, m) for r in m.resources()]
     storage_slots(stage, binds, res)
     try: place(stage, binds, m)
@@ -707,7 +725,7 @@ def entry_parts(key, refl, nmods):
         s = e.get('soff'); s = 0xFFFF if s is None else s
         binds += struct.pack('<BBHBBHhHBBhHHI', KIND_NUM[e['kind']], e['desc'], e['binding'], e['set'], e['flags'], 0 if e['set'] == VK['SET_POOL'] else min(e['count'], 0xFFFF),
                              -1 if e.get('reg') is None else e['reg'], e.get('off') or 0, KIND_NUM[e['skind']] if e.get('skind') else 0, dim_byte(e.get('dim')),
-                             -1 if e.get('sreg') is None else e['sreg'], s, 0, e.get('bytes') or 0)
+                             -1 if e.get('sreg') is None else e['sreg'], s, e.get('step') or 0, e.get('bytes') or 0)   # PEANUTS: step
     c1 = bytes.fromhex(refl['c1'])
     vin_mask = sum(1 << int(l) for l in refl['vin']); vin_types = sum(t << (2 * int(l)) for l, t in refl['vin'].items())
     fout_mask = sum(1 << int(l) for l in refl['fout'] if int(l) < 8); fout_types = sum(t << (2 * int(l)) for l, t in refl['fout'].items() if int(l) < 8)
@@ -795,7 +813,12 @@ GATHER_BIAS = 8
 
 
 ANSWERS = {'subgroup_size': VK['SUBGROUP_SIZE'], 'ssbo_align': VK['SSBO_ALIGN'], 'gs_passthrough': False, 'shared_max': VK['SHARED_MAX'], 'gather_bias': GATHER_BIAS}
-keys = NS['build_keys'](want, loc, PAIRS) if want else sorted(loc)
+# PEANUTS: both packers pass only absences validated against the split. Workers inherit the same file.
+absent = set()
+if absent_file := os.environ.get('DMSH_VK_ABSENT_FILE'):
+    with open(absent_file, encoding='utf-8') as f:
+        absent = set(f.read().splitlines())
+keys = delta.package_keys(want, loc, PAIRS, absent, NS['build_keys'])
 NJ = int(os.environ.get('J', '8')); BATCH = max(1, int(os.environ.get('DMSH_VK_BATCH', '64')))
 STAGE_OF = {k: loc[k][0][:2] for k in keys}   # the package file's name gives the stage (dmsh_build.py job_for)
 ORDER = [k for k in keys if STAGE_OF[k] != 'vs'] + [k for k in keys if STAGE_OF[k] == 'vs']   # pixel shaders first: their inputs pad their vertex shaders' outputs

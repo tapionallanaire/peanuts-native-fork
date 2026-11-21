@@ -1,7 +1,6 @@
 package dev.peanuts.build;
 
 import java.io.File;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -23,13 +22,6 @@ import java.util.Locale;
  */
 public final class SpaceEstimate {
     private SpaceEstimate() {}
-
-    /** The total size of a list of files (base/update/DLC that need import); 0 for any that are not plain files (a directory, or missing) */
-    public static long inputBytes(List<File> files) {
-        long total = 0;
-        if (files != null) for (File f : files) if (f != null && f.isFile()) total += f.length();
-        return total;
-    }
 
     /** A dump-folder or .nup base's real size on disk, recursive for a folder (found in review): the basis for the pack estimate when nothing needs
      *  importing (the base already holds everything, updates and DLC included, the way LibraryScanner groups a dump folder's Source) */
@@ -81,6 +73,12 @@ public final class SpaceEstimate {
     /** The combined "needs about X GB" line when neither volume looks short: the import volume's need (0 without one) plus the pack volume's need */
     public static long totalNeeded(long importBytes, long packBasisBytes, boolean needsImport) {
         return (needsImport ? importBytes : 0) + packBytes(packBasisBytes);
+    }
+
+    /** The words for the part of the need a solid .nsz takes only while it imports (issue #149: unpacked into a temporary file beside the .nup, deleted
+     *  at the end), "" without one: " About 6.2 GB of it only while the compressed game is unpacked." */
+    public static String unpackSentence(long unpackBytes) {
+        return unpackBytes <= 0 ? "" : " About " + words(unpackBytes) + " of it only while the compressed game is unpacked.";
     }
 
     /** A byte count in words, close enough for a warning: "6.2 GB" */

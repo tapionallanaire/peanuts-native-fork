@@ -22,6 +22,8 @@ No `patches.py`, no `pad_layout` (the iPhone pad starts in the 2D layout).
 ## Frame rate
 
 - 60 fps. The game sets present interval 1; on the iPhone the frame time is 16.7 ms at the median.
+<!-- PEANUTS: Android preparation -->
+- Peanuts Dev defaults to Game owned. It offers experimental display pacing at 20, 30, 40, 45, 60, 90 and 120 FPS. The Turnip check must cover game speed and animation in exploration and a battle before these rates can be treated as gameplay caps. nx2android reports a 60 FPS boot on the Legion Y700 and leaves saving and a full battle open. [nx2android release notes](https://github.com/shirai91/nx2android/releases)
 
 ## Audio and services
 
@@ -29,6 +31,14 @@ Each found by one boot ([Hardware Opus decoders built on the SDK's software deco
 
 - **Resolved: abort in `sm::Initialize` under `nn::codec::GetHardwareOpusMultiStreamDecoderWorkBufferSize(int, int, int, int, int)`** (at `nnMain`, CRI's Opus streams). The host now has the C interface of the hardware multi-stream decoder, including the SDK 12+ overload with an option argument (Age of Calamity only needed the class and the four-argument size). Each call goes to the `sdk`'s software `OpusMultiStreamDecoder` C interface, with a host-held state per game object as for the single-stream decoder (`hle_codec.c`). `GetHardwareOpusMultiStreamDecoderProcessingTime` reports 0.
 - **Resolved: abort in `sm::Initialize` under `nn::crypto::GenerateCryptographicallyRandomBytes`** (`std::random_device` → the `sdk`'s own `getentropy` → `InitializeCsrng`). The `sdk` defines `getentropy`, so the host's `getentropy` hook never sees the call, but the call into `nn::crypto` goes through the `sdk`'s PLT. An `HLE_FORCE` on it fills from the host's entropy stream (`hle_os.c`).
+
+## Android validation
+
+<!-- PEANUTS: 0.1.6 Dev verification on AYN Thor -->
+- Update 1.05 ran on Turnip v26.2.0 R5 in Game owned mode. The launcher linked both supplied DLC licences. In-game entitlement checks remain open.
+- The first run crashed in the Vulkan replay thread during the opening. The game copies command lists into its frame's commands with `nvnCommandBufferCopyCommands` and later records over the source's memory. The host had replayed the copy as a call into the source, which the replay worker read a frame later. `CopyCommands` now copies the records when the game makes the copy (`hle_nvn.c` `cmd_copy_list`). With the default replay worker the opening and the first battle map then ran for six minutes at about 60 FPS with no crash. <!-- PEANUTS -->
+- The 186-key Vulkan seed was captured from the opening and first battle. The profile seed and the copy staged on Thor matched byte for byte. Cold preparation and warm cache reuse remain to be timed.
+- The PC targeted pack for update 1.05 and both DLC licences took 20.80 seconds. The full pack took 134.58 seconds and the incremental build took 0.56 seconds. The full and targeted runtime payloads matched byte for byte.
 
 ## Files and shaders
 
@@ -41,6 +51,13 @@ Each found by one boot ([Hardware Opus decoders built on the SDK's software deco
 - The game reads a USB mouse and no touch screen, as OCTOPATH TRAVELER 0 and Tears of the Kingdom do; a rule that turns touches into a mouse would need testing on it ([ROMANCE OF THE THREE KINGDOMS 8 REMAKE](../0100C2A01A730000/README.md)).
 
 - Rumble: `main` sends each player's vibration every frame (two `hid::SendVibrationValue` calls per player; Asian release `main` `9c3116f0…` at `+0x5ead8c`) from fields of its pad object that only the pad reset writes (amplitude 0, 160 / 320 Hz), so that path never vibrates. CRI's audio-driven vibration (`hid::VibrationConverter`, behind the sound renderer type 6 that CRI registers at startup, `+0x790b60`) never opened in the opening scene nor in a battle on the Mac. The game has no rumble: on the Switch it does not vibrate either. With a DualSense its (zero) values reach the controller since [Vibration handles before a controller is reported](../../../docs/reference/services.md#vibration-handles-before-a-controller-is-reported).
+
+<!-- PEANUTS begin: picture shapes -->
+## Picture shapes (Android)
+
+**Untested.** Game settings › Display offers **Fill the screen** on 1.05 through 6 `aspect_plan` rows that nobody has seen on a device (`aspect_plan_untested 1`, and the Fill choice says so). They are every place this build's main has the float 16/9 built in code, from a scan of the code on 2026-11-21 with each expected word read on the pack; no community patch stands behind them. With Fill the 3D view may follow the screen, the HUD and menus may not, or the game may draw wrongly or not start. Fit and Stretch are unchanged. Open: every screen, at any shape.
+
+<!-- PEANUTS end -->
 
 ## Mac routes
 

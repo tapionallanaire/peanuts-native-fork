@@ -1,6 +1,7 @@
 # One row for each row of docs/env_switches.tsv (dm/tools/advanced_switches.py writes and checks it; the columns are described there). The launcher shows the
 # friendly and advanced rows in Settings > Advanced and on each game's page; developer rows are behind "Show developer options"; internal rows are never shown.
 name	tier	area	label	try_if	type	choices	default	scope	warn	owner	profile_key	games	fixes	reason
+DMSH_VK_ABSENT_FILE	internal	Packing			text			both						Packer-generated per-build shader exclusion list [PEANUTS]
 DMSH_VK_BATCH	developer	Packing			text			both						
 DMSH_VK_DELTA_FROM	developer	Diagnostics			text			both						
 DMSH_VK_KEEP	developer	Packing			text			both						
@@ -22,6 +23,7 @@ DM_AOC_DIR	internal	Diagnostics			text			both						Mac or iOS only
 DM_AOC_OWNED	developer	Game			text			both						
 DM_APP_POOL_MB	developer	Diagnostics			text			both						
 DM_APP_VERSION	developer	Game			text			both						
+DM_ASPECT_PLAN	developer	Graphics			text			both						
 DM_AUDIO	internal	Audio			text			both						Mac or iOS only
 DM_AUDIO_DUMP	developer	Diagnostics			text			both						
 DM_AUDIO_FEED	developer	Audio			text			both						
@@ -150,6 +152,8 @@ DM_MEM_FILEBACK_KINDS	developer	Memory			text			both
 DM_MEM_FILEBACK_MB	developer	Memory			text			both						
 DM_METAL_CAPTURE	internal	Diagnostics			text			both						Mac or iOS only
 DM_METAL_HUD	internal	Game			text			both						Mac or iOS only
+DM_MII_DB	developer	Diagnostics			text			both						
+DM_MII_MODEL	developer	Diagnostics			text			both						
 DM_MODULE_ARENA	developer	Game			text			both						
 DM_MOD_INIT_ARRAY	developer	Diagnostics			text			both						
 DM_MOTION	developer	Input			text			both						
@@ -290,6 +294,8 @@ DM_OOT_TEXTURE_POOL_X2	developer	Memory			text			both
 DM_OOT_WIDE_KEEP	developer	Diagnostics			text			both						
 DM_OPMODE	developer	Game			text			both						
 DM_OPTION_PATCHES	developer	Game			text			both						
+DM_OPUS_DUMP	developer	Diagnostics			text			both						
+DM_OPUS_SDK	developer	Diagnostics			text			both						
 DM_OVERLAY	developer	Game			text			both						
 DM_PACKER_COMMIT	developer	Diagnostics			text			both						
 DM_PAD_DEADZONE	developer	Input			text			both						
@@ -327,7 +333,9 @@ DM_PROBE_LIVE	developer	Diagnostics			text			both
 DM_PROBE_POLL	developer	Diagnostics			text			both						
 DM_PROBE_WATCH	developer	Diagnostics			text			both						
 DM_PROBE_X2	developer	Diagnostics			text			both						
+DM_PROFILE_PAIRS	developer	Diagnostics			text			both						
 DM_PROFILE_PATH	developer	Diagnostics			text			both						
+DM_PROFILE_PROGRAMS	developer	Diagnostics			text			both						
 DM_PROFILE_SEED	developer	Diagnostics			text			both						
 DM_PROGRAM_ID	developer	Memory			text			both						
 DM_PSO_ARCHIVE	internal	Diagnostics			text			both						Mac or iOS only
@@ -499,6 +507,7 @@ DM_VK_EVENT_GATE	developer	Graphics			text			both
 DM_VK_EVENT_LOG	developer	Diagnostics			text			both						
 DM_VK_EVENT_PARK_MS	developer	Diagnostics			text			both						
 DM_VK_EVENT_WAIT	developer	Graphics			text			both						
+DM_VK_FB_PIN	developer	Diagnostics			text			both						
 DM_VK_FD_ALIAS	developer	Graphics			text			both						
 DM_VK_FG	developer	Graphics			text			both						
 DM_VK_FG_OWNFMT	developer	Diagnostics			text			both						
@@ -660,7 +669,12 @@ DM_VK_PROF	developer	Diagnostics			text			both
 DM_VK_PRUNE_MS	developer	Graphics			text			both						
 DM_VK_PSO_ASYNC	advanced	Performance	Background pipelines		toggle			game		Game settings > Background pipelines				
 DM_VK_PSO_FAIR_MS	developer	Performance			text			both						
+DM_VK_PSO_LINK_NOW	developer	Performance			text			both						
 DM_VK_PSO_ORDER	developer	Performance			text			both						
+DM_VK_PSO_PREFETCH	developer	Performance			text			both						
+DM_VK_PSO_PREP	developer	Performance			text			both						
+DM_VK_PSO_PREP_MEM_MB	developer	Memory			text			both						
+DM_VK_PSO_PREP_THREADS	developer	Performance			text			both						
 DM_VK_PSO_SLOTS	developer	Performance			text		1 with Turnip, 4 with other drivers	both						
 DM_VK_PUSH_DEDUP	developer	Graphics			text			both						
 DM_VK_PUSH_DELTA	developer	Diagnostics			text			both						
@@ -717,6 +731,8 @@ DM_VK_SUBGROUP_GS	developer	Graphics			text		0 (one-lane geometry subgroups) wit
 DM_VK_SUBGROUP_PIN	developer	Performance			text			both						
 DM_VK_SWAP_RB	developer	Diagnostics			text			both						
 DM_VK_SYNCLOG	developer	Diagnostics			text			both						
+DM_VK_TABLE_POOL	developer	Memory			text			both						
+DM_VK_TABLE_PREMAKE	developer	Graphics			text			both						
 DM_VK_TBUF	developer	Graphics			text			both						
 DM_VK_TBUF_COPY	developer	Graphics			text			both						
 DM_VK_TBUF_GW	developer	Graphics			text			both						
@@ -737,6 +753,7 @@ DM_VK_TEX_STATS_DRAWS	developer	Diagnostics			text			both
 DM_VK_TEX_STATS_LINES	developer	Diagnostics			text			both						
 DM_VK_TEX_STATS_TABLE	developer	Diagnostics			text			both						
 DM_VK_TEX_TRACK	developer	Diagnostics			text			both						
+DM_VK_TILED_WB	developer	Diagnostics			text			both						Rendered texture storage A/B test
 DM_VK_TL_HOST	developer	Graphics			text			both						
 DM_VK_TL_POLL	developer	Diagnostics			text			both						
 DM_VK_TS_LOG	developer	Diagnostics			text			both						

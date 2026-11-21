@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img alt="status" src="https://img.shields.io/badge/release-0.1.4-brightgreen">
+  <img alt="status" src="https://img.shields.io/badge/release-0.1.6-brightgreen"> <!-- PEANUTS -->
   <img alt="license" src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue">
   <img alt="platform" src="https://img.shields.io/badge/platform-Android%2013%2B-green">
 </p>
@@ -30,46 +30,68 @@ too.
 
 ## Supported games
 
-These are the Switch 1 games this app version includes. The last column says what was seen on an AYN Thor: a game
-marked "new" was played there for a short time only; rows marked untested have no device run. Kirby's
-Return to Dream Land Deluxe and Super Mario 3D World + Bowser's Fury were run by their contributor on their own
-AYN Thor only. The
-Companion column says whether the game has a companion that was checked with it. Use the game update listed. The app
-shows which update you have and which one a game supports, and asks before building any other.
+<!-- PEANUTS begin: the Supported games table, written by peanuts/scripts/games_catalog.py from peanuts/games.tsv, peanuts/release-titles.txt and the profiles. Edit peanuts/games.tsv, not this table -->
 
-| Game | Title ID | Game update | Companion | Runs at |
-|---|---|---|---|---|
-| The Legend of Zelda: Link's Awakening | `01006BB00C6F0000` | 1.1.0 | Yes | 60 fps |
-| The Legend of Zelda: Echoes of Wisdom | `01008CF01BAAC000` | 1.1.0 | Yes | 60 fps |
-| Fire Emblem: Three Houses | `010055D009F78000` | 1.2.0 | Yes | 60 fps |
-| Fire Emblem Engage | `0100A6301214E000` | 2.0.0 | Yes | 60 fps |
-| Metroid Dread | `010093801237C000` | 2.1.0 | Yes | 60 fps |
-| Super Mario Odyssey | `0100000000010000` | 1.4.1 | Yes | 60 fps |
-| Mario Kart 8 Deluxe | `0100152000022000` | 4.0.0, 4.0.1 | Yes | 60 fps |
-| Animal Crossing: New Horizons | `01006F8002326000` | 3.0.3 | Yes | 30 fps, as on Switch |
-| Persona 5 Royal | `01005CA01580E000` | 1.0.2 | Yes | 60 fps |
-| Castlevania: Belmont's Curse | `0100BA4026E94000` | 1.1.0 | Yes | 60 fps |
-| OCTOPATH TRAVELER 0 | `01005270232F2000` | 1.0.5 | Yes | 60 fps |
-| Pokémon Brilliant Diamond | `0100000011D90000` | 1.3.0 | Yes | 60 fps |
-| Pokémon Shining Pearl | `010018E011D92000` | 1.3.0 | Not checked | 60 fps; new, little tested |
-| Pokémon Sword | `0100ABF008968000` | 1.3.2 | Yes | 60 fps (30 on Switch) |
-| Pokémon Shield | `01008DB008C2C000` | 1.3.2 | Yes | 60 fps (30 on Switch); new, little tested |
-| The Legend of Zelda: Breath of the Wild | `01007EF00011E000` | 1.9.0 | Yes | 60 fps (30 on Switch); new, little tested |
-| FINAL FANTASY RESONANCE | `0100606026F12000` | 1.0.1 | No | 45 to 60 fps; new, little tested |
-| The Legend of Zelda: Skyward Sword HD | `01002DA013484000` | 1.0.1 | Not checked | 60 fps; new: right indoors, the fog outdoors is not checked and may draw wrong |
-| Pokémon Legends: Arceus | `01001F5010DFA000` | 1.1.1 | No | 30 fps, as on Switch; new, little tested |
-| Resident Evil 4 | `010099A00BC1E000` | v131072 | Not checked | 60 fps; new, a first profile: the first scenes only |
-| Kirby and the Forgotten Land | `01004D300C5AE000` | 1.1.0 | Not checked | 30 fps, as on Switch, with dips to 15 to 20; new, little tested: the start of the game, by its contributor |
-| Kirby's Return to Dream Land Deluxe | `01006B601380E000` | 1.0.0 (base game) | Yes | 50 to 60 fps; new, little tested: its first stage, by its contributor |
-| Super Mario 3D World + Bowser's Fury | `010028600EBDA000` | 1.2.2 | Not checked | 60 fps; new, little tested: the start of the game, by its contributor |
-| Super Mario Bros. Wonder | `010015100B514000` | 1.2.1 only | Yes | 1.2.1 on AYN Thor: title, menus and map reached; first course at 56 to 60 fps (average 58), occasional doubled frames; sound, saving and later courses untested |
-| DRAGON QUEST III HD-2D Remake | `01003E601E324000` | 1.1.2 only | Not checked | Packs on Linux; device validation pending |
-| Chained Echoes | `0100C510166F0000` | 1.41 | Not checked | AYN Thor, Turnip: title and opening scenes at about 60 fps with a 2 GB application pool; battles, saving/loading, sound and extended play untested |
-| Yoru, Tomosu | `0100C2901153C000` | Base game | Log unreadable | Opening at 60 fps on AYN Thor; companion log text is unreadable |
-| Crash Team Racing Nitro-Fueled | `0100F9F00C696000` | 1.0.15 | Yes | 60 fps on AYN Thor in single races; with the 120 fps limit, 118 to 120 in the menus and 81 to 97 in a race; new, little tested |
-| Xenoblade Chronicles X: Definitive Edition | `0100453019AA8000` | 1.0.2 only | No | Experimental. On AYN Thor, Turnip: the title and the opening at 30 fps; 57 to 60 fps with the 60 fps limit in two sessions of 5 and 10 minutes; little tested beyond that |
-| My Time at Sandrock | `0100B63016916000` | 1.4.2.0 | Yes | 30 fps on AYN Thor: a 15-minute session through the opening, the town and the menus; new, little tested |
-| Monster Sanctuary | `0100A0F00DA68000` | 2.1.0 | Not checked | Runs on AYN Thor; new, little tested |
+Peanuts Native 0.1.6 includes 52 games. The Companion column shows whether a game appears in the Eden Duo Companions catalog. Updates are shown as version numbers or numeric update IDs.
+
+| Game | Title ID | Game update | Companion |
+|---|---|---|---|
+| The Legend of Zelda: Link's Awakening | `01006BB00C6F0000` | 1.1.0 | Yes |
+| The Legend of Zelda: Echoes of Wisdom | `01008CF01BAAC000` | 1.1.0 | Yes |
+| Fire Emblem: Three Houses | `010055D009F78000` | 1.2.0 | Yes |
+| Fire Emblem Engage | `0100A6301214E000` | 2.0.0 | Yes |
+| Metroid Dread | `010093801237C000` | 2.1.0 | Yes |
+| Super Mario Odyssey | `0100000000010000` | 1.4.1 | Yes |
+| Mario Kart 8 Deluxe | `0100152000022000` | 4.0.0, 4.0.1 | Yes |
+| Animal Crossing: New Horizons | `01006F8002326000` | 3.0.3 | Yes |
+| Persona 5 Royal | `01005CA01580E000` | 1.0.2 | Yes |
+| Castlevania: Belmont's Curse | `0100BA4026E94000` | 1.1.0 | Yes |
+| OCTOPATH TRAVELER 0 | `01005270232F2000` | 1.0.5 | Yes |
+| Pokémon Brilliant Diamond | `0100000011D90000` | 1.3.0 | Yes |
+| Pokémon Shining Pearl | `010018E011D92000` | 1.3.0 | Yes |
+| Pokémon Sword | `0100ABF008968000` | 1.3.2 | Yes |
+| Pokémon Shield | `01008DB008C2C000` | 1.3.2 | Yes |
+| The Legend of Zelda: Breath of the Wild | `01007EF00011E000` | 1.6.0, 1.9.0 | Yes |
+| The Legend of Zelda: Tears of the Kingdom | `0100F2C0115B6000` | 1.4.3 | No |
+| FINAL FANTASY RESONANCE | `0100606026F12000` | 1.0.1 | No |
+| The Legend of Zelda: Skyward Sword HD | `01002DA013484000` | 1.0.1 | Yes |
+| Pokémon Legends: Arceus | `01001F5010DFA000` | 1.1.1 | No |
+| Resident Evil 4 | `010099A00BC1E000` | 131072 | Yes |
+| Kirby and the Forgotten Land | `01004D300C5AE000` | 1.1.0 | No |
+| Kirby's Return to Dream Land Deluxe | `01006B601380E000` | 1.0.0 | Yes |
+| Super Mario 3D World + Bowser's Fury | `010028600EBDA000` | 1.2.2 | No |
+| Super Mario Bros. Wonder | `010015100B514000` | 1.2.1 | Yes |
+| DRAGON QUEST III HD-2D Remake | `01003E601E324000` | 1.1.2 | Yes |
+| Chained Echoes | `0100C510166F0000` | 1.41 | Yes |
+| Yoru, Tomosu | `0100C2901153C000` | Base game (v0) | Yes |
+| Crash Team Racing Nitro-Fueled | `0100F9F00C696000` | 1.0.15 | Yes |
+| Captain Tsubasa 2: World Fighters | `01009720213B0000` | 1.0.6 | No |
+| DAVE THE DIVER | `010097F018538000` | 1.0.6.1267 | Yes |
+| Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles 2 | `0100AD80208A8000` | 1.80 | No |
+| Xenoblade Chronicles X: Definitive Edition | `0100453019AA8000` | 1.0.2 | No |
+| My Time at Sandrock | `0100B63016916000` | 1.4.2.0 | Yes |
+| Monster Sanctuary | `0100A0F00DA68000` | 2.1.0 | Yes |
+| Astral Chain | `01007300020FA000` | 1.0.1 | No |
+| Diablo III: Eternal Collection | `01001B300B9BE000` | 2.7.7.92380 | Yes |
+| EA Sports FC 27 | `0100C49025D3E000` | 1.8d.6523, 1.8d.f570 | No |
+| Tomodachi Life: Living the Dream | `010051F0207B2000` | 1.0.4 | No |
+| Unicorn Overlord | `010069401ADB8000` | 1.05 | No |
+| Luigi's Mansion 3 | `0100DCA0064A6000` | 1.4.0 | No |
+| Pokémon Legends: Z-A | `0100F43008C44000` | 2.0.2 | No |
+| STORY OF SEASONS: Grand Bazaar | `0100DAE01E4C8000` | v655360 | No |
+| Double Dragon Revive | `01006AE02236C000` | 1.0.0, N1.10 | No |
+| Trails in the Sky 2nd Chapter | `01007A2027548000` | 1.0.3 | No |
+| DRAGON BALL: Sparking! ZERO | `010035F022078000` | 1.0.0 | No |
+| Pokémon Scarlet | `0100A3D008C5C000` | 4.0.0 | No |
+| Pokémon Violet | `01008F6008C5E000` | 4.0.0 | No |
+| DRAGON BALL Z: KAKAROT + A NEW POWER AWAKENS SET | `010051C0134F8000` | 1.70 | No |
+| STEINS;GATE RE:BOOT | `01008BC024FDE000` | 1.0.3, 1.0.4 | No |
+| NieR:Automata The End of YoRHa Edition (Asian release) | `0100B8E016F76000` | 1.0.3 | No |
+| Hyrule Warriors: Age of Calamity | `01002B00111A2000` | 1.3.0 | No |
+
+<!-- PEANUTS end: the Supported games table -->
+
+The 0.1.6 release candidate installed over 0.1.5 on an AYN Thor with its saves kept. Nine of the 13 new games reached early gameplay on an AYN Thor with Turnip, among them the Hyrule Field battle in Hyrule Warriors: Age of Calamity and Lumiose Station in Pokémon Legends: Z-A. The other four were checked on other Android devices.
 
 ## What you need
 
@@ -78,8 +100,8 @@ shows which update you have and which one a game supports, and asks before build
 - Android 13 or later, a Snapdragon GPU with Vulkan 1.3, and 12 GB of RAM or more. A Turnip Vulkan driver is
   recommended; the app can download one.
 - Free storage for the game and its build. Plan for the size of the game plus a few GB.
-- Your own `prod.keys`, your own firmware dump (a folder or a `.zip`) and your own game dump (NSP, XCI or a dump
-  folder), with its update.
+- Your own `prod.keys`, your own firmware dump (a folder or a `.zip`) and your own game dump (NSP, XCI, either compressed
+  as NSZ or XCZ, or a dump folder), with its update. <!-- PEANUTS: .nsz and .xcz (issue #149) -->
 
 ## Your keys and games
 
@@ -157,9 +179,15 @@ by seedds (MIT). Some fixes are adapted from [nx2android](https://github.com/shi
 
 The companion runtime and package format come from [Eden Duo](https://github.com/igawa6/eden-duo).
 
-Contributors: the builder for PC, Mac and Linux (`peanuts/docs/BUILDER.md`) is by [intermission88](https://github.com/intermission88)
-(pull request #13), and so are the profile of Kirby's Return to Dream Land Deluxe and the guide for adding a game
-(`peanuts/docs/NEW-GAME.md`, pull request #34). The issue and discussion forms were set right by [ArchOwlen](https://github.com/ArchOwlen) (pull request #5).
+Contributors: <!-- PEANUTS: the contributor list of this fork -->
+
+- [intermission88](https://github.com/intermission88): the builder for PC, Mac and Linux (`peanuts/docs/BUILDER.md`, pull request #13), the profiles of Kirby's Return to Dream Land Deluxe, Kirby and the Forgotten Land and Super Mario 3D World + Bowser's Fury (pull requests #34, #84 and #83), the guide for adding a game (`peanuts/docs/NEW-GAME.md`, pull request #34), and fixes to the on-device packer, the release notes popup and the Unreal shader step (pull requests #37, #35 and #71).
+- [davdxpx](https://github.com/davdxpx): the issue and discussion forms rebuilt from the ground up, with a game catalog that also keeps the Supported games table up to date (pull request #175), building from .nsz and .xcz files, the launcher and companion on the second screen, Swap screens, the GPU driver page, Share build log, game icons that outlive their NSP, companion release notes, and many smaller fixes across the app.
+- [elliott-groves](https://github.com/elliott-groves): development builds that install beside the Peanuts Native app (pull request #60).
+- [tapionallanaire](https://github.com/tapionallanaire): building the APK on Windows (pull request #54), and the Trails in the Sky 2nd Chapter and Double Dragon Revive profiles (pull requests #164 and #197).
+- [dnyan007](https://github.com/dnyan007): the DRAGON BALL: Sparking! ZERO profile and the sync of GPU-written terrain into block-compressed textures (pull requests #168 and #167).
+- [skyhong2002](https://github.com/skyhong2002): STEINS;GATE RE:BOOT 1.0.4, standalone NUP updates in the library, and Prepare surviving a missed job status read (pull requests #192, #185 and #181).
+- [ArchOwlen](https://github.com/ArchOwlen): the first issue and discussion forms (pull request #5).
 
 The project as a whole is licensed GPL-3.0-or-later. Frame generation (ported from Eden and lsfg-vk) and other
 components carry their own licenses; see `android/NOTICE.md` and `dm/third_party/README.md`.
