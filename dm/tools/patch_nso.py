@@ -438,9 +438,21 @@ def site_br_call(ins):
     emit_tp(16); emit_slot_addr(16, 17, 'K18'); emit(LDRX(16, 16)); emit(BR(16))
     return start
 
+def site_sysreg_x18(ins, source, dest):
+    """PEANUTS: move between virtual slots when an MRS/MSR names guest x18."""
+    value, addr, key = 16, 17, 15
+    start = here()
+    emit(STP(value, addr, 31, -16)); emit(STUR(key, 31, -24))
+    emit_tp(addr); emit_slot_addr(addr, key, source); emit(LDRX(value, addr))
+    emit_tp(addr); emit_slot_addr(addr, key, dest); emit(STRX(value, addr))
+    emit(LDUR(key, 31, -24)); emit(LDP(value, addr, 31, -16))
+    emit(B(here(), ins.address + 4))
+    return start
+
 def site_sysreg_read(ins, kind):
     """mrs xN, tpidr_el0 / tpidrro_el0 → xN = thread slot value."""
     N = ins.bytes[0] & 31
+    if N == 18: return site_sysreg_x18(ins, kind, 'K18')   # PEANUTS: live x18 is reserved by the host
     tmp = 16 if N != 16 else 17
     start = here()
     emit(STUR(tmp, 31, -16)); emit_tp(N); emit_slot_addr(N, tmp, kind); emit(LDRX(N, N)); emit(LDUR(tmp, 31, -16))   # tmp is saved by borrowing the red zone
@@ -449,6 +461,7 @@ def site_sysreg_read(ins, kind):
 
 def site_tpidr_write(ins):
     N = struct.unpack('<I', ins.bytes)[0] & 31
+    if N == 18: return site_sysreg_x18(ins, 'K18', 'KTLS')   # PEANUTS: read the guest slot, not the live host register
     (T,) = pick({N}, 1)
     start = here()
     emit(0xF81F0000 | (31 << 5) | T)           # stur xT,[sp,#-16]
@@ -535,21 +548,27 @@ def site_window(seg):
     # first branch-out stub, i.e. took the "compare not equal" path (SMBW main 0x81c40: the enqueue retried forever, the tail index filled up without storing a single task, and the job system hung). D2R's windows had no branch out, so it never hit this.
     exits = copy0 + 4 * n + 16
     ex_targets = []; words = []
+    branches = ('b', 'cbz', 'cbnz', 'tbz', 'tbnz')  # PEANUTS(upstream-candidate): in-window branches and clrex exits
     for k, x in enumerate(seg):
         w = struct.unpack('<I', x.bytes)[0]
         if has18(x): w = subst(x, S)
         m = x.mnemonic
-        if m in ('cbz', 'cbnz', 'tbz', 'tbnz') or m.startswith('b.'):
+        if m in branches or m.startswith('b.'):  # PEANUTS (PR #164)
             tgt = x.operands[-1].imm
             if lo <= tgt < hi: newt = copy0 + (tgt - lo)
             else: ex_targets.append(tgt); newt = exits + 16 * (len(ex_targets) - 1)
             pc = copy0 + 4 * k; off = (newt - pc) >> 2
-            if m in ('tbz', 'tbnz'): w = (w & 0xFFF8001F) | ((off & 0x3FFF) << 5)
+            if m == 'b':
+                # PEANUTS(upstream-candidate): an exit from the load/store span must execute clrex, not jump past it.
+                assert lo <= tgt < hi or (k and seg[k - 1].mnemonic == 'clrex' and not any(
+                    y.operands[-1].imm == x.address for y in seg if y.mnemonic in branches or y.mnemonic.startswith('b.'))), hex(x.address)
+                w = B(pc, newt)
+            elif m in ('tbz', 'tbnz'): w = (w & 0xFFF8001F) | ((off & 0x3FFF) << 5)
             else: w = (w & 0xFF00001F) | ((off & 0x7FFFF) << 5)
             dd = dis(w, pc); assert dd.operands[-1].imm == newt and dd.mnemonic == m
         elif m == 'adrp': w = window_adrp(x, S, copy0 + 4 * k)
         else:
-            assert m not in ('adr', 'adrp', 'b', 'bl', 'br', 'blr', 'ret') and not (m == 'ldr' and '[' not in x.op_str), hex(x.address)
+            assert m not in ('adr', 'bl', 'br', 'blr', 'ret') and not (m == 'ldr' and '[' not in x.op_str), hex(x.address)  # PEANUTS (PR #164)
         words.append(w)
     for w in words: emit(w)
     for t in [hi] + ex_targets:   # fall-through first
@@ -1334,7 +1353,7 @@ for n_fn, (fa, fb) in enumerate(funcs):
                 assert tgt, f'jump table {ins.address:x}'
                 tabjumps[ins.address] = tgt; continue
             jumps[ins.address] = (base, width)
-    # No jump may land in the middle of a window, except a retry block's branch onto the window's store-exclusive (retry_block), which gets a copy of its own
+    # No branch from outside may enter the middle of a window, except an out-of-line retry onto its store-exclusive (retry_block).  # PEANUTS (PR #164)
     inwin = {x.address for wseg in ws for x in wseg}; heads = {wseg[0].address for wseg in ws}
     rmid = set()
     for k, x in enumerate(insl):
@@ -1342,6 +1361,7 @@ for n_fn, (fa, fb) in enumerate(funcs):
             t = x.operands[-1].imm
             if t in inwin and t not in heads:
                 wseg = next(w for w in ws if any(y.address == t for y in w))
+                if x.mnemonic != 'bl' and wseg[0].address <= x.address <= wseg[-1].address: continue  # PEANUTS(upstream-candidate): local jump is relocated within the copy
                 rb = retry_block(insl, k, wseg) if x.mnemonic not in ('b', 'bl') else None
                 assert rb, f'branch into window {x.address:x}'
                 assert not any(y.address in done for y in rb[0]), f'retry block overlaps a window {rb[0][0].address:x}'

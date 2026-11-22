@@ -11,7 +11,8 @@ Settings > **Readiness check** checks Android, memory, file access, storage, the
 Each game start writes a log.
 
 - The game's ... button > **Storage** > **Share log**: that game's newest log.
-- Settings > **Share log**: the newest log of any game.
+- On the game's **Storage** tab, **Share build log** collects the preparation logs into a ZIP. Choose **Share** or **Save to a folder**.
+- In Settings, **Share log** opens the newest game log. When a build log is newer, you can choose the run or the build. <!-- PEANUTS: BuildLogUi.shareLog -->
 
 A shared log lists the settings you changed from the defaults (the Advanced switches, and any lines of your own env.txt or Extra environment), so a helper sees them without asking. Folders and secrets are left out of that list. Nothing is sent unless you share.
 
@@ -19,10 +20,10 @@ A shared log lists the settings you changed from the defaults (the Advanced swit
 
 | What you see | What to try |
 |---|---|
-| The game is not on the list, or says "Not in this app version" | Your app does not include it. Settings > **About** lists the games. Update the app ([Updates](Updates)). |
+| The game is not on the list, or says "Not Supported Yet" | Your app does not include it. Settings > **About** lists the games. Update the app ([Updates](Updates)). <!-- PEANUTS --> |
 | The card says the version is untested | Your dump is another version than the tested one. It may still work; the app asks before starting. |
 | Preparing stopped | Read the card, tap **Retry**. Close other apps if memory ran out; free space if storage is full. |
-| Prepare says "Paused: the phone is too hot" | Let the phone cool; it goes on by itself. |
+| Prepare says "Paused: the phone is too hot" | Let the phone cool; it goes on by itself. If the phone is not hot, tap **Go on anyway** in the build notification: the app remembers it for this device. <!-- PEANUTS --> |
 | Prepare seems stuck at 1 % ("Rewriting the game code") or at "Finding the shaders" | These steps can run for minutes without a count (reported on 0.2.1 and with large `.nup` files); check it is still working before stopping it. |
 | Prepare stops with a "shaders did not build" or "is cut short" message | Tap **Retry**; if it stops the same way, report it with the log. |
 | **Add game** on a dump with no `updates/` does not offer Prepare | Known in some versions: only a pack made on a Mac worked; report your version and see [First start and Prepare](First-Start-and-Prepare). |

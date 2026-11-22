@@ -857,7 +857,7 @@ NVN(nvnTextureInitialize, NVNboolean, NVNtexture *t, const NVNtextureBuilder *b)
     }
     o->serial = nvn_new_serial(); mtl_tex_init(o);
     if (o->mem) pc_use(o->pool, 't', o->off, o->L.size);
-    if (o->mem && shp_use(SHK_TEX, (uint64_t)(uintptr_t)o->mem, o->L.size, NULL, NULL) == 2 && !g_shp_place) mtl_pool_need(o->mem, o->L.size, "a texture in a shader-code pool");   // (Shader-code pools: a texture is a data use)
+    if (o->mem && shp_use(SHK_TEX, (uint64_t)(uintptr_t)o->mem, o->L.size, NULL, NULL) == 2 && !g_shp_place) mtl_pool_place(o->mem, o->L.size, "a texture in a shader-code pool");   // (Shader-code pools: a texture is a data use) PEANUTS(upstream-candidate): placed, never joined (vka_mem.c mtl_pool_place)
     if (o->mem && o->d.flags & (NVN_TEXTURE_FLAGS_LINEAR | NVN_TEXTURE_FLAGS_LINEAR_RENDER_TARGET)) mtl_pool_need(o->mem, o->L.size, "a linear texture");   // its GPU content is copied back into the storage (vka_tex_writeback)
     static int tbuf_place = -1; if (tbuf_place < 0) { const char *e = getenv("DM_VK_TBUF"); tbuf_place = !(e && e[0] == '0'); }   // (DM_VK_TBUF=0: buffer textures unbound, as before)
     if (o->mem && o->d.target == NVN_TEXTURE_TARGET_BUFFER && tbuf_place) {   // the GPU reads and writes a buffer texture's storage itself (vka_tbuf.c: a texel buffer view over it, or rows copied from it)
@@ -1051,6 +1051,9 @@ static int keys_hash(const NVNshaderData *sd, int mapped, uint8_t out[8]) {
 // PEANUTS: the Android replay notes what a shader's control section says it captures by transform feedback (vka_tf.c), where the shader's key is made: the section
 // is only guaranteed valid during SetShaders
 __attribute__((weak)) void nvn_tf_ctl_note(const uint8_t key[8], const void *control) { (void)key; (void)control; }
+// PEANUTS: whether nvnProgramSetShaders made the stage's key (prog_key would otherwise hash the stage's code now, which is not known to be readable or
+// written yet at that time: the reason the key is left to the first draw). For the Android replay's program list (vka_shader.c mtl_prog_prefetch)
+int prog_key_ready(const prog_t *p, unsigned st) { if (st >= p->nstage) return 0; prog_keys_t *k = pk_get(p, 0); return k && (k->ok >> st & 1); }
 int prog_key(const prog_t *p, unsigned st, uint8_t key[8]) {
     if (st >= p->nstage) return 0;
     prog_keys_t *k = pk_get(p, 1);
@@ -1319,9 +1322,35 @@ NVN(nvnCommandBufferEndRecording, NVNcommandHandle, NVNcommandBuffer *c) {
     return (NVNcommandHandle)o->begin;
 }
 NVN(nvnCommandBufferIsRecording, NVNboolean, const NVNcommandBuffer *c) { return ((const cmd_t *)c)->recording != 0; }
+// PEANUTS begin: CopyCommands copies, as in NVN. The game may record over the source's command memory as soon as the copy is made; a CALL into it, read a frame
+// later by the Android replay worker, found other records there (Unicorn Overlord: a record size of pixel data, then a jump into unmapped memory). Inline replay
+// read the CALL at submit time, before the game reused the memory. The source's records are copied into this buffer up to its END, across its JUMPs.
+// The largest record the host records: an uniform update of the NVN limit (64 KiB) and its header. A larger size is stale memory, never a record
+enum { CMD_COPY_REC_MAX = (64 << 10) + 64 };
+static void cmd_copy_list(cmd_t *o, const uint8_t *s) {
+    for (unsigned n = 0; s && n < (1u << 22); n++) {
+        if (dm_guest_unmapped((uintptr_t)s, 16)) {   // a jump (or a stale handle) into a page the guest has not mapped: reading it would fault
+            static int once; if (!once++) LOG("[RED] CopyCommands: record %u of the source list at %p is in memory the guest has not mapped: the copy stops there", n, (const void *)s);
+            return;
+        }
+        op_hdr h; memcpy(&h, s, sizeof h);
+        if (h.op == OP_END) return;
+        if (h.op == OP_JUMP && h.size >= 16) { memcpy(&s, s + 8, 8); continue; }
+        if (h.size < 8 || (h.size & 7) || h.op >= OP_COUNT_ || h.size > CMD_COPY_REC_MAX || dm_guest_unmapped((uintptr_t)s, h.size)) {
+            static int once; if (!once++) LOG("[RED] CopyCommands: record %u of the source list at %p is not a record (op %u, size %u): the copy stops there", n, (const void *)s, h.op, h.size);
+            return;
+        }
+        memcpy(cmd_alloc(o, h.size), s, h.size);
+        s += h.size;
+    }
+}
 NVN(nvnCommandBufferCopyCommands, void, NVNcommandBuffer *c, int n, const NVNcommandHandle *h) {
+    for (int i = 0; i < n; i++) cmd_copy_list(CB(c), (const uint8_t *)(uintptr_t)h[i]);
+}
+static void cmd_call_lists(NVNcommandBuffer *c, int n, const NVNcommandHandle *h) {   // CallCommands: the source stays the game's until the GPU is done with it
     for (int i = 0; i < n; i++) { uint8_t *p = cmd_alloc(CB(c), 16); put_hdr(p, OP_CALL, 16); memcpy(p + 8, &h[i], 8); }
 }
+// PEANUTS end
 NVN(nvnCommandBufferSignalEvent, void, NVNcommandBuffer *c, const NVNevent *e, NVNeventSignalMode m, NVNeventSignalLocation loc, int flags, uint32_t v) {
     (void)loc; (void)flags;
     uint8_t *p = cmd_alloc(CB(c), 24); put_hdr(p, OP_SIGNAL_EVENT, 24);
@@ -2171,7 +2200,8 @@ static int thermal_capped(void) {
 }
 __attribute__((weak)) int dm_fps_limit_step(void) { return 0; }   // hle_fpslock.c; graphics unit tests have no host
 static int fps_step_cap(void) {
-    if (!dm_fps_state) return 0;
+    // PEANUTS: Elapsed-time hooks pace independently of whole steps.
+    if (!dm_fps_state || dm_fps_elapsed_step()) return 0;
     uint32_t b = __atomic_load_n((uint32_t *)dm_fps_state, __ATOMIC_RELAXED); float t; memcpy(&t, &b, sizeof t);
     if (t <= 0) return 0;
     // Movies and a 30 fps target still need thermal samples: heat must reset the
@@ -2875,6 +2905,7 @@ NVN(nvnTextureBuilderGetHeight, int, const NVNtextureBuilder *b) { return (int)(
 NVN(nvnTextureBuilderGetDepth, int, const NVNtextureBuilder *b) { return (int)((const tex_builder_t *)b)->d.depth; }
 NVN(nvnTextureBuilderGetLevels, int, const NVNtextureBuilder *b) { return (int)((const tex_builder_t *)b)->d.levels; }
 NVN(nvnTextureBuilderGetFormat, NVNformat, const NVNtextureBuilder *b) { return (NVNformat)((const tex_builder_t *)b)->d.format; }
+NVN(nvnTextureBuilderGetDepthStencilMode, NVNtextureDepthStencilMode, const NVNtextureBuilder *b) { return ((const tex_builder_t *)b)->stencil ? NVN_TEXTURE_DEPTH_STENCIL_MODE_STENCIL : NVN_TEXTURE_DEPTH_STENCIL_MODE_DEPTH; }   // PEANUTS: tapionallanaire, PR #164
 NVN(nvnTextureBuilderGetSamples, int, const NVNtextureBuilder *b) { return ((const tex_builder_t *)b)->d.samples; }
 NVN(nvnTextureBuilderGetStride, ptrdiff_t, const NVNtextureBuilder *b) { return (ptrdiff_t)((const tex_builder_t *)b)->d.stride; }
 NVN(nvnTextureViewGetFormat, NVNboolean, const NVNtextureView *v, NVNformat *f) { const view_t *w = (const view_t *)v; if (f) *f = (NVNformat)w->format; return w->set_format; }
@@ -3110,7 +3141,7 @@ NVN_NOPROTO(nvnProgramSetSampleShading, NVNboolean, NVNprogram *p, int mode) { (
 // Singular / combined forms → plural / separate forms; state the replay layer does not have yet (conditional render, depth bounds, ...) is logged once and drawing continues (better to over-draw than to drop).
 #include "../tex/nvn_deswizzle.h"
 
-NVN(nvnCommandBufferCallCommands, void, NVNcommandBuffer *c, int n, const NVNcommandHandle *h) { h_nvnCommandBufferCopyCommands(c, n, h); }   // the replay layer treats CALL and COPY alike
+NVN(nvnCommandBufferCallCommands, void, NVNcommandBuffer *c, int n, const NVNcommandHandle *h) { cmd_call_lists(c, n, h); }   // PEANUTS: a CALL; CopyCommands copies (cmd_copy_list)
 // Combined texture handle (texture id | sampler id << 20) is recorded into the texture slot as is: the replay layer takes the texture from the low 20 bits and the sampler from the high bits (nvn_mtl.m NVN_RB_SAMPT)
 // One combined handle: recorded as the hardware lays the command out, the handle 16 bytes in, where Luigi's Mansion 3 patches it after recording (nvn_obj.h p_bind_tex1)
 NVN(nvnCommandBufferBindTexture, void, NVNcommandBuffer *c, NVNshaderStage st, int i, NVNtextureHandle h) {
@@ -3190,6 +3221,30 @@ static struct vpool *vpool_at(const void *pool, uint64_t a) {   // caller holds 
 }
 int nvn_sparse_pool(const void *pool) { return pool && ((const pool_t *)pool)->vp; }   // no lock: set at Initialize, cleared at the first mapping (an aliased pool) or Finalize; called per texture lookup
 uint64_t nvn_sparse_gen(void) { return atomic_load(&g_vp_gen); }
+// PEANUTS: Resolve one contiguous physical range for a Vulkan buffer binding. A hole or a different
+// physical run ends the binding, since one VkBuffer cannot span both.
+uint64_t nvn_sparse_run(uint64_t a, uint64_t n, uint64_t *physical) {
+    pthread_mutex_lock(&g_vp_mu);
+    struct vpool *v = vpool_at(NULL, a);
+    uint64_t run = 0;
+    if (v) {
+        uint64_t offset = a - (uint64_t)(uintptr_t)v->base;
+        uint64_t limit = v->size - offset;
+        if (n > limit) n = limit;
+        while (run < n) {
+            uint64_t page_off = (offset + run) & 0xfff;
+            const vpte *entry = vpt_get(v, offset + run);
+            if (!entry || !entry->phys) break;
+            uint64_t ptr = (uint64_t)(uintptr_t)entry->phys + page_off;
+            if (!run) *physical = ptr;
+            else if (ptr != *physical + run) break;
+            uint64_t bytes = 0x1000 - page_off;
+            run += bytes < n - run ? bytes : n - run;
+        }
+    }
+    pthread_mutex_unlock(&g_vp_mu);
+    return run;
+}
 uint64_t nvn_sparse_copy(const void *pool, void *dst, uint64_t a, uint64_t n) {
     pthread_mutex_lock(&g_vp_mu); struct vpool *v = vpool_at(pool, a); uint64_t miss = 0;
     if (!v) { pthread_mutex_unlock(&g_vp_mu); memset(dst, 0, n); return n; }

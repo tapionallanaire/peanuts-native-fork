@@ -103,6 +103,14 @@ The game may also write into an NVN object directly, without an NVN call, throug
 - **Fix:** a texture of a sparse pool takes its content as on Metal (`tex_from_storage`): a sampled one (not linear, compressible or an image) is gathered through the page table (`nvn_sparse_copy`, unmapped pages as 0), uploaded, and uploaded again when a mapping in its range or a physical page behind it changes (`nvn_sparse_since`, checked when the page table's generation or the dirty clock moves; `vka_img.vtrack`); the others start cleared. Nothing reads the reserved range itself.
 - **Found on:** [Mario Kart World](../../dm/games/0400C3F00006E000/README.md), on the arm64 emulator, 2 s into its first frames.
 
+### Sparse pool buffers on the Vulkan replay
+<!-- PEANUTS: Android sparse buffer binding. -->
+
+- **Symptom:** `[RED] vk: index buffer … is not in placed guest RAM: skipped` and `[RED] vk: vertex stream … is not in placed guest RAM: it reads zeros` during an otherwise running match. The HUD renders and the pitch or players are black or incomplete.
+- **Cause:** Android keeps NVN's sparse mapping in its page table. A draw's virtual buffer address has no Vulkan allocation of its own, even when its physical backing can be placed and bound.
+- **Fix:** Vertex, index and storage-buffer bindings resolve a contiguous physical run through the NVN page table and bind its Vulkan buffer at the physical offset. A hole or a discontinuity ends the run. CPU reads retain their existing address checks.
+- **Found on:** [EA SPORTS FC 27](../../dm/games/0100C49025D3E000/README.md#android-bring-up), update 1.8d.6523 on AYN Thor with Turnip R5.
+
 ### A finalized sparse pool read through a registered texture
 
 - **Symptom:** Android: `CRASH sig=11` at a non-canonical address (`0x6db6db6db0ff0e`) in `vpool_at` ← `nvn_sparse_any` ← `upload_sparse_parts` ← `img_first_use` ← `vka_tex_get` ← `write_tex` ← `vka_tex_prepare` (`hle_nvn.c`, `vka_tex.c`), a few seconds after the first frames, right after `pool memory … given back as anonymous memory`.
@@ -533,6 +541,8 @@ Games read this count as a position in their own command memory and size their h
 - **Open:** not read back: 3D textures (as for GPU copies; `nvn_tex_mirror_b2t` writes 2D layers only), block-compressed targets drawn through a shadow (`bcrt_attach`; the shadow is copied back into the host texture only) and depth targets. A CPU write into the texture made after its pass is replayed and before the readback lands gets a page generation below the readback's stamp, so `pkg_absorb_take` keeps the host texture without it (the storage holds it; the next CPU write to that page uploads it). Telling those writes from the readback's own needs a dirty-tracker query for a generation range; no game is known to write a texture while the GPU draws into it.
 - **Check:** `t_readback` clears a packaged texture through a render pass, reads the clear colour back from its storage, checks that resolving it does not upload it again, then copies the storage to another address with `memcpy` and reads the colour from a texture created there; without the readback both reads fail. In the log, `render→texture copy into ser=… read back into the storage when the GPU completes`.
 - **Found on:** [The Legend of Zelda: Tears of the Kingdom](../../dm/games/0100F2C0115B6000/README.md) on the Mac: meadows lost their grass and went dark within half a minute of loading; with the fix the grass stays through three minutes of standing and walking. Uploads of textures that changed in the pool, same script: 40 before, 449 after, almost all while loading; frame times the same (p50 about 18 ms).
+
+- **Android:** Vulkan copies the rendered mip levels of tracked, single-sample 2D colour textures to staging and packs them back into CPU-accessible, placed pool storage before the submission completes (`vka_tex_writeback`, `block_linear.comp`). It uses NVN’s mip offsets and block geometry for both GOB orders and preserves padding bytes. This path covers the terrain normal maps. `DM_VK_TILED_WB=0` turns it off for comparison. <!-- PEANUTS -->
 
 ### Sampled textures in a sparse pool uploaded through the page table
 

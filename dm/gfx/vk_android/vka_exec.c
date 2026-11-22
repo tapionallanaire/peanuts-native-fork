@@ -12,6 +12,7 @@
 #include "vka_t2tpath.h"
 #include "vka_qsched.h"
 #include "vka_skipwarn.h"
+#include "vka_warmnote.h"   // PEANUTS
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -112,10 +113,20 @@ __attribute__((visibility("default"))) void nxhost_skip_status(char *buf, size_t
     int p = atomic_load_explicit(&g_skipw_pct, memory_order_acquire);
     if (n) { if (p > 0) snprintf(buf, n, "%d %s", p, g_skipw.causes); else buf[0] = 0; }
 }
+// PEANUTS begin: the "Preparing graphics" notice (vka_warmnote.h): nxhost_warm_status is the pipelines still waiting while draws are skipped for them, 0 = no notice
+extern uint64_t vka_draw_warm_skips(void);
+static vkwarm g_warm; static _Atomic int g_warm_n;
+static void warm_frame(uint64_t f) {
+    int on = vkwarm_step(&g_warm, f, vka_draw_warm_skips(), vka_pso_waiting());
+    atomic_store_explicit(&g_warm_n, on ? g_warm.waiting : 0, memory_order_release);
+}
+__attribute__((visibility("default"))) int nxhost_warm_status(void) { return atomic_load_explicit(&g_warm_n, memory_order_acquire); }
+// PEANUTS end
 void mtl_set_frame(uint64_t f) {
     g_frame = f; vka_ctl_frame(f);
     { if (atomic_load_explicit(&vka_synclog_n, memory_order_relaxed) > 0) VLOG("sync frame %llu begins at %.2f ms", (unsigned long long)f, (now_ns() % 1000000000000ull) / 1e6); }
     skipwarn_frame(f);
+    warm_frame(f);   // PEANUTS
     static uint64_t f0, d0, rp0, b0, ub0, s0, r0, o0, pc0, ch0;
     int on = VKA_ENV("DM_VK_STATS", 1) != 0;
     if (on && f - f0 >= 300) {
@@ -133,6 +144,7 @@ void mtl_set_frame(uint64_t f) {
           { void vka_drv_memo_stats(char *b, size_t n); vka_drv_memo_stats(pb, sizeof pb); if (pb[0]) VLOG("%s", pb); }
           vka_memu_stats(pb, sizeof pb); if (pb[0]) VLOG("%s", pb);
           { void vka_memu_stop_stats(char *b, size_t n, double frames); vka_memu_stop_stats(pb, sizeof pb, n); if (pb[0]) VLOG("%s", pb); }
+          { void vka_tbuf_stats(char *b, size_t n, double frames); vka_tbuf_stats(pb, sizeof pb, n); if (pb[0]) VLOG("%s", pb); }   // PEANUTS: texel buffer views and copies (vka_draw.c)
           { void vka_draw_unplaced(char *b, size_t n); vka_draw_unplaced(pb, sizeof pb); if (pb[0]) VRED("%s", pb); } }   // PEANUTS: draws and buffers lost to memory that is not placed, while the counts move (vka_draw.c)
         { static uint64_t fc; if (f - fc >= 1800) { vka_disp_census(f); fc = f; } }   // (every 1,800 frames)
         vka_dobj_census(f);   // DM_VK_DISP_OBJ (its own interval)
@@ -712,7 +724,7 @@ static uint64_t sub_commit(uint64_t reserved, int has_sig, uint64_t signal) {
     if (VKA_ENV("DM_VK_PARTLOG", 0) && g_nx) { char zb[400]; vka_rp_zstats(zb, sizeof zb); VLOG("last part of the submission of frame %llu: %llu draws%s", (unsigned long long)g_frame, (unsigned long long)(g_stat_draws - g_chunk_d0), zb); }
     vka_disp_settle(g_cb);   // the submission's last dispatches before the steps below and the next submission's (vka_draw.c "Dispatch order")
     vka_rw_point(g_cb, 'e', 0, 0, 0); vka_rw_commit(fence);   // DM_VK_RANGE_WATCH: the bytes at the submission's end, logged once it is done
-    vka_tex_writeback(g_cb);   // linear textures the GPU wrote, back into their storage for the CPU
+    vka_tex_writeback(g_cb);   // PEANUTS: GPU texture writes made visible in guest storage before the host barrier
     vka_tex_pfb_commit(g_cb, fence);   // the texture IDs its shaders read through the pool: copied out for the host (the barrier below) and cleared
     VkMemoryBarrier mb = {VK_STRUCTURE_TYPE_MEMORY_BARRIER, .srcAccessMask = VK_ACCESS_MEMORY_WRITE_BIT, .dstAccessMask = VK_ACCESS_HOST_READ_BIT | VK_ACCESS_HOST_WRITE_BIT};
     vk.vkCmdPipelineBarrier(g_cb, VK_PIPELINE_STAGE_ALL_COMMANDS_BIT, VK_PIPELINE_STAGE_HOST_BIT, 0, 1, &mb, 0, NULL, 0, NULL);

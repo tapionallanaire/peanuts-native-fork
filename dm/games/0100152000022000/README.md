@@ -20,6 +20,8 @@ Brought up on the Mac from 4.0.0: boot, the title with its demo race, the Mii pi
 
 The game builds Mii heads from the console's MiiModel system data, starting at boot for the title's demo race, and lists the six default Miis for its "Select a Mii". Firmware content is not the host's to ship, so Mii heads draw nothing while bodies and favourite colours show.
 
+**Peanuts on Android: the firmware's MiiModel** <!-- PEANUTS -->. The app extracts MiiModel (0100000000000802) from the firmware the player gives Setup, beside the shared fonts, and passes it as `DM_MII_MODEL`; the host mounts it instead of the stand-in. On the AYN Thor with Turnip v26.2.0 R5 the "Select a Mii" screen draws the default Miis' heads. Open: the second of the six default slots stays blank (the host's default Mii data, not MiiModel). A firmware added before this is read once more when its folder or zip is still where it was.
+
 - **Current: the Mii database** (`hle_mii.c`). The first boot logged `[RED] sf: the game connects to service mii:e … mii:u itself`, then aborted: `nn::mii::Database` keeps an `IDatabaseService` of the mii service at +0 (`Database::Initialize`, `sdk+0x1c5664`), and `AppendMii` / `ShowMiiEdit` start the MiiEdit applet. The host takes over the public methods: a console with no Mii of its own (an empty database: no index, nothing to update) that still has the six default Miis every console has. The game asks for those with `Get(…, 6, SourceFlag 2)` and never reads the count (`main+0x81e954`): its boot-time list of Mii icons (`main+0x419dc8`) builds a head model for each of the six, and zeroed entries failed the model's `CharInfoAccessor::IsValid` (`CharModel::Initialize` returned 0xd67e, `main+0x8f15b0`) and crashed at `main+0x8f152c`. A CharInfo the host builds is the default Mii's parameters with Switch common colours, a create ID with version 4 and variant bits (fixed per default Mii, so a saved choice finds the same Mii; fresh for `BuildRandom`, which the title's demo race calls for 12 racers) and the nickname "no name"; every field is within `CharInfoRaw::Verify`'s ranges (`sdk+0x1b68c8`). The Mii editor is cancelled (0xE7E, which `ShowMiiEdit` itself treats as success).
 - **Current: the MiiModel stand-in** (`dm_mii_standin` in `hle_mii.c`, mounted by `hle_fs.c` `MountSystemData`; any other system data answers "target not found"). The game aborted in `fs::detail::GetFileSystemProxyServiceObject` under `fs::QueryMountSystemDataCacheSize` (`main+0x8f23bc`): it mounts system data 0100000000000802, MiiModel, as `MiiResource:` and reads `NXTexture{Low,Mid}{Linear,SRGB}.dat` and `Shape{Mid,High}.dat` whole; the SDK's Mii rendering is linked into `main` (`main+0x8f1400`–`+0x8fc000`). The host writes a stand-in of the same layout with every part empty. The layout as the code reads it:
   - texture file: +0xc the largest decompressed size of each of 11 part kinds, +0x38 their alignments, from +0x64 one 0x1c-byte entry per part (offset, size, stored size, 4 zlib parameters, then width, height, format, mips);
@@ -46,12 +48,20 @@ The game builds Mii heads from the console's MiiModel system data, starting at b
 ## Files and shaders
 
 - 29,785 shaders across 4.0.0 and 4.0.1 (12,579 vertex, 17,177 pixel, 28 compute, 1 geometry): BNSH in the courses' and objects' `.bfsha` / `.bfres` archives inside the `.szs` SARCs (courses, objects, karts, drivers), the effects' `.ptcl`, the layouts, agl's two BAHS sharcb and `main`; 19,012 variation pairs.
+- <!-- PEANUTS --> Android's [targeted shader split](../../../android/SHADERS.md#targeted-split) uses [the observed file list](shader_files.tsv) to include files that contribute extra variation pairs. The targeted tables matched the profile for both 4.0.0 and 4.0.1. On 4.0.0, the split opened 1,359 of 6,597 RomFS files and its 29,650 shader records matched the full scan by SHA-256.
 - <!-- PEANUTS --> **Resolved (Peanuts): a 4.0.1 dump was refused for 134 shaders of 4.0.0.** 4.0.1 rebuilt `Common/Effect/common.ptcl` (its BNSH moved from `0x7e2000` to `0x7e3000`): 135 effects are new, tagged `/v1507328/` in the map, and 134 of 4.0.0's are gone. Those 134 are first-version rows, which carry no version tag, so `pack_android.py` took them as shaders every dump has and stopped a 4.0.1 dump (base + update 4.0.1, from NSPs, on a Mac, 2026-11-16) with `the dump's shaders lack 134 of the 29785`. [`shader_optional.tsv`](shader_optional.tsv) names them, as Super Mario Bros. Wonder's names its versions' own shaders; the split of 4.0.1 has every other key.
 - The NSP script's Mac-only build (`--platform mac`) saves about 30,000 iOS shader compiles and the 12 GB IPA for this game ([development.md, A Mac-only build for development](../../../docs/development.md#a-mac-only-build-for-development)). The player README gives the IPA as about 11.9 GB.
 
 ## Rewriter
 
 - The spin-wait search with the lock, test and store rules finds `main` 25 → 26 loops (a state setter like Breath of the Wild's, `main+0x715df8`) and one loop wider in `subsdk0` (the movie library's thread loop, `0x24118`) ([development.md, Power](../../../docs/development.md#power)).
+
+<!-- PEANUTS begin: picture shapes -->
+## Picture shapes (Android)
+
+**Untested.** Game settings › Display offers **Fill the screen** on 4.0.0 through 2 `aspect_plan` rows that nobody has seen on a device (`aspect_plan_untested 1`, and the Fill choice says so). They are every place this build's main has the width,height pairs in data, from a scan of the code on 2026-11-21 with each expected word read on the pack; no community patch stands behind them. With Fill the 3D view may follow the screen, the HUD and menus may not, or the game may draw wrongly or not start. Fit and Stretch are unchanged. Open: every screen, at any shape.
+
+<!-- PEANUTS end -->
 
 ## Mac routes
 
@@ -61,6 +71,8 @@ The game builds Mii heads from the console's MiiModel system data, starting at b
 - 2P: from a save past the Mii pick, L+R at the title, Down, A (2P), A (Grand Prix), A (50cc) opens the controller applet; 1.5–4 s between presses, or the menu fades drop them. Headless runs report one player; two players need a second controller.
 
 ## Found on this game
+
+- [Version-specific pixel shaders in an Android build](../../../docs/reference/shaders.md#other-versions-pixel-shaders-return-during-android-translation). <!-- PEANUTS -->
 
 - **Android title-screen NULL texture registration:** `treg` cleared the entry and then dereferenced the NULL texture while updating its buffer flag (SIGSEGV read at `0x4`). The flag now clears without reading the texture; the production registration regression passes under UBSan. A 90-second Turnip run reaches the title and menus at about 60 fps, including a NULL registration, with no recorded crash; a race remains unchecked. See [Clearing a Vulkan texture registration](../../../docs/reference/rendering.md#clearing-a-vulkan-texture-registration).
 
