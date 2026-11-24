@@ -1,0 +1,3 @@
+[dm] [vk] NaN scan: frame 1963 pass 18: 12288 NaN + 0 infinite texels in serial 8394 (format 0x29 32x32 level 0 layer 0), first at (4, 0); draws 0-1 of the pass, vertex/fragment 0000000000000000/bdb8115dd17093e7
+[dm] [vk] NaN scan: frame 1963 pass 20: 16384 NaN + 0 infinite texels in serial 8396 (format 0x29 32x32 level 0 layer 0), first at (4, 0); draws 0-1 of the pass, vertex/fragment 0000000000000000/bdb8115dd17093e7
+[dm] [vk] NaN scan: frame 1964 pass 18: 9216 NaN + 0 infinite texels in serial 8394 (format 0x29 32x32 level 0 layer 0), first at (6, 0); draws 0-1 of the pass, vertex/fragment 0000000000000000/bdb8115dd17093e7
