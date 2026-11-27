@@ -38,3 +38,8 @@ sys_resource	0x2000000
 # ---- Shader split ----
 shader_groups	/data/=data
 shader_note	NARUTO X BORUTO Ultimate Ninja STORM CONNECTIONS shaders
+
+# ---- Experimental 60 FPS ----
+fps_limit	60
+fps_modes	60
+fpslocker_plan	48ece454b61412b9fb46fab2be3f5ef7	m0x886ac0	d8a2ed97	80078052
