@@ -1,0 +1,1040 @@
+[nxlaunch] build peanuts-native-0.1.9-dev · signer f0352d90ba4bd417
+[nxlaunch] env NX_BUILD_TAG=peanuts-native-0.1.9-dev · signer f0352d90ba4bd417
+[nxlaunch] env DM_ROMFS=/storage/EB7E-7C48/Peanuts-ffr567/0100606026F12000/game.nup:update/65536/romfs
+[nxlaunch] env DM_SAVE=/storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/saves/0100606026F12000
+[nxlaunch] env DM_TEMP=/storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/temp/0100606026F12000
+[nxlaunch] env DM_ROOT=/storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/root
+[nxlaunch] env DM_AOC_DIR=/data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000
+[nxlaunch] env HOME=/storage/emulated/0/Android/data/dev.nxnative.android.ffr/files
+[nxlaunch] env TMPDIR=/data/user/0/dev.nxnative.android.ffr/cache
+[nxlaunch] env DM_BUILD_COMMIT=393a90a43b18
+[nxlaunch] env DM_CTL=/storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/ctl.txt
+[nxlaunch] env NX_EXIT_RECORD=/data/user/0/dev.nxnative.android.ffr/files/last-exit.txt
+[nxlaunch] env DM_PROFILE_PATH=/data/user/0/dev.nxnative.android.ffr/files/peanuts/profiles/0100606026F12000.profile.bin
+[nxlaunch] env DM_PROFILE_SEED=/data/user/0/dev.nxnative.android.ffr/files/peanuts/profiles/0100606026F12000.seed
+[nxlaunch] env DM_PROFILE_PAIRS=/data/user/0/dev.nxnative.android.ffr/files/peanuts/profiles/0100606026F12000.pairs
+[nxlaunch] env DM_PROFILE_PROGRAMS=
+[nxlaunch] env DM_FONT_DIR=/data/user/0/dev.nxnative.android.ffr/files/fonts
+[nxlaunch] env DM_LSFG=0
+[nxlaunch] env DM_LSFG_MULT=2
+[nxlaunch] env DM_LSFG_TARGET=0
+[nxlaunch] env DM_LSFG_FLOW=50
+[nxlaunch] env DM_VK_NDSR=4
+[nxlaunch] env DM_VK_NDSR_SHARP=0.25
+[nxlaunch] env DM_VK_FSR=0
+[nxlaunch] env DM_VK_FSR_SHARP=0.25
+[nxlaunch] env DM_VK_PRESENT_NEAREST=0
+[nxlaunch] env DM_VK_CRT=0
+[nxlaunch] env DM_FPSLOCKER_INTERVAL=1
+[nxlaunch] env DM_FPSLOCKER=84e182f72ee1da4f477804bd05b54c15,frame_ms2_f32,0x8be8128,2,0;84e182f72ee1da4f477804bd05b54c15,zero_i32,0x7c13290,2,0;84e182f72ee1da4f477804bd05b54c15,target_f32,0x8c29b00,2,0
+[nxlaunch] env DM_PRESENT_HZ=120
+[nxlaunch] env DM_VSYNC_HZ=120
+[nxlaunch] env DM_FPS_TARGET=0
+[nxlaunch] env DM_VK_PSO_ASYNC=2
+[nxlaunch] env DM_PAD_MAP=BUTTON_A=A,BUTTON_B=B,BUTTON_X=X,BUTTON_Y=Y
+[nxlaunch] env DM_MOTION_SENS=0.5
+[nxlaunch] env DM_ASPECT_PLAN=84e182f72ee1da4f477804bd05b54c15,width_movz,m0x42d30c8,00f080d2;84e182f72ee1da4f477804bd05b54c15,ratio_f32,m0x62f5c2c,398ee33f
+[nxlaunch] env DM_LANG=en-US
+[nxlaunch] env DM_MII_DB=/data/user/0/dev.nxnative.android.ffr/files/mii/database.bin
+[nxlaunch] env DM_SHARED_FONT=/data/user/0/dev.nxnative.android.ffr/files/firmware/fonts/standard.ttf
+[nxlaunch] env DM_SHARED_FONT_EXT=/data/user/0/dev.nxnative.android.ffr/files/firmware/fonts/nintendo_ext.ttf
+[nxlaunch] env DM_VK_CS_ASYNC=0
+[dm] [vk] window 0x73f5402f90
+[nxlaunch] exit record: /data/user/0/dev.nxnative.android.ffr/files/last-exit.txt
+[nxlaunch] arg 0: nxhost
+[nxlaunch] arg 1: /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/packs/0100606026F12000
+[nxlaunch] hooks: window yes, input yes, lifecycle yes
+[dm] input: the keyboard applet goes to the launcher's input box
+[dm] input: the user selector goes to the launcher's picker
+[dm] input: the controller applet goes to the launcher's join screen
+[nxlaunch] nxhost_main starts on its own thread (8 MiB stack)
+[dm] [RED] gfx: mtl_pso_prebuild_tool not yet on Android (NVN → Vulkan replay)
+[dm] build: commit 393a90a43b18, shader chain f36b2a1bcf19, profile 0100606026F12000
+[dm] thread slots: tpidr_el0 + 0x10 → K18 +0 KTLS +8 KTLR +0x10 KGATE +0x18
+[dm] module arena 0x71da1e4000 +0xcf4c000: 3 modules back to back in load order
+[dm] input: rumble goes to the launcher's vibrator callback
+[nxlaunch] rumble: the phone's vibrator
+[nxlaunch] [readiness] 0100606026F12000: PASS; Adreno (TM) 740, Vulkan 1.3.128; driver Qualcomm Technologies Inc. Adreno Vulkan Driver (Driver Build: 69e13475cb, I1df7ad3aa9, 1703680572 Date: 12/27/23 Compiler Version: E031.41.03.47 Driver Branch:), driver ID 8, version 0x802a4035, the system's driver; RAM 11.0 GiB, Android SDK 33
+[nxlaunch] [nxlaunch] game: /storage/EB7E-7C48/Peanuts-ffr567/0100606026F12000/game.nup (.nup), DM_ROMFS /storage/EB7E-7C48/Peanuts-ffr567/0100606026F12000/game.nup:update/65536/romfs, pack /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/packs/0100606026F12000
+[nxlaunch] [nxlaunch] save: /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/saves/0100606026F12000 (existing)
+[nxlaunch] nxnative 0.1-bringup (393a90a43b18), host libnxhost.so; FINAL FANTASY RESONANCE 0100606026F12000 version 65536
+[nxlaunch] device AYN AYN Thor, Android 13 (SDK 33), arm64-v8a; game /storage/EB7E-7C48/Peanuts-ffr567/0100606026F12000/game.nup; pack /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/packs/0100606026F12000
+[nxlaunch] [nxlaunch] DLC: 3 links in DM_AOC_DIR /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000 [1.nup, 2.nup, 3.nup]
+[nxlaunch] [nxlaunch] readiness check: ran with the game's 24 environment lines (all but the paths), set before the GPU driver's first device
+[nxlaunch] frame generation: off; Lossless.dll not found (looked in Documents/Emulation/bios, Switch2, Download and the app's files)
+[nxlaunch] GPU driver: system (picked in the launcher; a DM_VK_DRIVER line in env.txt wins, the host's [vk] driver line says which ran)
+[nxlaunch] [nxlaunch] settings: GPU driver system (yours), Upscaler sgsr1 (default), Frame rate cap 60 (default)
+[nxlaunch] [adv] DM_MII_DB=<path> (Extra environment)
+[nxlaunch] [adv] DM_SHARED_FONT=<path> (Extra environment)
+[nxlaunch] [adv] DM_SHARED_FONT_EXT=<path> (Extra environment)
+[dm] input: DM_PAD_MAP BUTTON_A=A,BUTTON_B=B,BUTTON_X=X,BUTTON_Y=Y: 4 button(s) remapped
+[dm] input: device 10 (Odin Controller) is player 1
+[nxlaunch] on-screen controls hidden: a gamepad is connected
+[nxlaunch] padmotion: Odin Controller has no gyroscope through Android (sensors: none)
+[dm] input: phone sensors on: accelerometer for shakes, gyroscope as player 1's six-axis sensor
+[dm] main: gates 102 patch_off 0xfffffffffe000000 keys 0/1/2/3
+[dm] main: base 0x71dc1e4000 size 0x9b58000
+[dm] subsdk0: gates 10 patch_off 0x670000 keys 0/1/2/3
+[dm] subsdk0: base 0x71e5d3c000 size 0x6e0000
+[dm] sdk: gates 109 patch_off 0xc60000 keys 0/1/2/3
+[dm] sdk: base 0x71e641c000 size 0xd14000
+[dm] main: undefined weak _ZTHN13LowLevelTasks5FTask10ActiveTaskE bound to 0
+[dm] main: undefined weak _ZTHN13LowLevelTasks7Private20FOversubscriptionTls26bIsOversubscriptionAllowedE bound to 0
+[dm] main: undefined weak _ZTHN30FOverridableSerializationLogic20OverriddenPropertiesE bound to 0
+[dm] main: undefined weak _ZTHN30FOverridableSerializationLogic28bUseOverridableSerializationE bound to 0
+[dm] main: undefined weak _ZTHN17FPropertyTagScope18CurrentPropertyTagE bound to 0
+[dm] main: undefined weak _ZTHN13LowLevelTasks5FTask10ActiveTaskE bound to 0
+[dm] main: undefined weak _ZTHN13LowLevelTasks7Private20FOversubscriptionTls26bIsOversubscriptionAllowedE bound to 0
+[dm] main: undefined weak _ZTHN30FOverridableSerializationLogic20OverriddenPropertiesE bound to 0
+[dm] main: reloc relative=0 relr=1371154 abs/glob=3985 jump=627
+[dm] subsdk0: reloc relative=0 relr=3424 abs/glob=11832 jump=3817
+[dm] sdk: _ZNSt3__115basic_stringbufIcNS_11char_traitsIcEENS_9allocatorIcEEE9underflowEv bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: _ZTIN2nn2sf6detail13CmifProxyInfoE bound to an earlier module's definition (subsdk0)
+[dm] sdk: reloc relative=0 relr=15011 abs/glob=11214 jump=7813 (some bound to an earlier module's definition)
+[dm] sdk: 771 bound to an earlier module's definition in all
+[dm] force: 406 entries hit, 829 not referenced by this game
+[dm] cheats: /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/root/cheats: no file for build 84E182F72EE1DA4F
+[dm] sdk: NintendoSDK nnSdk-20_5_17-Release (major 20)
+[dm] DM_CTL: reading key presses and screenshot requests from /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/ctl.txt
+[dm] stubs=0
+[dm] [vk] sparse: binding 1, residency buffer 1 image2D 1 image3D 0 aliased 0, standard 2D block shape 1, non-resident strict 1, address space 536870911 MiB, sparse binding on queue family 0: yes; buffer / image granularity 1
+[dm] [vk] device extensions of the vendor: QCOM_render_pass_store_ops QCOM_render_pass_shader_resolve QCOM_fragment_density_map_offset QCOM_rotated_copy_commands QCOM_tile_properties QCOM_render_pass_transform QCOM_image_processing
+[dm] [vk] bounded index buffer bindings: unavailable
+[dm] [vk] attachment feedback loops (VK_EXT_attachment_feedback_loop_layout + _dynamic_state): not on this device
+[dm] [vk] exported guest memory alias: on (passed bidirectional fixed alias and mprotect; DM_VK_FD_ALIAS=0: off)
+[dm] [vk] GPU clock floor (VK_QCOM_queue_perf_hint): not on this device
+[dm] [vk] GPU clock floor through KGSL: the queue's kernel context 30 (1 descriptor on /dev/kgsl-3d0; host DCVS: highest clock only), DM_VK_GPU_FLOOR (DM_VK_GPU_FLOOR_KGSL)
+[dm] [vk] driver: Qualcomm Technologies Inc. Adreno Vulkan Driver (Driver Build: 69e13475cb, I1df7ad3aa9, 1703680572
+Date: 12/27/23
+Compiler Version: E031.41.03.47
+Driver Branch: 
+), driver ID 8, conformance 1.3.1.0, driver version 0x802a4035; the system's
+[dm] [vk] graphics pipeline libraries: not on this device
+[dm] [vk] mesh draws through compute (vka_memu.c): the device has no mesh shaders (DM_VK_MESH_EMU=0: skipped instead)
+[dm] [vk] mesh shading (NVN2 task and mesh programs): not on this device
+[dm] [vk] subgroups: size 64, stages 0x30 (geometry NO, fragment yes, vertex NO), operations 0xbf, quad operations in all stages no, required size stages 0x20
+[dm] [vk] vertex input dynamic state: off (Qualcomm driver before 512.800; DM_VK_VIN_DYN=1: on), the vertex input goes into the pipeline
+[dm] [auto] DM_VK_VIN_DYN=0 because driver_id=8 (Qualcomm Technologies Inc. Adreno Vulkan Driver), driver version before 512.800
+[dm] [auto] DM_VK_PREWARM=0 because driver_id=8 (Qualcomm Technologies Inc. Adreno Vulkan Driver), driver version before 512.800
+[dm] [auto] DM_VK_DYN_FILTER=0 because driver_id=8 (Qualcomm Technologies Inc. Adreno Vulkan Driver), driver version before 512.800
+[dm] [auto] DM_VK_PUSH_DELTA=1 because driver_id=8 (Qualcomm Technologies Inc. Adreno Vulkan Driver)
+[dm] [auto] DM_VK_GS_FILL=1 because driver_id=8 (Qualcomm Technologies Inc. Adreno Vulkan Driver)
+[dm] [vk] texture pool reads: the GPU reports the texture IDs shaders read through the pool (a bitmap in descriptor set 2); their images are made when read and kept while read (DM_VK_POOL_FB=0 off)
+[dm] [vk] timelines: a zero-timeout fence query returned at once (0.0 ms): the GPU signals the timelines
+[dm] [vk] device Adreno (TM) 740, Vulkan 1.3.128, driver 0x802a4035; placed maps no (range no, alignment 4096), buffer device address yes, update-after-bind yes, display timing yes; guest memory type 6 (0xf), max allocation 1024 MiB, at most 4294967295 allocations
+[dm] [vk] draw path: push descriptors yes (32), vertex input dynamic state no, null descriptors yes, 8-bit indices yes, instance divisors yes, logic op yes, dual source yes, geometry yes, tessellation yes; uniform alignment 64 (range 65536), storage alignment 64, subgroups 64 (64-128)
+[dm] [vk] res scale: depth and stencil formats of this device: D16 blit source only, X8D24 blit source only, D32F blit source only, S8 blit source only, D24S8 blit source only, D32FS8 blit source only (a scaled depth target keeps its content across a change of scale only with a blit)
+[dm] [vk] subgroup shaders (built for 64 lanes; the device's 64, 64-128, pinnable in 0x20, pinned in 0x20): vertex one lane, tess control one lane, tess evaluation one lane, geometry one lane, fragment one lane, compute pinned 64
+[dm] [vk] subgroup shaders: stages whose subgroup size is wrong for the library or varies unpinned run them as one-invocation subgroups
+[dm] [vk] compute subgroup shuffles: the instruction (DM_VK_SHUFFLE_LDS=1: through workgroup memory)
+[dm] [vk] shader library /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/packs/0100606026F12000/shaders/v-c1eff1d2d8c1/dmsh_vk.lib: 73496 shaders, 108698 modules, 1472.9 MB (chain f36b2a1bcf19, Vulkan chain c1eff1d2d8c1, inputs 2ddf71af58a7; 64-lane subgroups, storage buffers at 64)
+[dm] [vk] pipeline cache /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/temp/0100606026F12000/vk_pipelines-fp0.bin: 506435 bytes read (its stamp lists 62 shaders, 0 stale)
+[dm] [vk] prewarm list /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/temp/0100606026F12000/vk_pipelines.keys: 766 pipeline keys (766 of earlier runs on this device, 0 more from the profile's seed list)
+[dm] [vk] prewarm: off (default on Qualcomm's driver before 512.800; DM_VK_PREWARM=4 on): 766 keys not made ahead
+[dm] front end: the guest runs on this thread; presents go to the launcher's window (nxhost_set_window)
+[dm] main guest thread QoS 0x21 (priority 44)
+[dm] >>> nnosInitialize
+[dm] guest AS 0x4000000000 +0x140000000  heap 0x4138000000 alias 0x4010000000 stack 0x4128000000
+[dm] >>> nninitInitializeSdkModule
+[dm] init takeover: nndiagStartup (no-op)
+[dm] init takeover: oe::Initialize (no-op)
+[dm] init takeover: aoc::Initialize (no-op)
+[dm] init takeover: err::InitializeContextWriterApi (no-op)
+[dm] init takeover: fs::InitializeForApplication (no-op)
+[dm] init takeover: pctl::Initialize (no-op)
+[dm] init takeover: diag::InitializeApplicationAbortObserver (no-op)
+[dm] >>> nninitStartup
+[dm] [mem] Unreal's engine region: 62.00 GB asked, 4.06 GB of address space, what the alias region has room for
+[dm] [mem] address region 4.06 GB at alias +0.06 GB, returning to main+0x137d4
+[dm] main 84e182f7: Unreal's allocator (FMallocBinned3 at 0x71e39aa210) runs on a host malloc zone
+[dm] main: DT_INIT +0x59220c0 (init_array 1890 entries)
+[dm] time::LoadTimeZoneRule PST (host time zone used instead)
+[dm] ToCalendarTime: first conversion 1795867967 → 2026-11-28 20:12 (time zone PST, offset 28800 s)
+[dm] [vk] ADPF session: 1 threads, target 16.67 ms
+[dm] [vk] swapchain 1080x1920, 4 images, format 37, FIFO, transform 0x2 (surface 0x2: pre-rotated), refresh 120.00 Hz, display timing
+[dm] subsdk0: DT_INIT +0x20 (init_array 45 entries)
+[dm] sdk: DT_INIT +0x400 (init_array 83 entries)
+[dm] >>> nnMain
+[dm] [mem] alias region mapped up to +1.06 GB (alias region 4.38 GB)
+[dm] MapMemory 0x412fd74000 <- 0x4054001000 +0x100000
+[dm] fs NUP /storage/EB7E-7C48/Peanuts-ffr567/0100606026F12000/game.nup:update/65536/romfs: 24 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs mount rom: → /storage/EB7E-7C48/Peanuts-ffr567/0100606026F12000/game.nup:update/65536/romfs (read-only)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/1.nup:aoc/1: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/2.nup:aoc/2: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/3.nup:aoc/3: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] aoc: reporting 3 add-on contents {1,2,3} (/data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/1.nup:aoc/1: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/1.nup:aoc/1: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs mount aoc0: → /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/1.nup:aoc/1 (read-only)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/2.nup:aoc/2: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/2.nup:aoc/2: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs mount aoc1: → /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/2.nup:aoc/2 (read-only)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/3.nup:aoc/3: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs NUP /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/3.nup:aoc/3: 2 entries, 0 compressed files (decompressed when opened, cache 128 MiB)
+[dm] fs mount aoc2: → /data/user/0/dev.nxnative.android.ffr/files/aoc/0100606026F12000/3.nup:aoc/3 (read-only)
+[dm] MapMemory 0x412c435000 <- 0x4054201000 +0x100000
+[dm] main: frame limit 60 fps (game profile fps_limit)
+[dm] MapMemory 0x412b7b6000 <- 0x4054401000 +0x100000
+[dm] MapMemory 0x412ddbb000 <- 0x4054601000 +0x100000
+[dm] MapMemory 0x41332da000 <- 0x4054801000 +0x100000
+[dm] MapMemory 0x4130350000 <- 0x4054a01000 +0x100000
+[dm] MapMemory 0x41293c2000 <- 0x4054c01000 +0x100000
+[dm] MapMemory 0x41368cc000 <- 0x4054e01000 +0x100000
+[dm] MapMemory 0x412a1aa000 <- 0x4055001000 +0x100000
+[dm] MapMemory 0x41354b1000 <- 0x4055201000 +0x20000
+[dm] MapMemory 0x41360b0000 <- 0x4055241000 +0x20000
+[dm] [mem] Unreal heap (host malloc zone) up to 0.26 GB in use
+[dm] init takeover: oe::Initialize (no-op)
+[dm] init takeover: oe::Initialize (no-op)
+[dm] init takeover: oe::Initialize (no-op)
+[dm] MapMemory 0x4130465000 <- 0x7445420000 +0x4000
+[dm] MapMemory 0x4130841000 <- 0x4055281000 +0x20000
+[dm] eventfd: served by the host (first: descriptor 512, flags 0x4)
+[dm] MapMemory 0x413171f000 <- 0x40552c1000 +0x20000
+[dm] MapMemory 0x4136d66000 <- 0x4055301000 +0x100000
+[dm] MapMemory 0x412f3d4000 <- 0x4055501000 +0x18000
+[dm] MapMemory 0x41306c6000 <- 0x4055521000 +0x18000
+[dm] MapMemory 0x41325e4000 <- 0x4055541000 +0x100000
+[dm] MapMemory 0x4131c4c000 <- 0x4055741000 +0x100000
+[dm] init takeover: oe::Initialize (no-op)
+[dm] oe::SetFocusHandlingMode 2 (focus notifications)
+[dm] oe::SetFocusHandlingMode 1 (focus notifications)
+[dm] oe::SetPerformanceConfiguration mode=0 cfg=0x20004 (ignored)
+[dm] oe::SetPerformanceConfiguration mode=1 cfg=0x10001 (ignored)
+[dm] nv::InitializeGraphics: pool 8.00 MB, recorded (the host's graphics layer allocates its own)
+[dm] [nvn] device API 55.15 (SDK 20)
+[dm] [nvn] depth mode near=0 (as D3D / Metal)
+[dm] [vk] window origin: upper left
+[dm] [nvn] window origin upper left (as D3D / Metal)
+[dm] [nvn] shader-code pools: placed only for a command or texture that hands the GPU data in them, not for program addresses (DM_VK_PLACE_SHADER_POOLS=0)
+[dm] [vk] memory pool 0x4055940000+0x1020000: placed when the GPU is first given an address in it (DM_VK_PLACE_LAZY)
+[dm] [vk] file-backed pools: off by default, 11.0 GiB of RAM (DM_MEM_FILEBACK=1 or the RAM saver turns them on; DM_MEM_FILEBACK_RAM_GB=11)
+[dm] [vk] exported alias GPU probe: coherent both ways (the GPU's writes seen through the alias, the CPU's through the alias seen by the GPU; 16384 words)
+[dm] [vk] placed memory: MADV_POPULATE_READ refused (errno 22): pages touched one by one
+[dm] [vk] placed memory: 0.5 MiB faulted in so far, 0.0 ms
+[dm] [vk] memory pool 0x4057940000+0x80000 placed when the GPU was given 0x4057940000+0x10 (a command naming an address in a shader-code pool; 1.3 ms)
+[dm] MapMemory 0x412d6e0000 <- 0x4057a41000 +0x100000
+[dm] [vk] placed memory: 1.0 MiB faulted in so far, 0.0 ms
+[dm] [vk] memory pool 0x40579c0000+0x80000 placed when the GPU was given 0x40579c0400+0x200 (a texture in a shader-code pool; 0.3 ms)
+[dm] [vk] placed memory: 3.0 MiB faulted in so far, 0.0 ms
+[dm] [vk] memory pool 0x4057c40000+0x200000 placed when the GPU was given 0x4057c60000+0xc00 (a texture in a shader-code pool; 0.6 ms)
+[dm] [nvn] TextureBuilderSetSwizzle not identity (2 2 2 2): remapped with a Metal view when sampling
+[dm] [vk] memory pool 0x4058080000+0x400000 placed when the GPU was given 0x4058080000+0x100000 (a texture in a shader-code pool; 0.9 ms)
+[dm] [mem] Unreal heap (host malloc zone) up to 0.53 GB in use
+[dm] [vk] replay worker: submissions and presents are replayed on their own thread, at most 1 frame behind the game (DM_VK_WORKER=0: inline)
+[dm] [vk] GPU waits across NVN queues: a wait parks its queue until its producer is replayed (DM_VK_EVENT_WAIT=0: every wait passes); a wait for an event the CPU sets is replayed at once and the GPU waits (DM_VK_EVENT_GATE=0: parked)
+[dm] MapMemory 0x412a862000 <- 0x4058481000 +0x80000
+[dm] [vk] ADPF session: 2 threads, target 16.67 ms
+[dm] [vk] replay thread 1882: priority -8 (was -4; DM_VK_REPLAY_NICE=-8)
+[dm] [vk] GPU clock floor (KGSL): 100 % (highest): 0
+[dm] [peanuts] GPU clock floor beat: kernel context 32 with KGSL_CONTEXT_PWR_CONSTRAINT, highest clock; one CP_NOP per replayed submission, at most every 8 ms (PN_GPU_FLOOR_BEAT=0: off)
+[dm] [peanuts] GPU clock floor beat: first command submitted (timestamp 1)
+[dm] MapMemory 0x412b448000 <- 0x4058581000 +0x100000
+[dm] [vk] GPU time: timestamps at 52.08 ns a tick
+[dm] [vk] counter timestamps: one time for the whole submission (profile key gpu_timestamps; DM_NVN_GPU_TS=segment / submission)
+[dm] [vk] command encoder: the replay thread's Vulkan commands are recorded on a thread of their own (DM_VK_ENC=0: on the replay thread)
+[dm] [vk] ADPF session: 3 threads, target 16.67 ms
+[dm] MapMemory 0x4134009000 <- 0x4058781000 +0x14000
+[dm] vi::GetDisplayVsyncEvent: 0x72d55708f0 signalled by the host at 60 Hz
+[dm] [vk] memory pool 0x40587a0000+0x80000 placed when the GPU was given 0x40587a0000+0x10 (a command naming an address in a shader-code pool; 0.6 ms)
+[dm] [vk] memory pool 0x4058820000+0x100000 placed when the GPU was given 0x4058820000+0x100000 (a command naming an address in a shader-code pool; 0.6 ms)
+[dm] [vk] memory pool 0x4058920000+0x80000 placed when the GPU was given 0x4058920000+0x40000 (a command naming an address in a shader-code pool; 0.5 ms)
+[dm] MapMemory 0x4129ecf000 <- 0x40589a1000 +0x100000
+[dm] [vk] bindless tables: 1048576 textures, 16384 samplers, 65536 images (update after bind); the pool reads' bitmap in a set of its own
+[dm] [vk] learned view formats /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/temp/0100606026F12000/vk_view_formats.txt: 1 pairs (images of those formats and sizes take the second format in their format list)
+[dm] [vk] buffer -> texture copy #1 into serial 2 1x1 format 0x25 level 0 layer 0: mirrored into its block-linear storage 0x40579c0400+0 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #2 into serial 3 1x1 format 0x25 level 0 layer 0: mirrored into its block-linear storage 0x40579c0600+0 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #3 into serial 4 1x1 format 0x25 level 0 layer 0: mirrored into its block-linear storage 0x40579c0800+0 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #4 into serial 8 1x1 format 0x9a level 0 layer 0: mirrored into its block-linear storage 0x40579c1600+0 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #5 into serial 9 1x1 format 0x9a level 0 layer 0: mirrored into its block-linear storage 0x4057c60000+0 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #6 into serial 9 1x1 format 0x9a level 0 layer 1: mirrored into its block-linear storage 0x4057c60000+0x200 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #7 into serial 9 1x1 format 0x9a level 0 layer 2: mirrored into its block-linear storage 0x4057c60000+0x400 (0x200 bytes)
+[dm] [vk] buffer -> texture copy #8 into serial 9 1x1 format 0x9a level 0 layer 3: mirrored into its block-linear storage 0x4057c60000+0x600 (0x200 bytes)
+[dm] [vk] buffer -> texture copy into serial 11 1x1 format 0x32 level 0 layer 0: not mirrored into its storage: samples 1, format kind 3
+[dm] [vk] buffer -> texture copy into serial 11 1x1 format 0x32 level 0 layer 1: not mirrored into its storage: samples 1, format kind 3
+[dm] [vk] buffer -> texture copy into serial 11 1x1 format 0x32 level 0 layer 2: not mirrored into its storage: samples 1, format kind 3
+[dm] [vk] buffer -> texture copy into serial 11 1x1 format 0x32 level 0 layer 3: not mirrored into its storage: samples 1, format kind 3
+[dm] [vk] buffer -> texture copy into serial 11 1x1 format 0x32 level 0 layer 4: not mirrored into its storage: samples 1, format kind 3
+[dm] [vk] buffer -> texture copy into serial 11 1x1 format 0x32 level 0 layer 5: not mirrored into its storage: samples 1, format kind 3
+[dm] [vk] pool memory 0x4058820000+0x100000 given back as anonymous memory (0.01 GiB placed)
+[dm] [vk] memory pool 0x4058bb0000+0x3c0000 placed when the GPU was given 0x4058bb0000+0x3c0000 (a texture in a shader-code pool; 1.4 ms)
+[dm] [nvn] WindowInitialize swap chain 2 textures, interval 1, first 1280x720 format 0x25
+[dm] [nvn] present tick 120 Hz, interval mode display (one frame per tick, a cut) (game profile present_interval; present interval set by the game 1; window, fixed 60 Hz)
+[dm] [vk] ADPF session: 4 threads, target 16.67 ms
+[dm] [nvn] present thread: ADPF performance hint session and display priority in place of the time-constraint policy (period 8.333 ms, computation 2.000 ms asked)
+[dm] [vk] target 1280x720 VkFormat 37 (format list): 3710976 bytes (4.03 a texel)
+[dm] main: reviewed FPS memory rows: 3 reviewed memory rows for build 84e182f72ee1da4f477804bd05b54c15
+[dm] main: reviewed FPS memory writes applied at 60 fps; presentation limiter controls the live cap
+[dm] [nvn] call counts off (DM_NVN_COUNT=1 turns them on)
+[dm] [vk] image cache limit 5632 MiB: images 6 MiB, MemTotal 11265 MiB, MemAvailable 7154 MiB (reserve 512), image heap 11265 MiB, budget 0 MiB, usage 0 MiB (no VK_EXT_memory_budget)
+[dm] [vk] target 1280x720 VkFormat 37 (format list): 3710976 bytes (4.03 a texel)
+[dm] [vk] window frame rate 60 fps
+[dm] vi::ListFrameHistory: 1 of the last 8 presents returned (up to frame 1, the present at 1)
+[dm] [RED] gfx: mtl_bw not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_udc_saved_bytes not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_args_stats not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_use_stats not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_ds_omit not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_upload_gpu_ns_take not yet on Android (NVN → Vulkan replay)
+[dm] MapMemory 0x4131af1000 <- 0x40593b1000 +0x100000
+[dm] MapMemory 0x413714d000 <- 0x40595b1000 +0x100000
+[dm] [vk] zero-shared image: texture serial 119 1024x1024 layers 1 levels 1 format 0x9c flags 0: 4.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] target 1024x1024 VkFormat 44 (format list): 4194304 bytes (4.00 a texel)
+[dm] [vk] target 1024x1024 VkFormat 44 (format list): 4194304 bytes (4.00 a texel)
+[dm] [vk] zero-shared image serial 119 1024x1024 layers 1 format 0x9c: memory of its own at its first write (4.0 MiB, frame 2, 1 texture IDs written again)
+[dm] [vk] pool memory 0x4059bb0000+0x400000 given back as anonymous memory (0.02 GiB placed)
+[dm] fs mount save0: → /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/saves/0100606026F12000.work (transactional save: work directory, swapped in atomically on Commit)
+[dm] MapMemory 0x41328d7000 <- 0x71e51e7000 +0x100000
+[dm] MapMemory 0x4132e88000 <- 0x71e590c000 +0x100000
+[dm] MapMemory 0x4131ea5000 <- 0x71e50e1000 +0x100000
+[dm] MapMemory 0x4129be4000 <- 0x71e4eda000 +0x100000
+[dm] audio #0 OpenAudioOut (default) channels 6 real output (call site main+0x5de3ec8)
+[dm] audio #0 AAudio stream: 48000 Hz, 2 channels, burst 960 frames, buffer 2886 frames (asked 3840), not low latency, shared, device 2
+[dm] MapMemory 0x4132b90000 <- 0x7160ba3000 +0x100000
+[dm] audio #0 Start (call site main+0x5de409c)
+[dm] MapMemory 0x41365e2000 <- 0x74960b0000 +0x4000
+[dm] MapMemory 0x412e50a000 <- 0x71e5b32000 +0x100000
+[dm] MapMemory 0x4132479000 <- 0x71e5c33000 +0x100000
+[dm] MapMemory 0x4134686000 <- 0x4059fb1000 +0x100000
+[dm] MapMemory 0x412be83000 <- 0x405a1b1000 +0x100000
+[dm] [vk] shader parts: the game's depth mode (near = 0) is not the one they were prepared for: prepared again at the next start
+[dm] [vk] texture serial 120 64x64 format 0x4b: 5488 bytes uploaded from guest memory
+[dm] [vk] texture serial 121 64x64 format 0x44: 5488 bytes uploaded from guest memory
+[dm] [vk] texture serial 122 64x64 format 0x45: 2744 bytes uploaded from guest memory
+[dm] [vk] texture serial 123 32x32 format 0x45: 696 bytes uploaded from guest memory
+[dm] [vk] asynchronous pipelines: 2 of 2 background threads (DM_VK_PSO_ASYNC): a pipeline the cache lacks is made off the frame path and its draws are skipped until then
+[dm] [vk] background pipeline compiles: 4 at once (was 1): MemAvailable 7260 MiB, memory maps 3934 of 65530 (DM_VK_PSO_SLOTS at most 4)
+[dm] [vk] pipeline made in the background (2.5 ms), not in the prewarm list: 4 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline cache: 506435 bytes written to /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/temp/0100606026F12000/vk_pipelines-fp0.bin (1 pipelines made this run), prewarm list 0 keys, 1 ms (on the saver thread)
+[dm] MapMemory 0x4133d7b000 <- 0x405a3b1000 +0x100000
+[dm] UnmapMemory 0x4136d66000 -> 0x4055301000 +0x100000 (contents copied back)
+[dm] audio #1 OpenAudioOut (default) channels 2 real output, no release event (the game polls) (call site main+0x59212d0)
+[dm] audio #1 AAudio stream: 48000 Hz, 2 channels, burst 960 frames, buffer 2886 frames (asked 3840), not low latency, shared, device 2
+[dm] audio #1 Close (call site main+0x5921394)
+[dm] audio #2 OpenAudioOut (default) channels 2 real output (call site main+0x5921750)
+[dm] audio #2 AAudio stream: 48000 Hz, 2 channels, burst 960 frames, buffer 2886 frames (asked 3840), not low latency, shared, device 2
+[dm] MapMemory 0x41337d8000 <- 0x4055301000 +0x100000
+[dm] audio #2 Start (call site main+0x5921d30)
+[dm] UnmapMemory 0x412ddbb000 -> 0x4054601000 +0x100000 (contents copied back)
+[dm] UnmapMemory 0x41332da000 -> 0x4054801000 +0x100000 (contents copied back)
+[dm] UnmapMemory 0x4130350000 -> 0x4054a01000 +0x100000 (contents copied back)
+[dm] UnmapMemory 0x41293c2000 -> 0x4054c01000 +0x100000 (contents copied back)
+[dm] UnmapMemory 0x41368cc000 -> 0x4054e01000 +0x100000 (contents copied back)
+[dm] UnmapMemory 0x412a1aa000 -> 0x4055001000 +0x100000 (contents copied back)
+[dm] MapMemory 0x4134d11000 <- 0x4055001000 +0x100000
+[dm] MapMemory 0x4135dd4000 <- 0x4054e01000 +0x100000
+[dm] MapMemory 0x412dbd6000 <- 0x4054c01000 +0x100000
+[dm] MapMemory 0x4136d8c000 <- 0x4054a01000 +0x100000
+[dm] MapMemory 0x41351cb000 <- 0x4054801000 +0x100000
+[dm] MapMemory 0x4129d0a000 <- 0x4054601000 +0x100000
+[dm] [RED] gfx: mtl_ab_gpu not yet on Android (NVN → Vulkan replay)
+[dm] [vk] zero-shared image: texture serial 176 1024x1024 layers 1 levels 1 format 0x9a flags 0x8: 4.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] target 1024x1024 VkFormat 44 (format list): 4194304 bytes (4.00 a texel)
+[dm] [vk] target 1024x1024 VkFormat 44 (format list): 4194304 bytes (4.00 a texel)
+[dm] [vk] zero-shared image serial 176 1024x1024 layers 1 format 0x9a: memory of its own at its first write (4.0 MiB, frame 9, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 177 1024x1024 layers 1 levels 1 format 0x9a flags 0x8: 4.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 177 1024x1024 layers 1 format 0x9a: memory of its own at its first write (4.0 MiB, frame 9, 1 texture IDs written again)
+[dm] [vk] compute shader 812650f2ed1cba0d: images and textures at bindings 0 (uint) / 0x2 (int) retyped for the integer textures bound there (their bits read and written as they are)
+[dm] [vk] compute shader 812650f2ed1cba0d: images and textures at bindings 0x2 (uint) / 0 (int) retyped for the integer textures bound there (their bits read and written as they are)
+[dm] [vk] pool memory 0x405d5b0000+0x400000 given back as anonymous memory (0.08 GiB placed)
+[dm] [vk] finalized pool 0x73256046d0: evicted 1 images (4.0 MiB freed)
+[dm] [vk] pool memory 0x4059bb0000+0x400000 given back as anonymous memory (0.08 GiB placed)
+[dm] [vk] finalized pool 0x7325602cf0: evicted 1 images (4.0 MiB freed)
+[dm] [RED] gfx: mtl_ub_present not yet on Android (NVN → Vulkan replay)
+[dm] [longframe] frame 2 (1.01 s) whole frame 27.1 ms, submit+present 0.1 ms, GPU 0.6 ms (busy; span 0.6 ms, 0.0 waiting for the recording); new pipelines 0 + shader libraries 0, 0.0 ms in all; texture uploads 0 first + 0 re-uploads, 0.0 MB / 0.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 3.1, acquire 0.0; this thread's CPU 3.0, process CPU 58.9; page faults 0 major / 6057 minor; files: read 3.0 MB 0.8 ms, opens 0.0 ms; write faults 0; guest waits 7.0 (longest 6.8), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 1.7 (its CPU 1.7), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 2.4 ms (2 pools, 8.0 MB), give-back 0.0 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 1, 0.8 ms with their first content
+[dm] UnmapMemory 0x412be83000 -> 0x405a1b1000 +0x100000 (contents copied back)
+[dm] [vk] zero-shared image: texture serial 212 1024x1024 layers 1 levels 1 format 0x9a flags 0x8: 4.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 212 1024x1024 layers 1 format 0x9a: memory of its own at its first write (4.0 MiB, frame 11, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 213 1024x1024 layers 1 levels 1 format 0x9a flags 0x8: 4.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 213 1024x1024 layers 1 format 0x9a: memory of its own at its first write (4.0 MiB, frame 11, 1 texture IDs written again)
+[dm] hid supported controller styles 0x1f
+[dm] hid: controllers reported from now on (the game set its supported styles)
+[dm] hid supported controller ids 0x1ff (bit n: No n+1, bit 8 Handheld, bit 9 Other)
+[dm] hid supported controller styles 0x7
+[dm] hid supported controller ids 0x1 (bit n: No n+1, bit 8 Handheld, bit 9 Other)
+[dm] hid: the game reads 16 six-axis states at a time (each the sample of its time)
+[dm] [mem] alias region mapped up to +1.25 GB (alias region 4.38 GB)
+[dm] [nvn] WindowInitialize swap chain 2 textures, interval 1, first 1920x1080 format 0x25
+[dm] [longframe] frame 3 (1.44 s) whole frame 428.4 ms, submit+present 0.1 ms, GPU 0.4 ms (busy; span 0.4 ms, 0.0 waiting for the recording); busiest threads over 455 ms: '0x1002 GameThre' 316, '0x1007 Foregrou' 46, '0x1009 Backgrou' 45; new pipelines 0 + shader libraries 0, 0.0 ms in all; texture uploads 0 first + 0 re-uploads, 0.0 MB / 0.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 0.5, acquire 0.0; this thread's CPU 1.0, process CPU 521.6; page faults 23 major / 30324 minor; files: read 44.3 MB 8.0 ms, opens 0.0 ms; write faults 0; guest waits 427.5 (longest 250.7: condvar, ended by 0x1007 'Foreground Worker #0'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 0.3 (its CPU 0.3), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 0.4 ms (1 pools, 0.1 MB), give-back 19.2 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 0, 0.0 ms with their first content
+[dm] [vk] finalized pool 0x73253e1410: evicted 1 images (3.5 MiB freed)
+[dm] [nvn] TextureViewSetSwizzle not identity (2 2 2 2): remapped with a Metal view when sampling
+[dm] [vk] texture serial 117 (storage 0x4058bb0000): its pool 0x73253e2850 was finalized: its image keeps its content, its storage is not read again
+[dm] [vk] zero-shared image: texture serial 245 128x8192 layers 1 levels 1 format 0x9a flags 0: 4.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 245 128x8192 layers 1 format 0x9a: memory of its own at its first write (4.0 MiB, frame 13, 1 texture IDs written again)
+[dm] [mem] alias region mapped 0.25 GB (application pool 3.21 GB)
+[dm] [vk] zero-shared image: texture serial 210 1024x1024 layers 1 levels 1 format 0x2e flags 0x8: 16.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 210 1024x1024 layers 1 format 0x2e: memory of its own at its first write (16.1 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 211 1024x1024 layers 1 levels 1 format 0x29 flags 0x8: 8.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 211 1024x1024 layers 1 format 0x29: memory of its own at its first write (8.0 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 208 1024x1024 layers 1 levels 1 format 0x2e flags 0x8: 16.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 208 1024x1024 layers 1 format 0x2e: memory of its own at its first write (16.1 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 209 1024x1024 layers 1 levels 1 format 0x29 flags 0x8: 8.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 209 1024x1024 layers 1 format 0x29: memory of its own at its first write (8.0 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 259 1384x780 layers 1 levels 1 format 0x35 flags 0x8: 4.2 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 259 1384x780 layers 1 format 0x35: memory of its own at its first write (4.2 MiB, frame 14, 2 texture IDs written again)
+[dm] [vk] placed memory: protections from the snapshot, 41 reads of the text for 64 answers (23 hits)
+[dm] [vk] compute shader 120e6fbdf2cb9516: images and textures at bindings 0x80 (uint) / 0 (int) retyped for the integer textures bound there (their bits read and written as they are)
+[dm] [vk] zero-shared image: texture serial 263 1384x780 layers 1 levels 1 format 0x3d flags 0x8: 4.1 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 263 1384x780 layers 1 format 0x3d: memory of its own at its first write (4.2 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 264 1384x780 layers 1 levels 1 format 0x9a flags 0x8: 4.1 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 264 1384x780 layers 1 format 0x9a: memory of its own at its first write (4.1 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 265 1384x780 layers 1 levels 1 format 0x9c flags 0x8: 4.1 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 265 1384x780 layers 1 format 0x9c: memory of its own at its first write (4.1 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 266 1384x780 layers 1 levels 1 format 0x9a flags 0x8: 4.1 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 266 1384x780 layers 1 format 0x9a: memory of its own at its first write (4.1 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] zero-shared image: texture serial 267 1384x780 layers 1 levels 1 format 0x9a flags 0x8: 4.1 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image serial 267 1384x780 layers 1 format 0x9a: memory of its own at its first write (4.1 MiB, frame 14, 1 texture IDs written again)
+[dm] [vk] pipeline made in the background (0.3 ms), not in the prewarm list: 4 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (0.4 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (0.4 ms), not in the prewarm list: 3 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] zero-shared image: texture serial 271 1384x780 layers 1 levels 1 format 0x29 flags 0x8: 8.2 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 272 1384x780 layers 1 levels 1 format 0x3f flags 0x8: 4.1 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] pipeline made on the frame path (0.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] asynchronous pipelines: a draw not skipped, its pipeline made on the frame path (a small target; first of this kind): vertex 46f4b6069bf78834 pixel ec2c4eb318a4a353 geometry 0000000000000000, 3 vertices or indices, target 44x25, 0.3 ms
+[dm] [vk] pipeline made in the background (0.5 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made on the frame path (0.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made on the frame path (0.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made on the frame path (0.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] memory: placed pools 202 MiB, images 187 MiB (126), sparse tile blocks 0 MiB, scratch 16 MiB (1 blocks): 405 MiB
+[dm] [vk] pipeline made on the frame path (0.3 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (0.9 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (1.8 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (0.6 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] geometry shader e2f17523c090feaf: emits a degenerate primitive where it would emit none (DM_VK_GS_FILL)
+[dm] [vk] pipeline made in the background (0.6 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] geometry shader e2f17523c090feaf: emits a degenerate primitive where it would emit none (DM_VK_GS_FILL)
+[dm] [vk] geometry shader e2f17523c090feaf: emits a degenerate primitive where it would emit none (DM_VK_GS_FILL)
+[dm] [vk] pipeline made in the background (1.4 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made on the frame path (1.1 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] zero-shared image: texture serial 285 1384x780 layers 1 levels 1 format 0x25 flags 0x8: 4.1 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 286 1384x780 layers 1 levels 1 format 0x25 flags 0x8: 4.1 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] pipeline made in the background (1.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] zero-shared image: texture serial 287 1728x972 layers 1 levels 1 format 0x25 flags 0x8: 6.4 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] pipeline made in the background (1.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] compute shader a0a24a464b0006f4: images and textures at bindings 0x4 (uint) / 0 (int) retyped for the integer textures bound there (their bits read and written as they are)
+[dm] [vk] pipeline made in the background (1.3 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (2.1 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (50.3 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] 0.25 GiB of memory pools is placed Vulkan memory (66 pools whole, 0 by parts; 2 pools, 0.02 GiB not placed: no GPU address taken in them yet)
+[dm] [vk] buffer -> texture copy into serial 686 64x64 format 0x1 level 5 layer 0: not mirrored into its storage: source: row 2 (level row 2), source offset 0x6be00
+[dm] [vk] buffer -> texture copy into serial 686 64x64 format 0x1 level 6 layer 0: not mirrored into its storage: source: row 1 (level row 1), source offset 0x6c000
+[dm] [vk] buffer -> texture copy #1025 into serial 714 64x64 format 0x49 level 5 layer 0: mirrored into its block-linear storage 0x406a4adc00+0x1000 (0x200 bytes)
+[dm] [mem] alias region mapped up to +1.50 GB (alias region 4.38 GB)
+[dm] [vk] buffer -> texture copy into serial 813 64x64 format 0x1 level 5 layer 0: not mirrored into its storage: source: row 2 (level row 2), source offset 0x47000
+[dm] [vk] buffer -> texture copy into serial 813 64x64 format 0x1 level 6 layer 0: not mirrored into its storage: source: row 1 (level row 1), source offset 0x47200
+[dm] [vk] finalized pool 0x73253e4110: evicted 1 images (4.0 MiB freed)
+[dm] [vk] finalized pool 0x73254b7c70: evicted 1 images (4.0 MiB freed)
+[dm] [vk] finalized pool 0x7325575450: evicted 1 images (8.0 MiB freed)
+[dm] [vk] finalized pool 0x7325604010: evicted 1 images (16.1 MiB freed)
+[dm] [vk] finalized pool 0x7325600c50: evicted 1 images (8.0 MiB freed)
+[dm] [vk] finalized pool 0x73255ff810: evicted 1 images (16.1 MiB freed)
+[dm] [vk] zero-shared image: texture serial 870 1024x1024 layers 1 levels 1 format 0x9a flags 0x8: 4.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 871 1024x1024 layers 1 levels 1 format 0x9a flags 0x8: 4.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] save commit #1: /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/saves/0100606026F12000.work swapped atomically into /storage/emulated/0/Android/data/dev.nxnative.android.ffr/files/saves/0100606026F12000 (1 save writes so far) (clone + swap 17553 us, since this transaction's first write 17579 us)
+[dm] [mem] Unreal heap (host malloc zone) up to 0.76 GB in use
+[dm] [vk] fps: 10.4 game frames a second (96.0 ms), 10.4 presented
+[dm] [vk] finalized pool 0x73256afd90: evicted 1 images (6.5 MiB freed)
+[dm] [vk] finalized pool 0x73256b0330: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x73256b2850: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x7325689750: evicted 1 images (8.5 MiB freed)
+[dm] [vk] finalized pool 0x732568a290: evicted 1 images (4.1 MiB freed)
+[dm] [longframe] frame 9 (1.57 s) whole frame 36.1 ms, submit+present 0.1 ms, GPU 0.1 ms (busy; span 0.1 ms, 0.0 waiting for the recording); new pipelines 4 + shader libraries 0, 0.4 ms in all; texture uploads 0 first + 0 re-uploads, 0.0 MB / 0.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 5.3, acquire 0.0; this thread's CPU 0.6, process CPU 47.6; page faults 0 major / 28975 minor; files: read 0.0 MB 0.0 ms, opens 0.0 ms; write faults 0; guest waits 35.5 (longest 33.4: condvar, ended by 0x1008 'Foreground Worker #1'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 2.9 (its CPU 2.7), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 0.0 ms (0 pools, 0.0 MB), give-back 29.8 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 2, 0.5 ms with their first content
+[dm] [vk] finalized pool 0x732568c9f0: evicted 1 images (4.1 MiB freed)
+[dm] [vk] finalized pool 0x7325608150: evicted 1 images (4.1 MiB freed)
+[dm] [vk] finalized pool 0x7325608390: evicted 1 images (4.1 MiB freed)
+[dm] [vk] finalized pool 0x7325606770: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x7325608c90: evicted 1 images (1.4 MiB freed)
+[dm] [vk] finalized pool 0x7325606d10: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x732568b370: evicted 1 images (1.1 MiB freed)
+[dm] [vk] finalized pool 0x732568bd90: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x73256a9190: evicted 1 images (1.1 MiB freed)
+[dm] [vk] zero-shared image: texture serial 750 1920x1080 layers 1 levels 1 format 0x9a flags 0x8: 7.9 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 868 1024x1024 layers 1 levels 1 format 0x2e flags 0x8: 16.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 869 1024x1024 layers 1 levels 1 format 0x29 flags 0x8: 8.0 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 866 1024x1024 layers 1 levels 1 format 0x2e flags 0x8: 16.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 867 1024x1024 layers 1 levels 1 format 0x29 flags 0x8: 8.0 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 911 1384x780 layers 1 levels 1 format 0x3d flags 0x8: 4.1 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 912 1384x780 layers 1 levels 1 format 0x9a flags 0x8: 4.1 MiB of zeroed memory made for its create info (memory of its own at its first write)
+[dm] [vk] zero-shared image: texture serial 913 1384x780 layers 1 levels 1 format 0x9c flags 0x8: 4.1 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [vk] memory: placed pools 281 MiB, images 218 MiB (572), sparse tile blocks 0 MiB, scratch 32 MiB (2 blocks): 531 MiB
+[dm] [vk] zero-shared image: texture serial 914 1384x780 layers 1 levels 1 format 0x9a flags 0x8: 4.1 MiB of zeroed memory shared with images of the same create info (memory of its own at its first write)
+[dm] [longframe] frame 11 (1.67 s) whole frame 83.4 ms, submit+present 0.1 ms, GPU 1.1 ms (busy; span 1.1 ms, 0.0 waiting for the recording); new pipelines 0 + shader libraries 0, 0.0 ms in all; texture uploads 0 first + 0 re-uploads, 0.0 MB / 0.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 6.6, acquire 0.0; this thread's CPU 2.7, process CPU 121.9; page faults 5 major / 9565 minor; files: read 7.8 MB 3.1 ms, opens 0.0 ms; write faults 0; guest waits 80.9 (longest 46.8: condvar, ended by 0x1007 'Foreground Worker #0'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 3.5 (its CPU 3.1), replay waited for the encoder 0.2, cache save 0.0, waited for prewarm 0.0; pool placement 19.9 ms (9 pools, 82.9 MB), give-back 0.0 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 3, 1.4 ms with their first content
+[dm] [vk] texture serial 605 (storage 0x406a5b0000): its pool 0x73256f64d0 was finalized: its image keeps its content, its storage is not read again
+[dm] [vk] finalized pool 0x73256f64d0: evicted 1 images (2.0 MiB freed)
+[dm] [longframe] frame 13 (1.77 s) whole frame 84.3 ms, submit+present 0.1 ms, GPU 1.4 ms (busy; span 1.4 ms, 0.0 waiting for the recording); new pipelines 2 + shader libraries 0, 0.2 ms in all; texture uploads 0 first + 0 re-uploads, 0.0 MB / 0.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 6.3, acquire 0.0; this thread's CPU 8.3, process CPU 317.0; page faults 4 major / 43979 minor; files: read 51.5 MB 13.0 ms, opens 0.0 ms; write faults 0; guest waits 74.4 (longest 40.7: condvar, ended by 0x1008 'Foreground Worker #1'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 4.0 (its CPU 3.2), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 39.0 ms (25 pools, 105.2 MB), give-back 4.6 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 11, 3.5 ms with their first content
+[dm] [longframe] frame 14 (1.81 s) whole frame 42.4 ms, submit+present 0.2 ms, GPU 5.2 ms (busy; span 5.2 ms, 0.0 waiting for the recording); new pipelines 16 + shader libraries 0, 3.7 ms in all; texture uploads 0 first + 0 re-uploads, 2.6 MB / 5.9 ms; draws with a hybrid pipeline 0; waits: GPU fences 0.0, acquire 0.0; this thread's CPU 14.7, process CPU 217.4; page faults 0 major / 14567 minor; files: read 15.2 MB 4.9 ms, opens 0.0 ms; write faults 0; guest waits 14.0 (longest 13.4), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 33.9 (its CPU 28.4), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 21.6 ms (20 pools, 23.5 MB), give-back 42.9 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 207, 15.3 ms with their first content
+[dm] [longframe] frame 16 (2.60 s) whole frame 773.6 ms, submit+present 0.3 ms, GPU 12.1 ms (busy; span 12.1 ms, 0.0 waiting for the recording); busiest threads over 910 ms: '0x102e FAsyncLo' 357, '0x1002 GameThre' 296, '0x100b Backgrou' 255; new pipelines 0 + shader libraries 0, 0.0 ms in all; texture uploads 16 first + 0 re-uploads, 14.4 MB / 7.8 ms; draws with a hybrid pipeline 0; waits: GPU fences 30.5, acquire 0.0; this thread's CPU 31.4, process CPU 1277.4; page faults 10 major / 269365 minor; files: read 222.3 MB 52.4 ms, opens 0.0 ms; write faults 3; guest waits 742.1 (longest 494.1: condvar, ended by 0x1007 'Foreground Worker #0'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 34.7 (its CPU 21.4), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 52.8 ms (63 pools, 155.2 MB), give-back 79.9 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 172, 18.3 ms with their first content
+[dm] [longframe] frame 18 (2.66 s) whole frame 46.2 ms, submit+present 0.2 ms, GPU 2.6 ms (busy; span 2.6 ms, 0.0 waiting for the recording); new pipelines 0 + shader libraries 0, 0.0 ms in all; texture uploads 0 first + 0 re-uploads, 9.9 MB / 0.8 ms; draws with a hybrid pipeline 0; waits: GPU fences 6.3, acquire 0.0; this thread's CPU 6.1, process CPU 140.1; page faults 0 major / 27639 minor; files: read 0.2 MB 0.1 ms, opens 0.0 ms; write faults 0; guest waits 35.9 (longest 17.0), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 8.0 (its CPU 7.5), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 25.7 ms (24 pools, 86.9 MB), give-back 24.7 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 8, 4.3 ms with their first content
+[dm] [vk] memory maps: 4619 of 65530 (vm.max_map_count, 7 %): placed memory 86 in 73 segments (2 split, 13 pieces more than one each), guest block anonymous 204, outside the guest block 4329 (394 of them kgsl); dirty tracking by pages of 4 KiB; read in 5.9 ms (DM_VK_MAPS); the driver's CPU maps kept after vkUnmapMemory 0 of 0
+[dm] [vk] pace up to frame 214 (5.0 s): interval other 100 %; 42.5 fps; GPU busy p50/p90 3.0/3.3 ms, recording start to GPU end p50/p90 8.3/10.5 ms; replay recording 5.1 ms a frame (its CPU 3.3), 25 draws; GPU clock floor KGSL 100 % (0); ADPF present period against 16.7 ms; window 60 fps, panel 120.00 Hz; thermal 0, headroom nan; CPU MHz 2016/0 2803/2803 3187/3187; GPU MHz 680/680
+[dm] [vk] pace cost up to frame 214, a frame: recording 5.1 ms = draws 0.6 + texture prepare 0.3 + submission start 1.3 (waiting for a command buffer slot's GPU work 0.1, segment joins 0.0 (queue idle 0.0), the rest 1.2) + commit 2.4 (encoder drain 1.5, uploads 0.1, queue submit 0.5) + other records 0.5; all queue submits 8.0 a frame: their lock 0.3 ms, the driver 0.2 ms; the lock held by the present 0.4 ms (its submit 0.1, vkQueuePresentKHR 0.3) and the GPU clock floor 0.0; replay thread from the next line; encoder from the next line; encoder calls ms (count): push descriptors 0.15 (41), draws 0.13 (25), pipelines 0.03 (41), vertex/index buffers 0.01 (5), sets+constants 0.00 (6), dynamic state 0.04 (584), passes 1.03 (51), barriers 0.07 (94), copies/clears 0.18 (22), dispatches 0.05 (16); draw path 21.68 us a draw (1 in 16 timed: resolve 1.74, layout 0.42, images+pass+key 8.74, vertex input 0.27, pipeline 1.41, sets 5.10, vertex buffers+dynamic 3.44, draw 0.35; sets: walk 0.87, writes 3.92 (1.6 images 3.07, driver segments 0.17), push 0.82); vertex input kept 0 % (DM_VK_VIN_SKIP), vertex buffers kept 0 %, driver segments 0 % by their inputs (DM_VK_DRV_STAMP) of 0 % bound again
+[dm] [vk] replay worker up to present 300: busy 5.3 ms a frame (submissions 5.2), idle 16.4; the game waited 0.0 ms a frame for the worker
+[dm] [RED] gfx: mtl_mem_stat not yet on Android (NVN → Vulkan replay)
+[dm] [nvn] timing up to frame 300: frame time p50 16.97 / p95 17.01 / max 773.64 ms (299 frames); frame work p50 16.89 / p95 16.95 / max 773.56 ms (299 frames); NVN submit+present p50 0.09 / p95 0.41 / max 3.45 ms (299 frames); GPU p50 3.04 / p95 3.32 / max 12.05 ms (292 frames);
+[dm] [vk] shader parts: 0 programs of the profile (0 prepared), 46 set by the game, 46 of them new to the lists (0 compiled in the background, 0 ms); pipelines linked on the frame path 0 (0.0 ms in all, longest 0.00 ms), misses the cache had no parts for 0; parts fetched from the cache 0, not there 0 (0.0 ms in all, longest 0.00 ms)
+[dm] [nvn] pipelines up to frame 300: 21 graphics + 16 compute pipelines (0 failed, 0 compute (program, layout) pairs not made for shared memory, 22 on the frame path), 23 set layouts, 13 ms creating; asynchronous: 21 queued, 15 made (11 ms in all, longest wait from the miss 50 ms), deepest queue 3, draws skipped waiting 20, not skipped 6 pipelines of small targets + 0 writing memory (2 ms of frame time, 0 were in the cache, 0 waited for a background thread); background compiles 4 at once (by memory, DM_VK_PSO_SLOTS), their gate held the frame's 0 ms and the speculative ones 0 ms; taken least cost first, the oldest in turn (DM_VK_PSO_ORDER): 0 cheapest (mean wait 0 ms), 15 oldest (mean wait 5 ms)
+[dm] [nvn] frame interval up to frame 300: >16.7ms 286 / 299 frames, p99 84.26 ms
+[dm] [nvn] on-screen up to frame 300: 281 frames, dropped 11 (discarded 0), p99 67.87 ms; footprint 1516 MiB; brightness -1.00; thermal -1
+[dm] [vk] panel up to frame 300: refresh 8.483 ms (117.88 Hz, measured); acquire pacer 8.483 ms a frame (panel); on-screen for 1 / 2 / 3 / 4+ refreshes: 26 / 231 / 21 / 3 frames, no timing 0, discarded 0; desired present times on the grid: 259 of 300 presents, 1 started over late; companion none
+[dm] [RED] gfx: mtl_vbuf_stats not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_pkg_edge_skips not yet on Android (NVN → Vulkan replay)
+[dm] [RED] gfx: mtl_pkg_miss not yet on Android (NVN → Vulkan replay)
+[dm] [nvn] packaged textures: first uploads 16, re-uploads on pool content change 0, writes beside a texture only (not re-uploaded) 0; write-protection faults 3, pages unprotected before host writes 0; missed 0 (cumulative); CPU-written textures alive 0; mprotect failures 0 (last errno 0)
+[dm] [vk] command encoder per frame: 887 calls (0 made directly to keep order), busy 1.69 ms; the replay thread waited 0.87 ms (0.9 times)
+[dm] [vk] game barriers inside a draw pass per frame: 18.9, 18.9 taken inside it (DM_VK_BAR_KEEP), 15.1 of those ended it later at a draw sampling its targets or writing memory
+[dm] [vk] game barriers outside a draw pass per frame: 0.0 full, 3.9 compute-to-compute, 24.6 merged; barriers before other work after them 5.7 pending, 0.0 owed, 0.0 for indirect reads (DM_VK_BAR_NARROW)
+[dm] [vk] descriptors: driver segments 0 % the same bytes as the draw before (bound again: DM_VK_DRV_MEMO); push descriptor sets 0 % skipped as the same (DM_VK_PUSH_DEDUP); partial pushes (DM_VK_PUSH_DELTA) wrote 58 % of their descriptors
+[dm] [vk] texel buffers per frame: 0.2 views made in place (table started again 0.00 times), 0.0 copies of the CPU's bytes (0.00 MB), 0.0 bindings of a copy made earlier in the submission
+[dm] input: phone gyroscope: 220 samples a second, the longest gap 4.6 ms; a sample arrives 1.7 ms after it was measured on average, 5.9 ms at most
+[dm] [vk] pace up to frame 509 (5.0 s): interval other 100 %; 58.9 fps; GPU busy p50/p90 3.0/3.3 ms, recording start to GPU end p50/p90 7.9/9.9 ms; replay recording 4.6 ms a frame (its CPU 3.0), 27 draws; GPU clock floor KGSL 100 % (0); ADPF present period against 16.7 ms; window 60 fps, panel 120.00 Hz; thermal 0, headroom nan; CPU MHz 2016/0 2803/2803 3187/3187; GPU MHz 680/680
+[dm] [vk] pace cost up to frame 509, a frame: recording 4.6 ms = draws 0.5 + texture prepare 0.1 + submission start 1.2 (waiting for a command buffer slot's GPU work 0.0, segment joins 0.0 (queue idle 0.0), the rest 1.2) + commit 2.5 (encoder drain 1.5, uploads 0.1, queue submit 0.5) + other records 0.3; all queue submits 8.3 a frame: their lock 0.3 ms, the driver 0.2 ms; the lock held by the present 0.3 ms (its submit 0.1, vkQueuePresentKHR 0.3) and the GPU clock floor 0.0; replay thread on a core 3.2 ms, waited for a core 0.4 ms, 9 blocked / 3 preempted switches; encoder on a core 3.1 ms, waited for a core 0.2 ms, 5 blocked / 1 preempted switches; encoder calls ms (count): push descriptors 0.14 (37), draws 0.11 (27), pipelines 0.01 (37), vertex/index buffers 0.01 (6), dynamic state 0.04 (631), passes 1.24 (54), barriers 0.05 (79), copies/clears 0.14 (17), dispatches 0.03 (10); draw path 18.67 us a draw (1 in 16 timed: resolve 1.22, layout 0.42, images+pass+key 6.35, vertex input 0.29, pipeline 1.80, sets 4.46, vertex buffers+dynamic 3.58, draw 0.30; sets: walk 1.14, writes 3.78 (1.4 images 2.99, driver segments 0.14), push 0.44); vertex input kept 0 % (DM_VK_VIN_SKIP), vertex buffers kept 0 %, driver segments 0 % by their inputs (DM_VK_DRV_STAMP) of 0 % bound again
+[dm] [vk] replay worker up to present 600: busy 4.4 ms a frame (submissions 4.4), idle 12.5; the game waited 0.0 ms a frame for the worker
+[dm] [nvn] timing up to frame 600: frame time p50 16.97 / p95 17.00 / max 17.04 ms (300 frames); frame work p50 16.90 / p95 16.93 / max 16.98 ms (300 frames); NVN submit+present p50 0.10 / p95 0.42 / max 0.68 ms (300 frames); GPU p50 3.02 / p95 3.27 / max 3.40 ms (300 frames);
+[dm] [nvn] pipelines up to frame 600: 21 graphics + 16 compute pipelines (0 failed, 0 compute (program, layout) pairs not made for shared memory, 22 on the frame path), 23 set layouts, 13 ms creating; asynchronous: 21 queued, 15 made (11 ms in all, longest wait from the miss 50 ms), deepest queue 3, draws skipped waiting 20, not skipped 6 pipelines of small targets + 0 writing memory (2 ms of frame time, 0 were in the cache, 0 waited for a background thread); background compiles 4 at once (by memory, DM_VK_PSO_SLOTS), their gate held the frame's 0 ms and the speculative ones 0 ms; taken least cost first, the oldest in turn (DM_VK_PSO_ORDER): 0 cheapest (mean wait 0 ms), 15 oldest (mean wait 5 ms)
+[dm] [nvn] frame interval up to frame 600: >16.7ms 300 / 300 frames, p99 17.03 ms
+[dm] [nvn] on-screen up to frame 600: 300 frames, dropped 3 (discarded 0), p99 25.45 ms; footprint 1519 MiB; brightness -1.00; thermal -1
+[dm] [vk] panel up to frame 600: refresh 8.483 ms (117.88 Hz, measured); acquire pacer 8.483 ms a frame (panel); on-screen for 1 / 2 / 3 / 4+ refreshes: 3 / 294 / 3 / 0 frames, no timing 0, discarded 0; desired present times on the grid: 299 of 299 presents, 0 started over late; companion none
+[dm] [nvn] vertex bindings up to frame 600: per frame address lookups 0 / reused 0, vertex table writes 0 / skipped 0, streams not 4-byte aligned copied 0.0 (0.00 MB)
+[dm] [nvn] translation up to frame 600: 0 instructions per draw, submit per frame 0.00 M instructions / CPU 0.092 ms, 27 draws per frame
+[dm] [nvn] packaged textures: first uploads 16, re-uploads on pool content change 0, writes beside a texture only (not re-uploaded) 0; write-protection faults 3, pages unprotected before host writes 0; missed 0 (cumulative); CPU-written textures alive 0; mprotect failures 0 (last errno 0)
+[dm] [vk] replay up to frame 600: per frame 27 draws, 27 render passes, 10 clears / copies (10 in a pass), 62 barriers (26 full, 36 scoped), 0 inline uniform updates, 8.3 submissions (8.3 parts); recording 3.65 ms a frame (134.15 us a draw)
+[dm] [vk] command encoder per frame: 894 calls (0 made directly to keep order), busy 1.59 ms; the replay thread waited 0.84 ms (0.9 times)
+[dm] [vk] game barriers inside a draw pass per frame: 20.0, 20.0 taken inside it (DM_VK_BAR_KEEP), 16.0 of those ended it later at a draw sampling its targets or writing memory
+[dm] [vk] game barriers outside a draw pass per frame: 0.0 full, 4.0 compute-to-compute, 22.0 merged; barriers before other work after them 6.0 pending, 0.0 owed, 0.0 for indirect reads (DM_VK_BAR_NARROW)
+[dm] [vk] descriptors: driver segments 0 % the same bytes as the draw before (bound again: DM_VK_DRV_MEMO); push descriptor sets 0 % skipped as the same (DM_VK_PUSH_DEDUP); partial pushes (DM_VK_PUSH_DELTA) wrote 58 % of their descriptors
+[dm] [vk] texel buffers per frame: 0.0 views made in place (table started again 0.00 times), 0.0 copies of the CPU's bytes (0.00 MB), 0.0 bindings of a copy made earlier in the submission
+[dm] [vk] finalized pool 0x73258261f0: evicted 1 images (4.0 MiB freed)
+[dm] [vk] finalized pool 0x73255ff030: evicted 1 images (4.0 MiB freed)
+[dm] [vk] finalized pool 0x7325671b10: evicted 1 images (8.0 MiB freed)
+[dm] [vk] finalized pool 0x73256febd0: evicted 1 images (16.1 MiB freed)
+[dm] [vk] finalized pool 0x73257006d0: evicted 1 images (8.0 MiB freed)
+[dm] [vk] finalized pool 0x73256ffdd0: evicted 1 images (16.1 MiB freed)
+[dm] [vk] finalized pool 0x73253e3030: evicted 1 images (2.0 MiB freed)
+[dm] [vk] finalized pool 0x73254abc10: evicted 1 images (2.0 MiB freed)
+[dm] [vk] finalized pool 0x73253e2070: evicted 1 images (2.0 MiB freed)
+[dm] [vk] finalized pool 0x73253e85b0: evicted 1 images (2.0 MiB freed)
+[dm] [vk] finalized pool 0x73254e2510: evicted 1 images (2.0 MiB freed)
+[dm] [vk] finalized pool 0x73253e5af0: evicted 1 images (2.0 MiB freed)
+[dm] [vk] finalized pool 0x7325575450: evicted 1 images (6.5 MiB freed)
+[dm] [vk] finalized pool 0x73256fc350: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x73256fca10: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x73256a92b0: evicted 1 images (8.5 MiB freed)
+[dm] [vk] finalized pool 0x732570f0d0: evicted 1 images (4.1 MiB freed)
+[dm] [vk] texture serial 914 (storage 0x4064030000): its pool 0x732570f310 was finalized: its image keeps its content, its storage is not read again
+[dm] [vk] finalized pool 0x732570f310: evicted 1 images (4.1 MiB freed)
+[dm] [vk] texture serial 913 (storage 0x4063830000): its pool 0x7325600c50 was finalized: its image keeps its content, its storage is not read again
+[dm] [vk] finalized pool 0x7325600c50: evicted 1 images (4.1 MiB freed)
+[dm] [vk] finalized pool 0x73256abb30: evicted 1 images (4.1 MiB freed)
+[dm] [vk] finalized pool 0x73256a94f0: evicted 1 images (4.2 MiB freed)
+[dm] [vk] memory: placed pools 357 MiB, images 266 MiB (607), sparse tile blocks 0 MiB, scratch 32 MiB (2 blocks): 655 MiB
+[dm] [vk] pipeline made in the background (1.9 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (2.2 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (2.6 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [vk] pipeline made in the background (6.3 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [movie] decoder 0x7285819b30: type 3 output 4 mode 1 priority 23
+[dm] [movie] RegisterClientEvents: 0x70b3823de8 0x70b3823e10 0x70b3823e38 0x70b3823e60
+[dm] MapMemory 0x412f0f8000 <- 0x70b4bec000 +0x5000
+[dm] [movie] Configure: MediaData width 1920 height 1080
+[dm] [movie] Start
+[dm] MapMemory 0x4131885000 <- 0x74858e0000 +0x10000
+[dm] [movie] AcquireInputBufferIndex → 0 index 0 left 3
+[dm] [movie] AcquireInputBufferIndex → 0 index 1 left 2
+[dm] [movie] AcquireInputBufferIndex → 0 index 2 left 1
+[dm] [movie] AcquireInputBufferIndex → 0 index 3 left 0
+[dm] [movie] SendInputBufferForDecode index 0 offset 0 length 210 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] GetOutputFormat
+[dm] [movie] libvpx v1.17.0: VP9 decoder, 4 threads
+[dm] [movie] SendInputBufferForDecode index 1 offset 0 length 35722 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] SendInputBufferForDecode index 2 offset 0 length 7367 time 0 µs flags 0 (2 packets queued)
+[dm] [movie] SendInputBufferForDecode index 3 offset 0 length 6865 time 0 µs flags 0 (3 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 0 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 0 time 0 flags 0 left 0
+[dm] [movie] SendInputBufferForDecode index 0 offset 0 length 3921 time 0 µs flags 0 (3 packets queued)
+[dm] [movie] GetOutputBufferSize → 3110400 (1920×1080)
+[dm] [movie] GetOutputBuffer index 0 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 0
+[dm] [movie] release output index 0 (3 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 1 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 1 time 0 flags 0 left 0
+[dm] [movie] SendInputBufferForDecode index 1 offset 0 length 1412 time 0 µs flags 0 (3 packets queued)
+[dm] [vk] finalized pool 0x73256a9bb0: evicted 1 images (1.4 MiB freed)
+[dm] [movie] GetOutputBuffer index 1 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 1
+[dm] [movie] release output index 1 (3 packets queued)
+[dm] [vk] finalized pool 0x73256a93d0: evicted 1 images (4.2 MiB freed)
+[dm] [vk] texture serial 920 (storage 0x4070270000): its pool 0x732570b1d0 was finalized: its image keeps its content, its storage is not read again
+[dm] [movie] AcquireInputBufferIndex → 0 index 2 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 0 time 0 flags 0 left 0
+[dm] [movie] SendInputBufferForDecode index 2 offset 0 length 74 time 0 µs flags 0 (3 packets queued)
+[dm] [movie] GetOutputBuffer index 0 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 0
+[dm] [movie] release output index 0 (3 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 3 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 1 time 0 flags 0 left 0
+[dm] [vk] finalized pool 0x732570b1d0: evicted 1 images (1.1 MiB freed)
+[dm] [movie] SendInputBufferForDecode index 3 offset 0 length 99144 time 0 µs flags 0 (3 packets queued)
+[dm] [movie] GetOutputBuffer index 1 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 1
+[dm] [movie] release output index 1 (3 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 0 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 0 time 0 flags 0 left 0
+[dm] [movie] SendInputBufferForDecode index 0 offset 0 length 4306 time 0 µs flags 0 (3 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 1 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 1 time 0 flags 0 left 0
+[dm] [movie] GetOutputBuffer index 0 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 0
+[dm] [movie] release output index 0 (2 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 2 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 2 time 0 flags 0 left 0
+[dm] [vk] finalized pool 0x732568acb0: evicted 1 images (4.2 MiB freed)
+[dm] [vk] finalized pool 0x732568bc70: evicted 1 images (1.1 MiB freed)
+[dm] [movie] AcquireInputBufferIndex → 0 index 3 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 0 time 0 flags 0 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 3 time 0 flags 0 left 0
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 748 (vka_exec.c:1083)
+[dm] [vk] buffer -> texture copy into serial 2493 1920x1080 format 0x1 level 0 layer 0: not mirrored into its storage: texture flags 0x10
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 748 (vka_exec.c:1083)
+[dm] [vk] buffer -> texture copy into serial 2494 960x540 format 0xd level 0 layer 0: not mirrored into its storage: texture flags 0x10
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: the GPU's content copied back into its storage
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: the GPU's content copied back into its storage
+[dm] [movie] SendInputBufferForDecode index 1 offset 0 length 5543 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] GetOutputBuffer index 1 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 1
+[dm] [movie] release output index 1 (0 packets queued)
+[dm] [longframe] frame 740 (14.99 s) whole frame 99.4 ms, submit+present 0.3 ms, GPU 1.5 ms (busy; span 1.5 ms, 0.0 waiting for the recording); new pipelines 0 + shader libraries 0, 0.0 ms in all; texture uploads 0 first + 0 re-uploads, 0.0 MB / 0.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 6.7, acquire 0.0; this thread's CPU 4.8, process CPU 204.9; page faults 1 major / 67653 minor; files: read 6.2 MB 1.4 ms, opens 0.0 ms; write faults 0; guest waits 94.8 (longest 37.2: condvar, ended by 0x1007 'Foreground Worker #0'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 3.4 (its CPU 3.3), replay waited for the encoder 0.0, cache save 0.0, waited for prewarm 0.0; pool placement 45.0 ms (24 pools, 137.8 MB), give-back 50.8 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 3, 1.5 ms with their first content
+[dm] [movie] AcquireOutputBufferIndex → index 4 time 0 flags 0 left 0
+[dm] [longframe] frame 741 (15.08 s) whole frame 92.0 ms, submit+present 0.3 ms, GPU 14.7 ms (busy; span 14.7 ms, 0.0 waiting for the recording); new pipelines 8 + shader libraries 0, 1.5 ms in all; texture uploads 6 first + 0 re-uploads, 9.1 MB / 2.0 ms; draws with a hybrid pipeline 0; waits: GPU fences 33.1, acquire 0.0; this thread's CPU 21.3, process CPU 253.9; page faults 0 major / 59439 minor; files: read 7.0 MB 2.7 ms, opens 0.0 ms; write faults 0; guest waits 49.7 (longest 24.7: condvar, ended by 0x1008 'Foreground Worker #1'), sleeps 0.0, service waits 0.0; game waited for the replay worker 0.0, replay recording 36.1 (its CPU 34.3), replay waited for the encoder 0.6, cache save 0.0, waited for prewarm 0.0; pool placement 55.5 ms (30 pools, 87.4 MB), give-back 52.4 ms, the pool table's lock waited for: replay 0.0, others 0.0; new images 48, 12.4 ms with their first content
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 750 (vka_exec.c:1083)
+[dm] [vk] buffer -> texture copy into serial 2493 1920x1080 format 0x1 level 0 layer 0: not mirrored into its storage: texture flags 0x10
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 750 (vka_exec.c:1083)
+[dm] [vk] buffer -> texture copy into serial 2494 960x540 format 0xd level 0 layer 0: not mirrored into its storage: texture flags 0x10
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: the GPU's content copied back into its storage
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: the GPU's content copied back into its storage
+[dm] [movie] SendInputBufferForDecode index 2 offset 0 length 5990 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] GetOutputBuffer index 2 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 2
+[dm] [movie] release output index 2 (0 packets queued)
+[dm] [movie] AcquireOutputBufferIndex → index 1 time 0 flags 0 left 0
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 752 (vka_exec.c:1083)
+[dm] [vk] buffer -> texture copy into serial 2493 1920x1080 format 0x1 level 0 layer 0: not mirrored into its storage: texture flags 0x10
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 752 (vka_exec.c:1083)
+[dm] [vk] buffer -> texture copy into serial 2494 960x540 format 0xd level 0 layer 0: not mirrored into its storage: texture flags 0x10
+[dm] [movie] SendInputBufferForDecode index 3 offset 0 length 5460 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] GetOutputBuffer index 0 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 0
+[dm] [movie] release output index 0 (0 packets queued)
+[dm] [movie] AcquireInputBufferIndex → 0 index 3 left 0
+[dm] [movie] AcquireOutputBufferIndex → index 2 time 0 flags 0 left 0
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 754 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 754 (vka_exec.c:1083)
+[dm] [movie] GetOutputBuffer index 3 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 3
+[dm] [movie] release output index 3 (0 packets queued)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 756 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 756 (vka_exec.c:1083)
+[dm] [movie] GetOutputBuffer index 4 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 4
+[dm] [movie] release output index 4 (0 packets queued)
+[dm] [vk] placed memory: 818.6 MiB faulted in so far, 3.0 ms
+[dm] [vk] placed memory: 256 placements: allocation 43 ms, protections read 56 ms (21 lines of /proc/self/maps a read), copy 175 ms, maps 37 ms, prefault 3 ms, protections back 1 ms; 4630 memory maps of 65530 at the last count
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 758 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 758 (vka_exec.c:1083)
+[dm] [movie] GetOutputBuffer index 1 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 1
+[dm] [movie] release output index 1 (0 packets queued)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 760 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 760 (vka_exec.c:1083)
+[dm] [movie] SendInputBufferForDecode index 3 offset 0 length 5000 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] GetOutputBuffer index 2 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 2
+[dm] [movie] release output index 2 (0 packets queued)
+[dm] [movie] AcquireOutputBufferIndex → index 1 time 0 flags 0 left 0
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 762 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 762 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 764 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 764 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 766 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 766 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 768 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 768 (vka_exec.c:1083)
+[dm] [movie] GetOutputBuffer index 1 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 1
+[dm] [movie] release output index 1 (0 packets queued)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 770 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 770 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 772 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 772 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 774 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 774 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 776 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 776 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2493 1920x1080 format 0x1: GPU write at frame 778 (vka_exec.c:1083)
+[dm] [vk] linear texture serial 2494 960x540 format 0xd: GPU write at frame 778 (vka_exec.c:1083)
+[dm] [movie] AcquireInputBufferIndex → 0 index 3 left 0
+[dm] [vk] pipeline made in the background (3.5 ms), not in the prewarm list: 2 records with these shaders, the nearest differs in nothing: the same key (the prewarm threads had not reached it yet)
+[dm] [movie] SendInputBufferForDecode index 3 offset 0 length 3577 time 0 µs flags 0 (1 packets queued)
+[dm] [movie] AcquireOutputBufferIndex → index 2 time 0 flags 0 left 0
+[dm] [vk] pace up to frame 795 (5.0 s): interval other 100 %; 57.1 fps; GPU busy p50/p90 3.0/6.1 ms, recording start to GPU end p50/p90 8.0/11.0 ms; replay recording 4.5 ms a frame (its CPU 3.1), 28 draws; GPU clock floor KGSL 100 % (0); ADPF present period against 16.7 ms; window 60 fps, panel 120.00 Hz; thermal 0, headroom nan; CPU MHz 2016/0 2803/2803 3187/3187; GPU MHz 680/680
+[dm] [vk] pace cost up to frame 795, a frame: recording 4.5 ms = draws 0.5 + texture prepare 0.1 + submission start 1.1 (waiting for a command buffer slot's GPU work 0.0, segment joins 0.0 (queue idle 0.0), the rest 1.1) + commit 2.3 (encoder drain 1.4, uploads 0.1, queue submit 0.5) + other records 0.5; all queue submits 8.3 a frame: their lock 0.2 ms, the driver 0.2 ms; the lock held by the present 0.3 ms (its submit 0.1, vkQueuePresentKHR 0.3) and the GPU clock floor 0.0; replay thread on a core 3.2 ms, waited for a core 0.3 ms, 9 blocked / 3 preempted switches; encoder on a core 3.1 ms, waited for a core 0.2 ms, 5 blocked / 1 preempted switches; encoder calls ms (count): push descriptors 0.14 (40), draws 0.11 (28), pipelines 0.01 (40), vertex/index buffers 0.01 (8), sets+constants 0.00 (0), dynamic state 0.03 (651), passes 1.03 (53), barriers 0.05 (81), copies/clears 0.13 (18), dispatches 0.03 (12); draw path 16.93 us a draw (1 in 16 timed: resolve 1.04, layout 0.48, images+pass+key 5.39, vertex input 0.37, pipeline 1.53, sets 3.70, vertex buffers+dynamic 3.56, draw 0.66; sets: walk 0.89, writes 2.90 (1.5 images 2.17, driver segments 0.15), push 0.43); vertex input kept 0 % (DM_VK_VIN_SKIP), vertex buffers kept 0 %, driver segments 0 % by their inputs (DM_VK_DRV_STAMP) of 0 % bound again
+[dm] [movie] GetOutputBuffer index 2 → 3110400 bytes
+[dm] [movie] GetOutputBufferFormat index 2
+[dm] [movie] release output index 2 (1 packets queued)
+[dm] CRASH sig=7 addr=0x10d pc=main+0x591574 lr=main+0x6f3ce0 sp=0x412fe72e80
+x0=0x412fe73880 x1=0x412fe73270 x2=0x412fe72d90 x3=0 x4=0 x5=0x16
+x6=0x412fe736cc x7=0x73b5558970 x8=0x412fe73528 x9=0x10d x10=0x73556e8f20 x11=0x7385492ad0
+x12=0x73556e8f20 x13=0 x14=0 x15=0x1 x16=0x71e6f8bb38 x17=0x71e65660e0
+x18=0x71d3202000 x19=0xa x20=0xb x21=0x412fe73280 x22=0x73556e8f18 x23=0x72b548d390
+x24=0x73556e8f10 x25=0x73556e8f20 x26=0x73658972b0 x27=0x412fe73a58 x28=0x412fe73880 
+[dm] fault: code 1 (BUS_ADRALN), read, 2 fault hooks did not claim it
+[dm] fault maps: > 0x10d is in no mapping
+[dm] fault maps:   12c00000-52c00000 rw-p 00000000 00:00 0                                  [anon:dalvik-main space (region space)]
+[dm] fault placed: in no placed segment (81 segments)
+[dm] fault placed: none of the last 64 swaps (of 543) covered it
+[dm] fault dirty: 0 ranges cover it; blocks of 0 KiB; mprotect failures 0, the last errno 0 (Success) on 0+0 to prot 0
+[dm] *x0: 0x412fe7391f 0x412fe738f0 0x412fe73a50 0x7295459b18 0x412fe73be0 main+0x35383cc
+[dm] *x1: 0x73556e8f20 0x73556e8f10 0x7345806cd0 0x7345806cd0 0x180 0x4d6e00000018010d
+[dm] *x2: main+0x6824020 0x65000000 0x1e007100000000 0 0x1a8359aa5a 0
+[dm] *x7: 0x736576f460 0x736576f450 0 0 0 0x80000000e
+[dm] *x8: 0x4487000044f00000 0x105 0x1000000001 0x7375574c50 0 0x3f800000
+[dm] *x10: main+0x6847330 0x73556e8f20 0x73556e8f10 0 0xffffffff 0xffffffff
+[dm] *x11: 0x105 0x1000000001 0x3f800000 0 0x734552add0 0
+[dm] *x12: main+0x6847330 0x73556e8f20 0x73556e8f10 0 0xffffffff 0xffffffff
+[dm] *x16: sdk+0x14a0e0 sdk+0x14a2f0 sdk+0x13f770 sdk+0x14a4d0 sdk+0x14a570 sdk+0x13f7e0
+[dm] *x17: 0xa9017bfdd100c3ff 0x910043fda9024ff4 0xaa0003f3142cdee4 0xf9400c08f940fd09 0x54000380eb09011f 0x14000005f9400268
+[dm] *x18: 0 0 0 0 0 0
+[dm] *x21: 0x7345806cd0 0x7345806cd0 0x180 0x4d6e00000018010d 0x412fe73300 0x5a0bf566e04264
+[dm] *x22: 0x700000005 main+0x6847330 0x73556e8f20 0x73556e8f10 0 0xffffffff
+[dm] *x23: 0x6d0069006e0041 0x70006100720047 0x6e007500520068 0x65006d00690074 0x79006600690000 0
+[dm] *x24: main+0x6a14ac0 0x700000005 main+0x6847330 0x73556e8f20 0x73556e8f10 0
+[dm] *x25: main+0x6847330 0x73556e8f20 0x73556e8f10 0 0xffffffff 0xffffffff
+[dm] *x26: main+0x6a443d0 0x700000002 main+0x6a54950 0x73658972c0 0x73658972b0 0
+[dm] *x27: main+0x6824020 0x65000000 0x1e007100000000 0 0x1a8359aa5a 0
+[dm] *x28: 0x412fe7391f 0x412fe738f0 0x412fe73a50 0x7295459b18 0x412fe73be0 main+0x35383cc
+[dm] bt: main+0x6ca1c4 main+0x7153a4 main+0x6dbe80 main+0x6dbc18 main+0x3539700 main+0x352facc sdk+0x141cf0 sdk+0x148474 0x71f7e7dc2c (libnxhost.so+0x43bc2c)
+[dm] fp=0x412fe73820  0x100 bytes below sp:
+[dm]   412fe73a58 738566cd90 71e2a08020 65000000
+[dm]   1e007100000000 0 1a8359aa5a 0
+[dm]   0 0 739544b838 0
+[dm]   0 0 a 3f800000
+[dm]   0 0 412fe72e60 71de73ef74
+[dm]   73658972b8 412fe73280 73658972c0 412fe73a58
+[dm]   412fe73820 71dc8d78d4 71dc4c9958 412fe72e4f
+[dm]   412fe73820 71dc8d7f68 c b
+[dm] stack scan sp=0x412fe72e80: [-240]main+0x6824020 [-104]main+0x255af74 [-56]main+0x6f38d4 [-48]main+0x2e5958 [-24]main+0x6f3f68 [+1192]main+0x6824020 [+1944]main+0x6d97c0 [+2112]main+0x68370c0 [+2280]main+0x26518 [+2312]main+0x6ca98c [+2472]main+0x6ca1c4 [+2600]main+0x35383cc [+2872]main+0x28eb600 [+2952]main+0x7153a4 [+3032]main+0x6824020 [+3288]main+0x6dbe80 [+3320]main+0x7cbcf10 [+3400]main+0x6dbc18 [+3408]main+0x8c29430 [+3464]main+0x7cbcf10 [+3480]main+0x3539700 [+3504]main+0x7775cc8 [+3512]main+0x7c3e288 [+3536]main+0x8c2b4c0
+[dm] handle table use 49 / 4096, threads created so far 47
+[dm] same-core handoffs 1, total 0.2 ms
+[dm] audren: closed, no renderer opened yet
+[dm] thread 0x1031 'Thread_0x00000071F7CE55A8' (host-created) priority 44 core 0 mask 0x1 CPU 0.00s svc 55  created at tick 0 (1.2 s ago) waits:running/not waiting addr=0 last svc 0x19 lr=sdk+0xc83334
+[dm]   0x1031 sched: runnable, in the handoff of 0x1029 (over)
+[dm]   0x1031 history (age, svc(x0, x1) = result; of 55): | -0.032s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.065s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.099s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.134s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.161s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.218s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.233s 0x19(0x102d, 0x70b3823e88) = 0 made 1 | -0.267s 0x19(0x102d, 0x70b3823e88) = 0 made 1
+[dm]   0x1031 registers pc=0x7566e0eb30 x19=0x144 x20=0 x21=0x71f9089cf0 x22=0x89 x23=0x710162dfb0 x24=0x710162e000 x25=0 x26=0x18 x27=0x44b82fa09b5a53 x28=0x3b9aca00
+[dm]   0x1031 backtrace: sdk+0x141cf0 sdk+0x148474
+[dm] thread 0x102d 'ManaSwitchDecoderWatchThread' priority 42 core 0 mask 0x7 CPU 0.00s svc 57  created at tick 0 (1.2 s ago) waits:sync object addr=0x70b3823e04 last svc 0x18 lr=sdk+0xc83308
+[dm]   0x102d wait: waiting 0.033 s, timeout none
+[dm]   0x102d sched: not runnable
+[dm]   0x102d history (age, svc(x0, x1) = result; of 56): | -0.033s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 32.870 ms ended by 0x1031 | -0.065s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 34.608 ms ended by 0x1031 | -0.100s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 34.965 ms ended by 0x1031 | -0.135s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 26.169 ms ended by 0x1031 | -0.161s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 56.765 ms ended by 0x1031 | -0.218s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 15.096 ms ended by 0x1031 | -0.233s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 34.305 ms ended by 0x1031 | -0.268s 0x18(0x412f0fcabc, 0x412f0fcdd0) = 0xec01 blocked 48.775 ms ended by 0x1031
+[dm]   0x102d guest stack: [8]sdk+0x147d98 [40]sdk+0x142610 [632]sdk+0x142994 [744]sdk+0x13f280 [1048]main+0x5e18af8 [1064]main+0x5e18998 [1080]sdk+0x13f584 [1112]main+0x5e18938 [1208]sdk+0x141cf0 | x19=0x412f0fcce4 x20=0x70b3823ff8 x21=0x1 x22=0x412f0fcdd0 x23=0x70b3824018 x24=0 x25=0x70b382401c x26=0x7fffffffffffffff x27=0 x28=0x70b3823ff8
+[dm]   0x102d backtrace:
+[dm] thread 0x100c 'Background Worker (Standby #0)' priority 45 core 0 mask 0x7 CPU 0.00s svc 54  created at tick 0 (14.8 s ago) waits:condvar addr=0x72a553cc2c lock word 0 condvar key 0x72a553cc30=0x1 wait #116674 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x100c waited-for object, 64 bytes from 0x72a553cc20: 01000000 00000043 00000000 00000000 00000001 00000000 00000000 00000000 0002c103 5d6a0000 00000000 00000000 00680053 0077006f 006c0046 00670061 
+[dm]   0x100c wait: waiting 1.671 s, timeout none
+[dm]   0x100c sched: not runnable
+[dm]   0x100c history (age, svc(x0, x1) = result; of 47): | -1.671s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 168.447 ms ended by 0x100b made 0 | -1.839s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 32.763 ms ended by 0x100b made 0 | -1.872s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 254.755 ms ended by 0x100b made 0 | -2.127s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 306.387 ms ended by 0x100b made 0 | -2.433s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 101.455 ms ended by 0x100b made 0 | -2.535s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 660.217 ms ended by 0x100b made 0 | -3.195s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 152.857 ms ended by 0x100b made 0 | -3.348s 0x1c(0x72a553cc2c, 0x72a553cc30) = 0 blocked 103.037 ms ended by 0x100b made 0
+[dm]   0x100c guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]sdk+0x13be9c [152]main+0x37a48 [168]main+0x379d0 [200]main+0x244b0 [272]main+0x22650 [344]sdk+0x98b2c [376]main+0x25210 [488]main+0xec908 [568]main+0x36134 [584]main+0x1aaf8 [616]sdk+0x141cf0 [664]sdk+0x148474 | x19=0x72a553cc30 x20=0x72a553cc2c x21=0x100c x22=0x43 x23=0x71e39f13c0 x24=0x20e0c000000bfff x25=0x40000000000 x26=0x1 x27=0x20100 x28=0x1
+[dm]   0x100c backtrace:
+[dm] thread 0x100b 'Background Worker #0' priority 45 core 0 mask 0x7 CPU 0.99s svc 33694  created at tick 0 (14.8 s ago) waits:condvar addr=0x72a5549fac lock word 0 condvar key 0x72a5549fb0=0x1 wait #130973 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x100b waited-for object, 64 bytes from 0x72a5549fa0: 01000000 00001d2b 00000000 00000000 00000001 00720065 00000073 00000007 0002a103 4bad0000 00000000 00000000 006e004f 0069006c 0065006e 00750053 
+[dm]   0x100b wait: waiting 0.001 s, timeout none
+[dm]   0x100b sched: not runnable
+[dm]   0x100b history (age, svc(x0, x1) = result; of 19376): | -0.001s 0x1c(0x72a5549fac, 0x72a5549fb0) = 0 blocked 1.872 ms ended by 0x1002 made 0 | -0.003s 0x1b(0x72a554a76c, 0xffffffff) = 0 made 1 | -0.003s 0x1d(0x72a554a770, 0xffffffff) = 0 made 1 | -0.003s 0x1c(0x72a5549fac, 0x72a5549fb0) = 0 blocked 0.226 ms ended by 0x1007 made 0 | -0.003s 0x1c(0x72a5549fac, 0x72a5549fb0) = 0 blocked 0.096 ms ended by 0x1019 made 0 | -0.004s 0x1c(0x72a5549fac, 0x72a5549fb0) = 0 blocked 0.399 ms ended by 0x1019 made 0 | -0.004s 0x1b(0x72a554986c, 0x1) = 0 made 1 | -0.004s 0x1d(0x72a5549870, 0x1) = 0 made 1
+[dm]   0x100b guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]sdk+0x13be9c [152]main+0x37368 [168]main+0x37300 [200]main+0x24db4 [240]main+0x22650 [344]main+0x2522c [456]main+0xec908 [536]main+0x36134 [552]main+0x1aaf8 [584]sdk+0x141cf0 [632]sdk+0x148474 [704]sdk+0x141c80 | x19=0x72a5549fb0 x20=0x72a5549fac x21=0x100b x22=0x1d2b x23=0x71e39f1370 x24=0xffffffffffffffff x25=0x20100 x26=0x1 x27=0 x28=0x716fb11500
+[dm]   0x100b backtrace:
+[dm] thread 0x100a 'Foreground Worker (Standby #1)' priority 45 core 0 mask 0x7 CPU 0.01s svc 188  created at tick 0 (14.8 s ago) waits:condvar addr=0x72a554a22c lock word 0 condvar key 0x72a554a230=0x1 wait #130556 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x100a waited-for object, 64 bytes from 0x72a554a220: 01000000 0000035d 00000000 00000000 00000001 00720065 00000073 00000072 00028103 44a60000 00000000 00000000 140000a0 00000040 14037a90 00000040 
+[dm]   0x100a wait: waiting 0.052 s, timeout none
+[dm]   0x100a sched: not runnable
+[dm]   0x100a history (age, svc(x0, x1) = result; of 185): | -0.052s 0x1c(0x72a554a22c, 0x72a554a230) = 0 blocked 69.110 ms ended by 0x1008 made 0 | -0.121s 0x1c(0x72a554a22c, 0x72a554a230) = 0 blocked 32.796 ms ended by 0x1007 made 0 | -0.154s 0x1c(0x72a554a22c, 0x72a554a230) = 0 blocked 171.305 ms ended by 0x1007 made 0 | -0.325s 0x1c(0x72a554a22c, 0x72a554a230) = 0 blocked 119.121 ms ended by 0x1007 made 0 | -0.444s 0x1c(0x72a554a22c, 0x72a554a230) = 0 blocked 236.857 ms ended by 0x1007 made 0 | -0.681s 0x1b(0x72e542dc9c, 0x1) = 0 made 1 | -0.681s 0x1d(0x72e542dca4, 0x1) = 0 made 1 | -0.681s 0x1b(0x72a5549fac, 0xffffffff) = 0 made 1
+[dm]   0x100a guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]sdk+0x13be9c [152]main+0x37a48 [168]main+0x379d0 [200]main+0x244b0 [272]main+0x22650 [344]sdk+0x98b2c [376]main+0x25210 [488]main+0xec908 [568]main+0x36134 [584]main+0x1aaf8 [616]sdk+0x141cf0 [664]sdk+0x148474 | x19=0x72a554a230 x20=0x72a554a22c x21=0x100a x22=0x35d x23=0x71e39f1350 x24=0x25088000000c002 x25=0x40000000000 x26=0x1 x27=0x20100 x28=0x1
+[dm]   0x100a backtrace:
+[dm] thread 0x1009 'Foreground Worker (Standby #0)' priority 45 core 0 mask 0x7 CPU 0.00s svc 5  created at tick 0 (14.8 s ago) waits:condvar addr=0x72a554a42c lock word 0 condvar key 0x72a554a430=0x1 wait #13195 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1009 waited-for object, 64 bytes from 0x72a554a420: 01000000 00000acc 00000000 00000000 00000001 00720065 00000073 00000000 00028103 689b0000 00000000 00000000 140000a0 00000040 14024950 00000040 
+[dm]   0x1009 wait: waiting 14.820 s, timeout none
+[dm]   0x1009 sched: not runnable
+[dm]   0x1009 history (age, svc(x0, x1) = result; of 2): | -14.820s 0x1b(0x72a5548fac, 0xffffffff) = 0 made 1 | -14.820s 0x1d(0x72a5548fb0, 0xffffffff) = 0 made 1
+[dm]   0x1009 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]sdk+0x13be9c [152]main+0x37b5c [168]main+0x37ad4 [200]main+0x248c4 [256]main+0x22650 [328]sdk+0x98b2c [360]main+0x25210 [472]main+0xec908 [552]main+0x36134 [568]main+0x1aaf8 [600]sdk+0x141cf0 [648]sdk+0x148474 | x19=0x72a554a430 x20=0x72a554a42c x21=0x1009 x22=0xacc x23=0x4000000c002 x24=0x71e39f1300 x25=0x2008 x26=0x2 x27=0x20100 x28=0x1
+[dm]   0x1009 backtrace:
+[dm] thread 0x1008 'Foreground Worker #1' priority 45 core 0 mask 0x7 CPU 1.00s svc 20911  created at tick 0 (14.8 s ago) waits:condvar addr=0x72a554a76c lock word 0 condvar key 0x72a554a770=0x1 wait #130971 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1008 waited-for object, 64 bytes from 0x72a554a760: 01000000 00002ed9 00000000 00000000 00000001 00720065 00000073 00000007 00028103 c9a60000 00000000 00000000 140000a0 00000040 14024950 00000040 
+[dm]   0x1008 wait: waiting 0.002 s, timeout none
+[dm]   0x1008 sched: not runnable
+[dm]   0x1008 history (age, svc(x0, x1) = result; of 20814): | -0.002s 0x1b(0x72a554a96c, 0xffffffff) = 0 made 1 | -0.002s 0x1d(0x72a554a970, 0xffffffff) = 0 made 1 | -0.002s 0x1b(0x72e542dc9c, 0x1) = 0 made 1 | -0.002s 0x1d(0x72e542dca4, 0x1) = 0 made 1 | -0.002s 0x1c(0x72a554a76c, 0x72a554a770) = 0 blocked 0.534 ms ended by 0x1019 made 0 | -0.003s 0x1c(0x72a554a76c, 0x72a554a770) = 0 blocked 0.766 ms ended by 0x1019 made 0 | -0.004s 0x1c(0x72a554a76c, 0x72a554a770) = 0 blocked 0.149 ms ended by 0x100b made 0 | -0.004s 0x1c(0x72a554a76c, 0x72a554a770) = 0 blocked 0.162 ms ended by 0x1019 made 0
+[dm]   0x1008 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]sdk+0x13be9c [152]main+0x37368 [168]main+0x37300 [200]main+0x24db4 [240]main+0x22650 [344]main+0x2522c [456]main+0xec908 [536]main+0x36134 [552]main+0x1aaf8 [584]sdk+0x141cf0 [632]sdk+0x148474 [704]sdk+0x141c80 | x19=0x72a554a770 x20=0x72a554a76c x21=0x1008 x22=0x2ed9 x23=0x71e39f1300 x24=0xffffffffffffffff x25=0x20100 x26=0x1 x27=0 x28=0x716f930480
+[dm]   0x1008 backtrace:
+[dm] thread 0x1007 'Foreground Worker #0' priority 45 core 0 mask 0x7 CPU 0.96s svc 20434  created at tick 0 (14.8 s ago) waits:condvar addr=0x72a554a96c lock word 0 condvar key 0x72a554a970=0x1 wait #130972 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1007 waited-for object, 64 bytes from 0x72a554a960: 01000000 00002ea5 00000000 00000000 00000001 00000072 00000004 00000004 00030103 db700000 00000000 00000000 140000a0 00000040 14037a90 00000040 
+[dm]   0x1007 wait: waiting 0.002 s, timeout none
+[dm]   0x1007 sched: not runnable
+[dm]   0x1007 history (age, svc(x0, x1) = result; of 20324): | -0.002s 0x1c(0x72a554a96c, 0x72a554a970) = 0 blocked 0.285 ms ended by 0x1008 made 0 | -0.003s 0x1c(0x72a554a96c, 0x72a554a970) = 0 blocked 0.170 ms ended by 0x1019 made 0 | -0.003s 0x1c(0x72a554a96c, 0x72a554a970) = 0 blocked 0.623 ms ended by 0x1019 made 0 | -0.004s 0x1b(0x72e542dc9c, 0x1) = 0 made 1 | -0.004s 0x1d(0x72e542dca4, 0x1) = 0 made 1 | -0.004s 0x1c(0x72a554a96c, 0x72a554a970) = 0 blocked 0.450 ms ended by 0x1019 made 0 | -0.004s 0x1b(0x72e542dc9c, 0x1) = 0 made 1 | -0.004s 0x1d(0x72e542dca4, 0x1) = 0 made 1
+[dm]   0x1007 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]sdk+0x13be9c [152]main+0x37368 [168]main+0x37300 [200]main+0x24db4 [240]main+0x22650 [344]main+0x2522c [456]main+0xec908 [536]main+0x36134 [552]main+0x1aaf8 [584]sdk+0x141cf0 [632]sdk+0x148474 [704]sdk+0x141c80 | x19=0x72a554a970 x20=0x72a554a96c x21=0x1007 x22=0x2ea5 x23=0x71e39f1300 x24=0xffffffffffffffff x25=0x20100 x26=0x1 x27=0 x28=0x716f88ff00
+[dm]   0x1007 backtrace:
+[dm] thread 0x1030 'AudioMixerRenderThread(1)' priority 42 core 0 mask 0x1 CPU 0.14s svc 941  created at tick 0 (14.8 s ago) waits:sync object addr=0 last svc 0x18 lr=sdk+0xc83308
+[dm]   0x1030 wait: waiting 0.008 s, timeout none; handle 0x102f event 0x72855c6ed0 signalled 0
+[dm]   0x1030 sched: not runnable
+[dm]   0x1030 history (age, svc(x0, x1) = result; of 938): | -0.009s 0x17(0x102f, 0) = 0 | -0.009s 0x18(0x41338d7e88, 0x41338d7e8c) = 0 blocked 21.372 ms ended by 0 | -0.030s 0x17(0x102f, 0) = 0 | -0.030s 0x18(0x41338d7e88, 0x41338d7e8c) = 0 blocked 37.359 ms ended by 0 | -0.068s 0x17(0x102f, 0) = 0 | -0.068s 0x18(0x41338d7e88, 0x41338d7e8c) = 0 blocked 22.496 ms ended by 0 | -0.090s 0x17(0x102f, 0) = 0 | -0.090s 0x18(0x41338d7e88, 0x41338d7e8c) = 0 blocked 38.849 ms ended by 0
+[dm]   0x1030 guest stack: [8]sdk+0x148d68 [24]main+0x5921d80 [56]main+0x5921d88 [136]main+0x13299c0 [232]main+0x1aaf8 [264]sdk+0x141cf0 [312]sdk+0x148474 [384]sdk+0x141c80 | x19=0xffffffffffffffff x20=0xfa01 x21=0x738550fa88 x22=0x71e243e0ac x23=0x738550fd88 x24=0x71e2588d00 x25=0x738550fd60 x26=0x71e3987000 x27=0x71e3987000 x28=0xbb80
+[dm]   0x1030 backtrace:
+[dm] thread 0x102e 'FAsyncLoadingThread' priority 44 core 0 mask 0x7 CPU 0.43s svc 4682  created at tick 0 (14.9 s ago) waits:condvar addr=0x72a558d3ac lock word 0 condvar key 0x72a558d3b0=0x1 wait #119967 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x102e waited-for object, 64 bytes from 0x72a558d3a0: 01000000 00000101 00000000 00000000 00000001 00450000 00700078 00000000 00028103 4ec70000 00000000 00000000 00610042 0065006b 00520020 006e0065 
+[dm]   0x102e wait: waiting 1.321 s, timeout 2147483647.000 ms
+[dm]   0x102e sched: not runnable
+[dm]   0x102e history (age, svc(x0, x1) = result; of 4675): | -1.321s 0x1b(0x73954293c8, 0x73954293c8) = 0 made 1 | -1.321s 0x1a(0x1002, 0x73954293c8) = 0 blocked 0.093 ms ended by 0x1002 | -1.321s 0x1c(0x72a558d3ac, 0x72a558d3b0) = 0 blocked 0.764 ms ended by 0x1002 made 0 | -1.322s 0x1a(0x1002, 0x73954293c8) = 0 blocked 0.035 ms ended by 0x1002 | -1.322s 0x1b(0x72e621ad9c, 0x1) = 0 made 1 | -1.322s 0x1d(0x72e621ada4, 0x1) = 0 made 1 | -1.324s 0x1b(0x71e397eac0, 0x71e397eac0) = 0 made 1 | -1.324s 0x1a(0x1002, 0x71e397eac0) = 0 blocked 0.031 ms ended by 0x1002
+[dm]   0x102e guest stack: [8]sdk+0x149368 [40]sdk+0x13c004 [104]main+0x17150 [184]main+0x2f5340 [200]main+0x4d627c [232]main+0x4d60e8 [248]main+0x4d6304 [360]main+0x1aaf8 [456]sdk+0x141cf0 [504]sdk+0x148474 [576]sdk+0x141c80 | x19=0x72a558d3ac x20=0x72a558d3b0 x21=0x7a11ffff0bbeb x22=0x102e x23=0x73954294c0 x24=0 x25=0x73954297a0 x26=0 x27=0 x28=0x71e3e565e8
+[dm]   0x102e backtrace:
+[dm] thread 0x102c 'FMediaTicker' priority 44 core 0 mask 0x7 CPU 0.00s svc 5  created at tick 0 (14.9 s ago) waits:condvar addr=0x72a554946c lock word 0 condvar key 0x72a5549470=0x1 wait #12005 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x102c waited-for object, 64 bytes from 0x72a5549460: 01000000 00000007 00000000 00000000 00000001 006c006f 00230020 00000031 00030103 9e540000 00000000 00000000 00610042 006b0063 00720067 0075006f 
+[dm]   0x102c wait: waiting 14.942 s, timeout none
+[dm]   0x102c sched: not runnable
+[dm]   0x102c history (age, svc(x0, x1) = result; of 2): | -14.942s 0x1b(0x72a55491ac, 0xffffffff) = 0 made 1 | -14.942s 0x1d(0x72a55491b0, 0xffffffff) = 0 made 1
+[dm]   0x102c guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]main+0x1a200 [152]main+0x25d1314 [168]main+0xbd5e8 [200]main+0x1aaf8 [248]sdk+0x141cf0 [296]sdk+0x148474 [368]sdk+0x141c80 | x19=0x72a5549470 x20=0x72a554946c x21=0x102c x22=0x7 x23=0x6b5 x24=0x7158e57cb0 x25=0x7158e57cb0 x26=0x7158e57ff8 x27=0x104000 x28=0x106000
+[dm]   0x102c backtrace:
+[dm] thread 0x102b 'CRI MPV Worker' priority 51 core 0 mask 0x7 CPU 0.00s svc 1  created at tick 0 (15.0 s ago) waits:condvar addr=0x71e5d34050 lock word 0 condvar key 0x71e5d3405c=0x1 wait #11131 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x102b waited-for object, 64 bytes from 0x71e5d34050: 00000000 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x102b wait: waiting 14.981 s, timeout none
+[dm]   0x102b sched: not runnable
+[dm]   0x102b guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bc74 [40]sdk+0x13f584 [72]main+0x5d5147c [104]main+0x5d5f5b4 [136]sdk+0x141cf0 [152]sdk+0x141ce8 [168]sdk+0x148474 [240]sdk+0x141c80 | x19=0x71e5d3405c x20=0x71e5d34050 x21=0x102b x22=0x722 x23=0x6b5 x24=0x7158f5dcb0 x25=0x7158f5dcb0 x26=0x7158f5dff8 x27=0x104000 x28=0x106000
+[dm]   0x102b backtrace:
+[dm] thread 0x102a 'CRI MPV Worker' priority 51 core 0 mask 0x7 CPU 0.00s svc 1  created at tick 0 (15.0 s ago) waits:condvar addr=0x71e5c32c10 lock word 0 condvar key 0x71e5c32c1c=0x1 wait #11124 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x102a waited-for object, 64 bytes from 0x71e5c32c10: 00000000 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x102a wait: waiting 14.992 s, timeout none
+[dm]   0x102a sched: not runnable
+[dm]   0x102a guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bc74 [40]sdk+0x13f584 [72]main+0x5d5147c [104]main+0x5d5f5b4 [136]sdk+0x141cf0 [152]sdk+0x141ce8 [168]sdk+0x148474 [240]sdk+0x141c80 | x19=0x71e5c32c1c x20=0x71e5c32c10 x21=0x102a x22=0x722 x23=0x6b5 x24=0x7159063cb0 x25=0x7159063cb0 x26=0x7159063ff8 x27=0x104000 x28=0x106000
+[dm]   0x102a backtrace:
+[dm] thread 0x1029 'CriManaDecodeThread' priority 51 core 0 mask 0x7 CPU 0.05s svc 1210  created at tick 0 (15.0 s ago) waits:running/not waiting addr=0x74a5822440 last svc 0xb lr=sdk+0xc830cc
+[dm]   0x1029 sched: not runnable, sleeping
+[dm]   0x1029 history (age, svc(x0, x1) = result; of 6): | -1.212s 0x19(0x102d, 0x70b3823f08) = 0 made 1 | -1.223s 0x9(0x1031, 0x735581faf0) = 0 | -1.227s 0x9(0x102d, 0x70b3823c28) = 0 | -1.228s 0x1b(0x74a5822440, 0x1) = 0 made 1 | -1.228s 0x1a(0x1002, 0x74a5822440) = 0 blocked 0.638 ms ended by 0x1002 | -1.289s 0x1c(0x71e5b1a228, 0x71e5b1a234) = 0 blocked 13716.319 ms ended by 0x1002 made 0
+[dm]   0x1029 registers pc=0x7566e663ec x19=0x73954d17e0 x20=0x564e41b9f51 x21=0x715a16a000 x22=0x3b9aca00 x23=0x186a0 x24=0x10 x25=0x4e20 x26=0x44b82fa09b5a53 x27=0 x28=0x715a16a000
+[dm]   0x1029 x19 → 128 bytes from 0x73954d17e0: 00001029 00000000 00000071 00000000 e6564420 00000071 960af6b0 00000074 365e5fe0 00000041 00000033 00000000 00000007 00000000 65b69d3a 00000561 00000000 00000000 00000000 00000000 00000001 00000001 00000000 00000000 5a169cb0 00000071 0000000a 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x1029 backtrace:
+[dm] thread 0x1028 'CRI ADX AudioOutput Thread' priority 29 core 0 mask 0x7 CPU 0.22s svc 5961  created at tick 0 (15.0 s ago) waits:sync object addr=0 last svc 0x18 lr=sdk+0xc83308
+[dm]   0x1028 wait: waiting 0.009 s, timeout none; handle 0x1027 event 0x72855a6a50 signalled 0
+[dm]   0x1028 sched: not runnable
+[dm]   0x1028 history (age, svc(x0, x1) = result; of 5960): | -0.009s 0x17(0x1027, 0) = 0 | -0.009s 0x18(0x4132c8fe78, 0x4132c8fe7c) = 0 blocked 0.478 ms ended by 0 | -0.010s 0x17(0x1027, 0) = 0 | -0.010s 0x18(0x4132c8fe78, 0x4132c8fe7c) = 0 blocked 0.599 ms ended by 0 | -0.011s 0x17(0x1027, 0) = 0 | -0.011s 0x18(0x4132c8fe78, 0x4132c8fe7c) = 0 blocked 0.446 ms ended by 0 | -0.011s 0x17(0x1027, 0) = 0 | -0.011s 0x18(0x4132c8fe78, 0x4132c8fe7c) = 0 blocked 19.049 ms ended by 0
+[dm]   0x1028 guest stack: [8]sdk+0x148d68 [56]main+0x5de45f0 [232]sdk+0x141cf0 [328]sdk+0x148474 [400]sdk+0x141c80 | x19=0xffffffffffffffff x20=0xfa01 x21=0x7160ca3c30 x22=0x71e269183d x23=0 x24=0x7160caab40 x25=0x5a0 x26=0 x27=0xe0 x28=0x7160cadc50
+[dm]   0x1028 backtrace:
+[dm] thread 0x1023 'CRI Server Manager' priority 36 core 0 mask 0x1 CPU 0.19s svc 996  created at tick 0 (15.1 s ago) waits:running/not waiting addr=0x715a1c18d8 last svc 0xb lr=sdk+0xc830cc
+[dm]   0x1023 sched: not runnable, sleeping
+[dm]   0x1023 history (age, svc(x0, x1) = result; of 84): | -0.119s 0x1d(0x71e5906f2c, 0x1) = 0 made 1 | -0.119s 0x1d(0x71e51e1d7c, 0x1) = 0 made 1 | -0.651s 0x1d(0x71e50dc664, 0x1) = 0 made 1 | -0.701s 0x1a(0x1020, 0x715a1c18d8) = 0 blocked 0.036 ms ended by 0x1020 | -0.701s 0x1d(0x71e51e1d7c, 0x1) = 0 made 1 | -0.718s 0x1d(0x71e51e1d7c, 0x1) = 0 made 1 | -0.735s 0x1d(0x71e51e1d7c, 0x1) = 0 made 1 | -0.751s 0x1d(0x71e51e1d7c, 0x1) = 0 made 1
+[dm]   0x1023 registers pc=0x7566e663ec x19=0x73954d0780 x20=0x564e4fed3ca x21=0x7161e37000 x22=0x3b9aca00 x23=0x186a0 x24=0x10 x25=0x4e20 x26=0x44b82fa09b5a53 x27=0 x28=0x7161e37000
+[dm]   0x1023 x19 → 128 bytes from 0x73954d0780: 00001023 00000000 0000006f 00000000 e6564420 00000071 e4ed9130 00000071 29ce3fe0 00000041 00000024 00000000 00000001 00000000 620e6a7a 00000561 00000000 00000000 00000000 00000000 00000001 00000001 00000000 00000000 61e36cb0 00000071 0000000e 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x1023 backtrace:
+[dm] thread 0x1022 'CRI FS Data Decompression 0' priority 52 core 0 mask 0x1 CPU 0.00s svc 15  created at tick 0 (15.1 s ago) waits:condvar addr=0x71e50dc658 lock word 0 condvar key 0x71e50dc664=0x1 wait #125582 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1022 waited-for object, 64 bytes from 0x71e50dc650: 00000000 00000000 00000000 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x1022 wait: waiting 0.651 s, timeout none
+[dm]   0x1022 sched: not runnable
+[dm]   0x1022 history (age, svc(x0, x1) = result; of 14): | -0.651s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1066.814 ms ended by 0x1023 made 0 | -1.718s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1066.933 ms ended by 0x1023 made 0 | -2.785s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1066.579 ms ended by 0x1023 made 0 | -3.851s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1066.985 ms ended by 0x1023 made 0 | -4.918s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1067.203 ms ended by 0x1023 made 0 | -5.986s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1065.644 ms ended by 0x1023 made 0 | -7.051s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1066.533 ms ended by 0x1023 made 0 | -8.118s 0x1c(0x71e50dc658, 0x71e50dc664) = 0 blocked 1066.972 ms ended by 0x1023 made 0
+[dm]   0x1022 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bc74 [40]sdk+0x13f584 [72]main+0x5d5147c [104]main+0x5d516d8 [136]sdk+0x141cf0 [168]sdk+0x148474 [240]sdk+0x141c80 | x19=0x71e50dc664 x20=0x71e50dc658 x21=0x1022 x22=0x722 x23=0x6b5 x24=0x7162f3ccb0 x25=0x7162f3ccb0 x26=0x7162f3cff8 x27=0x104000 x28=0x106000
+[dm]   0x1022 backtrace:
+[dm] thread 0x1021 'CRI FS Memory File System' priority 48 core 0 mask 0x1 CPU 0.00s svc 15  created at tick 0 (15.1 s ago) waits:condvar addr=0x71e5906f20 lock word 0 condvar key 0x71e5906f2c=0x1 wait #130092 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1021 waited-for object, 64 bytes from 0x71e5906f20: 00000000 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x1021 wait: waiting 0.119 s, timeout none
+[dm]   0x1021 sched: not runnable
+[dm]   0x1021 history (age, svc(x0, x1) = result; of 14): | -0.119s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1066.229 ms ended by 0x1023 made 0 | -1.185s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1065.178 ms ended by 0x1023 made 0 | -2.250s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1068.044 ms ended by 0x1023 made 0 | -3.318s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1067.177 ms ended by 0x1023 made 0 | -4.386s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1065.811 ms ended by 0x1023 made 0 | -5.451s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1067.185 ms ended by 0x1023 made 0 | -6.519s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1067.210 ms ended by 0x1023 made 0 | -7.586s 0x1c(0x71e5906f20, 0x71e5906f2c) = 0 blocked 1065.974 ms ended by 0x1023 made 0
+[dm]   0x1021 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bc74 [40]sdk+0x13f584 [72]main+0x5d5147c [104]main+0x5d516d8 [136]sdk+0x141cf0 [168]sdk+0x148474 [240]sdk+0x141c80 | x19=0x71e5906f2c x20=0x71e5906f20 x21=0x1021 x22=0x722 x23=0x6b5 x24=0x7164042cb0 x25=0x7164042cb0 x26=0x7164042ff8 x27=0x104000 x28=0x106000
+[dm]   0x1021 backtrace:
+[dm] thread 0x1020 'CRI FS File Access 0' priority 40 core 0 mask 0x1 CPU 0.01s svc 84  created at tick 0 (15.1 s ago) waits:condvar addr=0x71e51e1d70 lock word 0 condvar key 0x71e51e1d7c=0x1 wait #130091 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1020 waited-for object, 64 bytes from 0x71e51e1d70: 00000000 00000000 00000001 00000001 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x1020 wait: waiting 0.119 s, timeout none
+[dm]   0x1020 sched: not runnable
+[dm]   0x1020 history (age, svc(x0, x1) = result; of 83): | -0.119s 0x1c(0x71e51e1d70, 0x71e51e1d7c) = 0 blocked 524.879 ms ended by 0x1023 made 0 | -0.644s 0x1c(0x72a581bd6c, 0x72a581bd70) = 0 blocked 0.022 ms ended by 0x100b made 0 | -0.644s 0x1b(0x72a5549fac, 0xffffffff) = 0 made 1 | -0.644s 0x1d(0x72a5549fb0, 0xffffffff) = 0 made 1 | -0.644s 0x1a(0x100b, 0x72a5549fac) = 0 | -0.644s 0x1b(0x72a5549fac, 0xffffffff) = 0 made 1 | -0.644s 0x1d(0x72a5549fb0, 0xffffffff) = 0 made 1 | -0.644s 0x1c(0x71e51e1d70, 0x71e51e1d7c) = 0 blocked 57.314 ms ended by 0x1002 made 0
+[dm]   0x1020 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bc74 [40]sdk+0x13f584 [72]main+0x5d5147c [104]main+0x5d516d8 [136]sdk+0x141cf0 [168]sdk+0x148474 [240]sdk+0x141c80 | x19=0x71e51e1d7c x20=0x71e51e1d70 x21=0x1020 x22=0x722 x23=0x6b5 x24=0x7165148cb0 x25=0x7165148cb0 x26=0x7165148ff8 x27=0x104000 x28=0x106000
+[dm]   0x1020 backtrace:
+[dm] thread 0x101f 'RHIFrameFlipThread' priority 43 core 0 mask 0x7 CPU 0.08s svc 868  created at tick 0 (15.3 s ago) waits:condvar addr=0x72a54969ec lock word 0 condvar key 0x72a54969f0=0x1 wait #130876 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x101f waited-for object, 64 bytes from 0x72a54969e0: 01010000 00000000 00000000 00000000 00000001 00000000 00000000 00000000 00030103 49430000 00000000 00000000 3e7d0000 3c980000 3c000000 3c000000 
+[dm]   0x101f wait: waiting 0.010 s, timeout 32.999 ms
+[dm]   0x101f sched: not runnable
+[dm]   0x101f history (age, svc(x0, x1) = result; of 865): | -0.010s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 15.885 ms ended by 0x101e made 0 | -0.026s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 17.024 ms ended by 0x101e made 0 | -0.043s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 15.303 ms ended by 0x101e made 0 | -0.058s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 18.227 ms ended by 0x101e made 0 | -0.076s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 16.186 ms ended by 0x101e made 0 | -0.092s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 16.688 ms ended by 0x101e made 0 | -0.109s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 17.039 ms ended by 0x101e made 0 | -0.126s 0x1c(0x72a54969ec, 0x72a54969f0) = 0 blocked 16.498 ms ended by 0x101e made 0
+[dm]   0x101f guest stack: [8]sdk+0x149368 [40]sdk+0x13c004 [80]main+0x2849c [104]main+0x17150 [160]main+0x2849c [184]main+0x149e848 [200]main+0x149e7b4 [296]main+0x1aaf8 [392]sdk+0x141cf0 [440]sdk+0x148474 [512]sdk+0x141c80 | x19=0x72a54969ec x20=0x72a54969f0 x21=0x1f784f5 x22=0x101f x23=0x408f400000000000 x24=0 x25=0x711bdeccb0 x26=0x71e3df6730 x27=0x71e4cc0b38 x28=0x32f
+[dm]   0x101f backtrace:
+[dm] thread 0x101e 'RHIFrameOffsetThread' priority 43 core 0 mask 0x7 CPU 0.11s svc 3245  created at tick 0 (15.3 s ago) waits:running/not waiting addr=0x72a549e26c last svc 0xb lr=sdk+0xc830cc
+[dm]   0x101e sched: not runnable, sleeping
+[dm]   0x101e history (age, svc(x0, x1) = result; of 2429): | -0.008s 0x1c(0x72a549e26c, 0x72a549e270) = 0 blocked 3.381 ms ended by 0x101d made 0 | -0.011s 0x1b(0x72a54969ec, 0x1) = 0 made 1 | -0.011s 0x1d(0x72a54969f0, 0x1) = 0 made 1 | -0.024s 0x1c(0x72a549e26c, 0x72a549e270) = 0 blocked 2.557 ms ended by 0x101d made 0 | -0.027s 0x1b(0x72a54969ec, 0x1) = 0 made 1 | -0.027s 0x1d(0x72a54969f0, 0x1) = 0 made 1 | -0.038s 0x1c(0x72a549e26c, 0x72a549e270) = 0 blocked 6.008 ms ended by 0x101d made 0 | -0.044s 0x1b(0x72a54969ec, 0x1) = 0 made 1
+[dm]   0x101e registers pc=0x7566e663ec x19=0x7395474df0 x20=0x564e490972a x21=0x711cef3000 x22=0x3b9aca00 x23=0x186a0 x24=0x10 x25=0x4e20 x26=0x44b82fa09b5a53 x27=0 x28=0x711cef3000
+[dm]   0x101e x19 → 128 bytes from 0x7395474df0: 0000101e 00000000 0000006a 00000000 e6564420 00000071 554dcbd8 00000073 31bf0fe0 00000041 0000002b 00000000 00000007 00000000 51c045c0 00000561 00000000 00000000 00000000 00000000 00000001 00000001 00000000 00000000 1cef2cb0 00000071 00000c8e 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x101e backtrace:
+[dm] thread 0x101d 'Viewport Thread' priority 43 core 0 mask 0x7 CPU 0.12s svc 5307  created at tick 0 (15.4 s ago) waits:sync object addr=0 last svc 0x18 lr=sdk+0xc83308
+[dm]   0x101d wait: waiting 0.008 s, timeout none; handle 0x101c event 0x72854b8e90 signalled 0
+[dm]   0x101d sched: not runnable
+[dm]   0x101d history (age, svc(x0, x1) = result; of 5304): | -0.008s 0x1b(0x72a549e26c, 0x1) = 0 made 1 | -0.008s 0x1d(0x72a549e270, 0x1) = 0 made 1 | -0.008s 0x17(0x101c, 0) = 0 | -0.008s 0x18(0x4129fceea8, 0x4129fceeac) = 0 blocked 8.405 ms ended by 0 | -0.016s 0x17(0x101c, 0) = 0 | -0.016s 0x18(0x4129fceea8, 0x4129fceeac) = 0 blocked 8.282 ms ended by 0 | -0.025s 0x1b(0x72a549e26c, 0x1) = 0 made 1 | -0.025s 0x1d(0x72a549e270, 0x1) = 0 made 1
+[dm]   0x101d guest stack: [8]sdk+0x148d68 [56]main+0x144b43c [120]main+0x144b5a8 [136]main+0x1a264 [216]main+0x1aaf8 [232]sdk+0x141cf0 [280]sdk+0x148474 [352]sdk+0x141c80 | x19=0xffffffffffffffff x20=0xfa01 x21=0x4129fceeec x22=0x28 x23=0x32f x24=0x71e3df6738 x25=0x71e4cbb000 x26=0x71e4cbb000 x27=0x32f x28=0x106000
+[dm]   0x101d backtrace:
+[dm] thread 0x101a 'RTHeartBeat 0' priority 43 core 0 mask 0x7 CPU 0.13s svc 3278  created at tick 0 (15.4 s ago) waits:running/not waiting addr=0 last svc 0xb lr=sdk+0xc830cc
+[dm]   0x101a sched: not runnable, sleeping
+[dm]   0x101a history (age, svc(x0, x1) = result; of 836): | -0.278s 0x1b(0x72a5549b6c, 0x1) = 0 made 1 | -0.278s 0x1d(0x72a5549b70, 0x1) = 0 made 1 | -0.329s 0x1b(0x72a5549b6c, 0x1) = 0 made 1 | -0.329s 0x1d(0x72a5549b70, 0x1) = 0 made 1 | -0.392s 0x1b(0x72a5549b6c, 0x1) = 0 made 1 | -0.392s 0x1d(0x72a5549b70, 0x1) = 0 made 1 | -0.461s 0x1b(0x72a5549b6c, 0x1) = 0 made 1 | -0.461s 0x1d(0x72a5549b70, 0x1) = 0 made 1
+[dm]   0x101a registers pc=0x7566e663ec x19=0x739546d320 x20=0x564e49bf68b x21=0x71345c0000 x22=0x3b9aca00 x23=0x186a0 x24=0x10 x25=0x4e20 x26=0x44b82fa09b5a53 x27=0 x28=0x71345c0000
+[dm]   0x101a x19 → 128 bytes from 0x739546d320: 0000101a 00000000 00000068 00000000 e6564420 00000071 554c52e8 00000073 3401cfe0 00000041 0000002b 00000000 00000007 00000000 4d08d760 00000561 00000000 00000000 00000000 00000000 00000001 00000001 00000000 00000000 345bfcb0 00000071 00000002 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x101a backtrace:
+[dm] thread 0x1019 'RenderThread 0' priority 43 core 2 mask 0x7 CPU 1.91s svc 50291  created at tick 0 (15.4 s ago) waits:condvar addr=0x72a554986c lock word 0 condvar key 0x72a5549870=0x1 wait #130970 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1019 waited-for object, 64 bytes from 0x72a5549860: 01010000 00000000 00000000 00000000 00000001 00000072 00000007 00000007 00028103 b99d0000 00000000 00000000 e29bf640 00000071 e39f1300 00000071 
+[dm]   0x1019 wait: waiting 0.006 s, timeout none
+[dm]   0x1019 sched: not runnable
+[dm]   0x1019 history (age, svc(x0, x1) = result; of 50095): | -0.006s 0x1c(0x72e542dc9c, 0x72e542dca4) = 0 blocked 0.064 ms ended by 0x1008 made 0 | -0.006s 0x1b(0x72a554a96c, 0xffffffff) = 0 made 1 | -0.006s 0x1d(0x72a554a970, 0xffffffff) = 0 made 1 | -0.006s 0x1b(0x72a554a96c, 0xffffffff) = 0 made 1 | -0.006s 0x1d(0x72a554a970, 0xffffffff) = 0 made 1 | -0.006s 0x1b(0x72a554a76c, 0xffffffff) = 0 made 1 | -0.006s 0x1d(0x72a554a770, 0xffffffff) = 0 made 1 | -0.006s 0x1c(0x72e542dc9c, 0x72e542dca4) = 0 blocked 1.022 ms ended by 0x1007 made 0
+[dm]   0x1019 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [152]main+0x44f18 [200]main+0x446c0 [280]main+0x45d2c [296]main+0x45cc8 [376]main+0x6deb0 [472]main+0x1487bf4 [520]main+0x1487c54 [528]main+0x2849c [568]main+0x1bfd728 [600]main+0x1c0436c [648]main+0x1c2eaac [840]main+0xa4d64 | x19=0x72a5549870 x20=0x72a554986c x21=0x1019 x22=0 x23=0x737558fec4 x24=0x737558fec8 x25=0x737558fec5 x26=0x74963714e8 x27=0x73e5524030 x28=0xffffffff
+[dm]   0x1019 backtrace:
+[dm] thread 0x1018 'RHIThread' priority 43 core 0 mask 0x7 CPU 0.98s svc 11185  created at tick 0 (15.4 s ago) waits:running/not waiting addr=0x72a554a5ac last svc 0x1b lr=sdk+0xc8338c
+[dm]   0x1018 sched: runnable, in the handoff of 0x1008 (over)
+[dm]   0x1018 history (age, svc(x0, x1) = result; of 11127): | -0.009s 0x1b(0x72a554986c, 0x1) = 0 made 1 | -0.009s 0x1d(0x72a5549870, 0x1) = 0 made 1 | -0.009s 0x1c(0x72a554a5ac, 0x72a554a5b0) = 0 blocked 0.115 ms ended by 0x1008 made 0 | -0.010s 0x1b(0x72a5549fac, 0xffffffff) = 0 made 1 | -0.010s 0x1d(0x72a5549fb0, 0xffffffff) = 0 made 1 | -0.010s 0x1b(0x72a554a96c, 0xffffffff) = 0 made 1 | -0.010s 0x1d(0x72a554a970, 0xffffffff) = 0 made 1 | -0.010s 0x1b(0x72a554a76c, 0xffffffff) = 0 made 1
+[dm]   0x1018 registers pc=0x7566e6642c x19=0x713a34ffb0 x20=0 x21=0x7131b9e9d8 x22=0x1 x23=0x1 x24=0x16 x25=0x7385564870 x26=0x713a34fff8 x27=0x104000 x28=0x106000
+[dm]   0x1018 x19 → 128 bytes from 0x713a34ffb0: 00000016 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000 3a350040 00000071 797cb650 00000075 3a34fcb0 00000071 a547c190 00000072 00000000 00000000 00000000 00000000 12968adc f32110cf 
+[dm]   0x1018 backtrace:
+[dm] thread 0x1017 'RHIInterruptThread' priority 42 core 0 mask 0x7 CPU 0.70s svc 1466  created at tick 0 (15.5 s ago) waits:running/not waiting addr=0x72a54a412c last svc 0x1b lr=sdk+0xc8338c
+[dm]   0x1017 sched: runnable, in the handoff of 0x1018 (over)
+[dm]   0x1017 history (age, svc(x0, x1) = result; of 1463): | -0.010s 0x1b(0x72a54a412c, 0x72a54a4130) = 0 made 1 | -0.010s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 3.978 ms ended by 0x1018 made 0 | -0.026s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 0.345 ms ended by 0x1018 made 0 | -0.027s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 3.991 ms ended by 0x1018 made 0 | -0.044s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 3.920 ms ended by 0x1018 made 0 | -0.060s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 0.110 ms ended by 0x1018 made 0 | -0.061s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 6.604 ms ended by 0x1018 made 0 | -0.078s 0x1c(0x72a54a412c, 0x72a54a4130) = 0 blocked 3.403 ms ended by 0x1018 made 0
+[dm]   0x1017 registers pc=0x7566e0eb34 x19=0x6660 x20=0x713a3d7ea8 x21=0x71f95fef88 x22=0x89 x23=0x714cf04fb0 x24=0x714cf05000 x25=0 x26=0x73455290c0 x27=0x4000000 x28=0x73354db840
+[dm]   0x1017 x20 → 128 bytes from 0x713a3d7ea8: 0000253a 00000000 34a1e0a6 00000000 12968adc f32110cf 3a3d7f10 00000071 66e799f0 004c0c75 45529080 00000073 00000000 00000000 f95fef8c 00000071 00006660 00000000 00000001 00000000 f95fef88 00000071 3a3d7f58 00000071 f95def58 00000071 3a3d7f70 00000071 f7d85e0c 004a7ef1 f95fe000 00000071 
+[dm]   0x1017 backtrace:
+[dm] thread 0x1016 'IoDispatcher' priority 43 core 0 mask 0x7 CPU 0.17s svc 8849  created at tick 0 (15.6 s ago) waits:condvar addr=0x72a553d62c lock word 0 condvar key 0x72a553d630=0x1 wait #120522 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1016 waited-for object, 64 bytes from 0x72a553d620: 01010000 00000000 00000000 00000000 00000001 00000000 00000000 00000000 00030103 a9e30000 00000000 00000000 e29c0d00 00000071 00000000 00000000 
+[dm]   0x1016 wait: waiting 1.250 s, timeout none
+[dm]   0x1016 sched: not runnable
+[dm]   0x1016 history (age, svc(x0, x1) = result; of 8846): | -1.250s 0x1a(0x1019, 0x72a553d62c) = 0 blocked 0.100 ms ended by 0x1019 | -1.250s 0x1b(0x72a553d62c, 0x72a553d630) = 0 made 1 | -1.250s 0x1c(0x72a553d62c, 0x72a553d630) = 0 blocked 0.450 ms ended by 0x1019 made 0 | -1.250s 0x1c(0x72a553d62c, 0x72a553d630) = 0 blocked 80.369 ms ended by 0x1019 made 0 | -1.331s 0x1b(0x72a553c7ec, 0x1) = 0 made 1 | -1.331s 0x1d(0x72a553c7f0, 0x1) = 0 made 1 | -1.331s 0x1c(0x72a553d62c, 0x72a553d630) = 0 blocked 0.049 ms ended by 0x100b made 0 | -1.331s 0x1c(0x72a553d62c, 0x72a553d630) = 0 blocked 0.053 ms ended by 0x100b made 0
+[dm]   0x1016 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [152]main+0x160014 [200]main+0x1aaf8 [216]main+0xbd5e8 [296]sdk+0x141cf0 [344]sdk+0x148474 [416]sdk+0x141c80 | x19=0x72a553d630 x20=0x72a553d62c x21=0x1016 x22=0 x23=0xffffffffffffffff x24=0x714fd1dcb0 x25=0x714fd1dcb0 x26=0x1 x27=0x104000 x28=0x106000
+[dm]   0x1016 backtrace:
+[dm] thread 0x1015 'IoService' priority 43 core 0 mask 0x7 CPU 0.13s svc 3021  created at tick 0 (15.6 s ago) waits:condvar addr=0x72a553c7ec lock word 0 condvar key 0x72a553c7f0=0x1 wait #119955 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1015 waited-for object, 64 bytes from 0x72a553c7e0: 01010000 00000000 00000000 00000000 00000001 006e0065 002f0074 00000000 00030103 bc520000 00000000 00000000 e29c8d58 00000071 00000000 00000000 
+[dm]   0x1015 wait: waiting 1.331 s, timeout none
+[dm]   0x1015 sched: not runnable
+[dm]   0x1015 history (age, svc(x0, x1) = result; of 3018): | -1.331s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 0.325 ms ended by 0x1016 made 0 | -1.331s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 0.044 ms ended by 0x1016 made 0 | -1.331s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 0.141 ms ended by 0x1016 made 0 | -1.331s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 0.166 ms ended by 0x1016 made 0 | -1.332s 0x1b(0x72a553c7ec, 0x72a553c7f0) = 0 made 1 | -1.332s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 3.484 ms ended by 0x1016 made 0 | -1.335s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 2.541 ms ended by 0x1016 made 0 | -1.338s 0x1c(0x72a553c7ec, 0x72a553c7f0) = 0 blocked 2.114 ms ended by 0x1016 made 0
+[dm]   0x1015 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]main+0x13e23c4 [152]main+0x13e23d8 [200]main+0x1aaf8 [232]sdk+0x141cf0 [280]sdk+0x148474 [352]sdk+0x141c80 | x19=0x72a553c7f0 x20=0x72a553c7ec x21=0x1015 x22=0 x23=0x6b5 x24=0x7150e23cb0 x25=0x7150e23cb0 x26=0x7150e23ff8 x27=0x104000 x28=0x106000
+[dm]   0x1015 backtrace:
+[dm] thread 0x1014 'IOThreadPool #1' priority 43 core 0 mask 0x7 CPU 0.00s svc 5  created at tick 0 (15.6 s ago) waits:condvar addr=0x72a553cb2c lock word 0 condvar key 0x72a553cb30=0x1 wait #4968 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1014 waited-for object, 64 bytes from 0x72a553cb20: 01010000 00000000 00000000 00000000 00000001 00650074 0000006d 00000000 00030103 e9a60000 00000000 00000000 00680053 0077006f 006c0046 00670061 
+[dm]   0x1014 wait: waiting 15.592 s, timeout none
+[dm]   0x1014 sched: not runnable
+[dm]   0x1014 history (age, svc(x0, x1) = result; of 2): | -15.592s 0x1b(0x72a553c32c, 0xffffffff) = 0 made 1 | -15.592s 0x1d(0x72a553c330, 0xffffffff) = 0 made 1
+[dm]   0x1014 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [152]main+0xbdbd0 [168]main+0x1a200 [200]main+0x1aaf8 [280]sdk+0x141cf0 [328]sdk+0x148474 [400]sdk+0x141c80 | x19=0x72a553cb30 x20=0x72a553cb2c x21=0x1014 x22=0 x23=0x6b5 x24=0x715272ccb0 x25=0x715272ccb0 x26=0x715272cff8 x27=0x104000 x28=0x106000
+[dm]   0x1014 backtrace:
+[dm] thread 0x1013 'IOThreadPool #0' priority 43 core 0 mask 0x7 CPU 0.00s svc 5  created at tick 0 (15.6 s ago) waits:condvar addr=0x72a553c06c lock word 0 condvar key 0x72a553c070=0x1 wait #4953 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1013 waited-for object, 64 bytes from 0x72a553c060: 01010000 00000000 00000000 00000000 00000001 00000000 00000000 00000000 00030103 09c30000 00000000 00000000 00680053 0077006f 006c0046 00670061 
+[dm]   0x1013 wait: waiting 15.593 s, timeout none
+[dm]   0x1013 sched: not runnable
+[dm]   0x1013 history (age, svc(x0, x1) = result; of 2): | -15.593s 0x1b(0x72a553c32c, 0xffffffff) = 0 made 1 | -15.593s 0x1d(0x72a553c330, 0xffffffff) = 0 made 1
+[dm]   0x1013 guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [152]main+0xbdbd0 [168]main+0x1a200 [200]main+0x1aaf8 [280]sdk+0x141cf0 [328]sdk+0x148474 [400]sdk+0x141c80 | x19=0x72a553c070 x20=0x72a553c06c x21=0x1013 x22=0 x23=0x6b5 x24=0x7153832cb0 x25=0x7153832cb0 x26=0x7153832ff8 x27=0x104000 x28=0x106000
+[dm]   0x1013 backtrace:
+[dm] thread 0x1011 'OnlineAsyncTaskThreadNull Defa' priority 44 core 0 mask 0x7 CPU 0.03s svc 778  created at tick 0 (15.6 s ago) waits:condvar addr=0x72a558c6ec lock word 0 condvar key 0x72a558c6f0=0x1 wait #130859 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x1011 waited-for object, 64 bytes from 0x72a558c6e0: 01010000 00000000 00000000 00000000 00000001 0000006c 0073006d 0000002e 00030103 a44b0000 00000000 00000000 e2a1b190 00000071 0065006e 00750053 
+[dm]   0x1011 wait: waiting 0.020 s, timeout 20.000 ms
+[dm]   0x1011 sched: not runnable
+[dm]   0x1011 history (age, svc(x0, x1) = result; of 775): | -0.020s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.084 ms ended by 0 made 0 | -0.040s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.085 ms ended by 0 made 0 | -0.060s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.091 ms ended by 0 made 0 | -0.080s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.068 ms ended by 0 made 0 | -0.100s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.069 ms ended by 0 made 0 | -0.120s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.069 ms ended by 0 made 0 | -0.140s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.086 ms ended by 0 made 0 | -0.160s 0x1c(0x72a558c6ec, 0x72a558c6f0) = 0xea01 blocked 20.113 ms ended by 0 made 0
+[dm]   0x1011 guest stack: [8]sdk+0x149368 [24]main+0x3cd1e60 [40]sdk+0x13c004 [80]main+0x2849c [104]main+0x17150 [184]main+0x3cd1460 [232]main+0x1aaf8 [264]sdk+0x141cf0 [312]sdk+0x148474 [384]sdk+0x141c80 | x19=0x72a558c6ec x20=0x72a558c6f0 x21=0x1312bfb x22=0x1011 x23=0x6b5 x24=0x7155faacb0 x25=0x7155faacb0 x26=0x7155faaff8 x27=0x104000 x28=0x106000
+[dm]   0x1011 backtrace:
+[dm] thread 0x1010 'HttpManagerThread' priority 44 core 0 mask 0x7 CPU 0.01s svc 4  created at tick 0 (15.6 s ago) waits:running/not waiting addr=0 last svc 0x1b lr=sdk+0xc8338c
+[dm]   0x1010 sched: not runnable, in a native wait (depth 1)
+[dm]   0x1010 history (age, svc(x0, x1) = result; of 2): | -15.617s 0x1b(0x72a55551ac, 0xffffffff) = 0 made 1 | -15.617s 0x1d(0x72a55551b0, 0xffffffff) = 0 made 1
+[dm]   0x1010 registers pc=0x7566e0eb34 x19=0x8 x20=0x4130860c38 x21=0x71f908a774 x22=0x89 x23=0x71570b0fb0 x24=0x71570b1000 x25=0 x26=0x71f908a170 x27=0x64 x28=0x4130860de6
+[dm]   0x1010 x20 → 128 bytes from 0x4130860c38: 0000172a 00000000 3558a4fa 00000000 12968adc f32110cf 30860ca0 00000041 66e799f0 000e7a75 00000041 00000000 f7d33690 004703f1 f908a778 00000071 00000008 00000000 00000001 00000000 f908a774 00000071 30860ce8 00000041 f908a140 00000071 30860d00 00000041 f7d03970 002bbdf1 00000018 00000000 
+[dm]   0x1010 backtrace: main+0x5e541f4 main+0x5e3b388 main+0x109a264 main+0x10ac8c0 main+0x10ac7ec main+0x109bc10 main+0x1aaf8 sdk+0x141cf0 sdk+0x148474
+[dm] thread 0x100f 'LibcurlGc' priority 43 core 1 mask 0x7 CPU 0.00s svc 3  created at tick 0 (15.6 s ago) waits:condvar addr=0x71e5d3738c lock word 0 condvar key 0x71e5d37390=0x1 wait #4007 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x100f waited-for object, 64 bytes from 0x71e5d37380: 01010000 00000000 00000000 00000000 00000001 00000000 00000101 00000000 00000000 00000000 00000000 00000000 00000000 00000000 95564270 00000072 
+[dm]   0x100f wait: waiting 15.618 s, timeout none
+[dm]   0x100f sched: not runnable
+[dm]   0x100f history (age, svc(x0, x1) = result; of 2): | -15.618s 0x1b(0x71e5d373e4, 0x1) = 0 made 1 | -15.618s 0x1d(0x71e5d373e8, 0x1) = 0 made 1
+[dm]   0x100f guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x5e67dac [120]main+0x5e67bd8 [184]sdk+0x141cf0 [200]sdk+0x141ce8 [216]sdk+0x148474 [288]sdk+0x141c80 | x19=0x71e5d37390 x20=0x71e5d3738c x21=0x100f x22=0 x23=0x3 x24=0x71581b6cb0 x25=0x71581b6cb0 x26=0x71581b6ff8 x27=0x104000 x28=0x106000
+[dm]   0x100f backtrace:
+[dm] thread 0x100e 'BackgroundThreadPool #1' priority 47 core 0 mask 0x7 CPU 0.01s svc 122  created at tick 0 (15.7 s ago) waits:condvar addr=0x72a55499ac lock word 0 condvar key 0x72a55499b0=0x1 wait #130967 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x100e waited-for object, 64 bytes from 0x72a55499a0: 01010000 00000000 00000000 00000000 00000001 00000072 d54e2780 00000072 00030103 a6c50000 00000000 00000000 dc2a1ec4 00000071 e54cdd70 00000073 
+[dm]   0x100e wait: waiting 0.007 s, timeout none
+[dm]   0x100e sched: not runnable
+[dm]   0x100e history (age, svc(x0, x1) = result; of 119): | -0.007s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 120.453 ms ended by 0x1002 made 0 | -0.128s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 117.580 ms ended by 0x1002 made 0 | -0.245s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 116.526 ms ended by 0x1002 made 0 | -0.362s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 117.330 ms ended by 0x1002 made 0 | -0.479s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 116.847 ms ended by 0x1002 made 0 | -0.596s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 116.728 ms ended by 0x1002 made 0 | -0.713s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 116.146 ms ended by 0x1002 made 0 | -0.830s 0x1c(0x72a55499ac, 0x72a55499b0) = 0 blocked 118.416 ms ended by 0x1002 made 0
+[dm]   0x100e guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [136]main+0x99d64 [152]main+0xbdbd0 [168]main+0xbdc08 [200]main+0x1aaf8 [280]sdk+0x141cf0 [328]sdk+0x148474 [400]sdk+0x141c80 | x19=0x72a55499b0 x20=0x72a55499ac x21=0x100e x22=0 x23=0 x24=0x73154601b0 x25=0 x26=0x7168265ff8 x27=0x104000 x28=0x106000
+[dm]   0x100e backtrace:
+[dm] thread 0x100d 'BackgroundThreadPool #0' priority 47 core 0 mask 0x7 CPU 0.00s svc 5  created at tick 0 (15.7 s ago) waits:condvar addr=0x72a554926c lock word 0 condvar key 0x72a5549270=0x1 wait #27 last svc 0x1c lr=sdk+0xc833b8
+[dm]   0x100d waited-for object, 64 bytes from 0x72a5549260: 01010000 00000000 00000000 00000000 00000001 00000072 0000000d 0000000d 00030103 b2690000 00000000 00000000 dc2a1ec4 00000071 e549b6e0 00000073 
+[dm]   0x100d wait: waiting 15.711 s, timeout none
+[dm]   0x100d sched: not runnable
+[dm]   0x100d history (age, svc(x0, x1) = result; of 2): | -15.711s 0x1b(0x72a55491ac, 0xffffffff) = 0 made 1 | -15.711s 0x1d(0x72a55491b0, 0xffffffff) = 0 made 1
+[dm]   0x100d guest stack: [8]sdk+0x1492e0 [24]sdk+0x13bef8 [40]sdk+0x13bed0 [72]main+0x17168 [152]main+0xbdbd0 [168]main+0x1a200 [200]main+0x1aaf8 [280]sdk+0x141cf0 [328]sdk+0x148474 [400]sdk+0x141c80 | x19=0x72a5549270 x20=0x72a554926c x21=0x100d x22=0 x23=0x6b5 x24=0x716936bcb0 x25=0x716936bcb0 x26=0x716936bff8 x27=0x104000 x28=0x106000
+[dm]   0x100d backtrace:
+[dm] thread 0x1006 'FHeartBeatThread' priority 43 core 0 mask 0x7 CPU 0.00s svc 36  created at tick 0 (15.7 s ago) waits:running/not waiting addr=0 last svc 0xb lr=sdk+0xc830cc
+[dm]   0x1006 sched: not runnable, sleeping
+[dm]   0x1006 history (age, svc(x0, x1) = result; of 2): | -15.718s 0x1b(0x72a553cc2c, 0xffffffff) = 0 made 1 | -15.718s 0x1d(0x72a553cc30, 0xffffffff) = 0 made 1
+[dm]   0x1006 registers pc=0x7566e663ec x19=0x73954129f0 x20=0x564f54c9d93 x21=0x71ce38c000 x22=0x3b9aca00 x23=0x186a0 x24=0x10 x25=0x4e20 x26=0x44b82fa09b5a53 x27=0 x28=0x71ce38c000
+[dm]   0x1006 x19 → 128 bytes from 0x73954129f0: 00001006 00000000 00000054 00000000 e6564420 00000071 554604c8 00000073 2b8b5fe0 00000041 0000002b 00000000 00000007 00000000 3b75087d 00000561 00000000 00000000 00000000 00000000 00000001 00000001 00000000 00000000 ce38bcb0 00000071 00000002 00000000 00000000 00000000 00000000 00000000 
+[dm]   0x1006 backtrace:
+[dm] thread 0x1003 'Nintendo AddOnContent Thread' priority 46 core 1 mask 0x7 CPU 0.00s svc 6  created at tick 0 (15.7 s ago) waits:sync object addr=0 last svc 0x18 lr=sdk+0xc83308
+[dm]   0x1003 wait: waiting 15.729 s, timeout none; handle 0x1005 event 0x72853e0630 signalled 0
+[dm]   0x1003 sched: not runnable
+[dm]   0x1003 history (age, svc(x0, x1) = result; of 2): | -15.729s 0x1b(0x72a553cc2c, 0xffffffff) = 0 made 1 | -15.729s 0x1d(0x72a553cc30, 0xffffffff) = 0 made 1
+[dm]   0x1003 guest stack: [8]sdk+0x148da8 [56]main+0xcac0 [88]main+0x1aaf8 [120]sdk+0x141cf0 [168]sdk+0x148474 [240]sdk+0x141c80 | x19=0x71e3de9c30 x20=0x1 x21=0x7355421dc8 x22=0xffffffffffffffff x23=0x6b5 x24=0x71d2e18cb0 x25=0x71d2e18cb0 x26=0x71d2e18ff8 x27=0x104000 x28=0x106000
+[dm]   0x1003 backtrace:
+[dm] thread 0x1002 'GameThread' priority 43 core 1 mask 0x7 CPU 2.70s svc 27546  created at tick 0 (15.7 s ago) waits:running/not waiting addr=0x72a554972c last svc 0x1b lr=sdk+0xc8338c
+[dm]   0x1002 sched: runnable, in the handoff of 0x1007 (over)
+[dm]   0x1002 history (age, svc(x0, x1) = result; of 24152): | -0.009s 0x1b(0x72a5549fac, 0xffffffff) = 0 made 1 | -0.009s 0x1d(0x72a5549fb0, 0xffffffff) = 0 made 1 | -0.009s 0x1b(0x72a55499ac, 0x1) = 0 made 1 | -0.009s 0x1d(0x72a55499b0, 0x1) = 0 made 1 | -0.009s 0x1c(0x72a554972c, 0x72a5549730) = 0 blocked 0.285 ms ended by 0x1007 made 0 | -0.010s 0x1b(0x72a554a96c, 0xffffffff) = 0 made 1 | -0.010s 0x1d(0x72a554a970, 0xffffffff) = 0 made 1 | -0.011s 0x1c(0x72a54a1aec, 0x72a54a1af0) = 0 blocked 0.883 ms ended by 0x1018 made 0
+[dm] thread 0x1001 'main thread' priority 44 core 0 mask 0x1 CPU 0.19s svc 58  present since process start waits:sync object addr=0 last svc 0x18 lr=sdk+0xc83308
+[dm]   0x1001 wait: waiting 15.737 s, timeout none; handle 0x1002 thread exited 0
+[dm]   0x1001 sched: not runnable
+[dm]   0x1001 history (age, svc(x0, x1) = result; of 1): | -15.737s 0x9(0x1002, 0x71e4e0f570) = 0
+[dm]   0x1001 guest stack: [8]sdk+0x1485f4 [40]main+0x1742c [56]sdk+0x141e44 [104]main+0x352f1e0 [120]main+0x352f1d8 | x19=0x71e4e0f570 x20=0x71e4e0f570 x21=0x71e6fad108 x22=0x6b5 x23=0x6b5 x24=0x71e9b2fcb0 x25=0x71e9b2fcb0 x26=0x71e9b2fff8 x27=0x804000 x28=0x806000
+[dm]   0x1001 backtrace: sdk+0x141e44 main+0x352f1e0
+[dm] host thread 0x6b5: 'ndroid.ffr:game' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 libandroid_runtime.so+0x16283c
+[dm] host thread 0x6bb: 'Signal Catcher' libc.so+0xa664c _ZN3art13SignalCatcher13WaitForSignalEPNS_6ThreadERNS_9SignalSetE+0xcc _ZN3art13SignalCatcher3RunEPv+0x110 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6bd: 'perfetto_hprof_' read+0x8 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6c1: 'ADB-JDWP Connec' libc.so+0xa6d2c _ZN13adbconnection18AdbConnectionState11RunPollLoopEPN3art6ThreadE+0x2dc libadbconnection.so+0x8114 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6c3: 'Jit thread pool' syscall+0x20 _ZN3art10ThreadPool7GetTaskEPNS_6ThreadE+0x84 _ZN3art16ThreadPoolWorker3RunEv+0x98 _ZN3art16ThreadPoolWorker8CallbackEPv+0xb4 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6c4: 'HeapTaskDaemon' syscall+0x24 _ZN3art2gc13TaskProcessor7GetTaskEPNS_6ThreadE+0x124 _ZN3art2gc13TaskProcessor11RunAllTasksEPNS_6ThreadE+0x64 boot-core-libart.oat+0xfbe8 0
+[dm] host thread 0x6c5: 'ReferenceQueueD' syscall+0x20 _ZN3art7Monitor4WaitEPNS_6ThreadElibNS_11ThreadStateE+0x254 _ZN3art7Monitor4WaitEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEElibNS_11ThreadStateE+0x130 boot.oat+0x932e0 0
+[dm] host thread 0x6c6: 'FinalizerDaemon' syscall+0x20 _ZN3art7Monitor4WaitEPNS_6ThreadElibNS_11ThreadStateE+0x254 _ZN3art7Monitor4WaitEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEElibNS_11ThreadStateE+0x130 boot.oat+0x932e0 0
+[dm] host thread 0x6ca: 'FinalizerWatchd' syscall+0x20 _ZN3art7Monitor4WaitEPNS_6ThreadElibNS_11ThreadStateE+0x254 _ZN3art7Monitor4WaitEPNS_6ThreadENS_6ObjPtrINS_6mirror6ObjectEEElibNS_11ThreadStateE+0x130 boot.oat+0x932e0 0
+[dm] host thread 0x6cb: 'binder:1717_1' libc.so+0xa5c4c _ZN7android14IPCThreadState14talkWithDriverEb+0x120 _ZN7android14IPCThreadState20getAndExecuteCommandEv+0x20 _ZN7android14IPCThreadState14joinThreadPoolEb+0x4c libbinder.so+0x8cdec _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6cc: 'binder:1717_2' libc.so+0xa5c4c _ZN7android14IPCThreadState14talkWithDriverEb+0x120 _ZN7android14IPCThreadState20getAndExecuteCommandEv+0x20 _ZN7android14IPCThreadState14joinThreadPoolEb+0x4c libbinder.so+0x8cdec _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6ce: 'binder:1717_3' libc.so+0xa5c4c _ZN7android14IPCThreadState14talkWithDriverEb+0x120 _ZN7android14IPCThreadState20getAndExecuteCommandEv+0x20 _ZN7android14IPCThreadState14joinThreadPoolEb+0x4c libbinder.so+0x8cdec _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6d1: 'Profile Saver' syscall+0x24 _ZN3art12ProfileSaver3RunEv+0x2f4 _ZN3art12ProfileSaver21RunProfileSaverThreadEPv+0xb8 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6d2: 'RenderThread' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 libhwui.so+0x27408c libhwui.so+0x295050 _ZN7android6Thread11_threadLoopEPv+0x1ac libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6e2: 'hwuiTask0' syscall+0x20 pthread_cond_wait+0x54 _ZNSt3__118condition_variable4waitERNS_11unique_lockINS_5mutexEEE+0x1c libhwui.so+0x298a28 libhwui.so+0x298c68 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6e3: 'hwuiTask1' syscall+0x20 pthread_cond_wait+0x54 _ZNSt3__118condition_variable4waitERNS_11unique_lockINS_5mutexEEE+0x1c libhwui.so+0x298a28 libhwui.so+0x298c68 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6e8: 'VsyncReceiver' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 ALooper_pollOnce+0x6c libpenguin_impl.so+0xcbc0 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6f2: 'queued-work-loo' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 libandroid_runtime.so+0x16283c boot-framework.oat+0x1ac098 0 0x73253e3390
+[dm] host thread 0x6f3: 'overlay-soc' syscall+0x20 libart.so+0x597780 boot.oat+0x93508 0
+[dm] host thread 0x6f4: 'binder:1717_3' syscall+0x20 pthread_cond_wait+0x54 _ZNSt3__118condition_variable4waitERNS_11unique_lockINS_5mutexEEE+0x1c libgui.so+0xad604 _ZNSt3__114__thread_proxyINS_5tupleIJNS_10unique_ptrINS_15__thread_structENS_14default_deleteIS3_EEEEMN7android11AsyncWorkerEFvvEPS8_EEEEEPvSD_+0x44 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6f8: 'nxlog' read+0x8 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6fd: 'dm signals' read+0x8 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x6ff: 'dm rumble' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x2fdf90 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x701: 'SensorThread' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 libandroid_runtime.so+0x16283c boot-framework.oat+0x1ac098 0 0x73253fcbf0
+[dm] host thread 0x702: 'dm sensors' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 ALooper_pollOnce+0x6c libnxhost.so+0x2fcb48 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x704: 'AudioPortEventH' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 libandroid_runtime.so+0x16283c boot-framework.oat+0x1ac098 0 0x73253e6090
+[dm] host thread 0x706: 'InsetsAnimation' libc.so+0xa6c2c _ZN7android6Looper8pollOnceEiPiS1_PPv+0x78 libandroid_runtime.so+0x16283c boot-framework.oat+0x1ac098 0 0x73253fbc30
+[dm] host thread 0x70d: 'nxhost' nanosleep+0xc libnxhost.so+0x2a95c0 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x714: 'vk-complete' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x349c58 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x715: 'vk-present' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x3ba58c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x71b: 'vk-pcache' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x3ca444 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x755: 'vk-maps' nanosleep+0xc libnxhost.so+0x3a417c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x75a: 'vk-replay' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x424f54 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x75d: 'vk-enc' syscall+0x24 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x760: '0x1002 GameThre' nanosleep+0xc libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x76b: 'dm-lfthreads' syscall+0x24 pthread_cond_timedwait+0x90 libnxhost.so+0x3b8f40 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x794: '0x1002 GameThre' syscall+0x20 sem_wait+0x74 libnxhost.so+0x2f32dc libnxhost.so+0x271e7c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x79b: 'binder:1717_4' libc.so+0xa5c4c _ZN7android14IPCThreadState14talkWithDriverEb+0x120 _ZN7android14IPCThreadState20getAndExecuteCommandEv+0x20 _ZN7android14IPCThreadState14joinThreadPoolEb+0x4c libbinder.so+0x8cdec _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x79c: 'AudioTrack' syscall+0x24 pthread_cond_timedwait+0x90 _ZN7android10AudioTrack16AudioTrackThread10threadLoopEv+0x224 _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x79d: '0x1002 GameThre' nanosleep+0xc libnxhost.so+0x272028 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7ac: '0x1023 Thread_0' nanosleep+0xc libnxhost.so+0x27338c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7c5: 'vk-psopre' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x3d288c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7c6: 'vk-psoasync' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x3cd858 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7c7: 'vk-psoasync' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x3cd858 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7df: '0x1002 GameThre' syscall+0x20 sem_wait+0x74 libnxhost.so+0x2f32dc libnxhost.so+0x271e7c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7e2: 'AudioTrack' syscall+0x24 pthread_cond_timedwait+0x90 _ZN7android10AudioTrack16AudioTrackThread10threadLoopEv+0x224 _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x7fc: '0x1030 AudioMix' nanosleep+0xc libnxhost.so+0x27338c libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x806: 'vk-upload' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x41f1fc libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x807: 'vk-upload' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x41f1fc libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x808: 'vk-upload' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x41f1fc libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x868: 'binder:1717_5' libc.so+0xa5c4c _ZN7android14IPCThreadState14talkWithDriverEb+0x120 _ZN7android14IPCThreadState20getAndExecuteCommandEv+0x20 _ZN7android14IPCThreadState14joinThreadPoolEb+0x4c libbinder.so+0x8cdec _ZN7android6Thread11_threadLoopEPv+0x1ac _ZN7android14AndroidRuntime15javaThreadShellEPv+0x94 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x8c4: 'dm movie pump' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x2ba628 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x8c7: 'dm movie decode' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x2ba750 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x8ca: 'vpx tile worker' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x615410 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x8cc: 'vpx tile worker' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x615410 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x8cd: 'vpx tile worker' syscall+0x20 pthread_cond_wait+0x54 libnxhost.so+0x615410 libc.so+0xba654 libc.so+0x54000
+[dm] host thread 0x8d7: 'peanuts-playtim' syscall+0x20 libart.so+0x597780 boot.oat+0x93508 0
