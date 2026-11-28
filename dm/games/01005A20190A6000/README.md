@@ -9,14 +9,19 @@ Update **1.70 (`v655360`)**, SDK 14.3.0. CyberConnect2's NUCC engine on NVN, Sca
 
 - **Import and Prepare on the phone, from the NSPs:** the app imported the base and 1.70 update NSPs from the SD card in 1,390 s (18 GB at 13.4 MB/s), then Prepare took about 64 s: 570 of 570 shaders. An earlier Prepare from an unpacked dump folder took 56 s (the code 42 s, the shader split 3 s, 570 shaders 3 s, the pack 4 s), every one of the 585 modules valid for `spirv-val`, a 93 MiB pack.
 - **Fast Prepare:** a full split of 1.70 with `DM_SPLIT_FILES` takes 505.6 s on a PC (Windows, Python 3.12, `J=8`) and finds shaders in 48 of the 1,185 RomFS files ([shader_files.tsv](shader_files.tsv)). A targeted split of the same build (`DM_SPLIT_TARGETED=1`) reads 47 of them and takes 2.9 s. Its `shader_map.tsv`, `shader_facts.tsv` and `shader_pairs.tsv` match the full split's and the profile's byte for byte; both write an empty `pso_pairs.tsv`, so the profile has none.
-- **Frame rate:** Game owned. The game paces itself at 30, and the profile has no frame-rate row. Free Battle > Practice, Sage of the Six Paths Naruto against himself, Training Field, under player control, from SurfaceFlinger's present times:
+- **Frame rate:** Game owned retains the original 30 fps. The profile also offers an experimental fixed 60 fps mode. Free Battle > Practice, Sage of the Six Paths Naruto against himself, Training Field, under player control, from SurfaceFlinger's present times:
 
 | driver | cap | play | presents | median | p95 | slowest | game speed |
 |---|---|---|---|---|---|---|---|
 | Turnip 27.0.0-R2 | 30 (Game owned) | about 11 min of fights, 240 presses | 19,778 over 659 s | 33.33 ms | 33.33 ms | 50.0 ms (at most 0.4 % of a fight's presents over 34 ms) | 1.00 |
 | Qualcomm V@0676.32 | 30 (Game owned) | about 5.5 min of fights, 120 presses | 9,465 over 315 s | 33.33 ms | 33.33 ms | 33.33 ms | 1.00 |
+| Turnip 27.0.0-R2 (Odin 2) | 60 | Free Battle Practice | - | 16.7 ms | - | 0.4% over 17.5 ms | real time |
+| Qualcomm V@0676.32 (Odin 2) | 60 | Free Battle Practice | - | 16.7 ms | - | 1.6% over 17.5 ms | real time |
+| POCO Pad X1 | 30 (Game owned) | Free Battle | - | - | - | - | normal |
+| POCO Pad X1 | 60 | Free Battle | - | - | - | - | slows below 60 fps |
 
   These are the fresh-cache runs whose `vk_pipelines.keys` are attached to the pull request (115 keys on Turnip, 130 on the Qualcomm driver), from a new save, each with two Tailed Beast Bomb Rasen Shuriken jutsus. The log shows `[vk] fps: 30.0 game frames a second, 30.0 presented`. Game speed is from the idle animation of the player character (body and orbiting Truth-Seeking Balls), whose loop took 2.655 s on both drivers (2.66 to 2.76 s in earlier runs), with no input. Practice has no round timer and refills chakra at once, so neither can be used. Earlier runs gave the same medians and p95 (Turnip 5,161 presents over 172 s, slowest 33.33 ms; Qualcomm 6,290 over 210 s, slowest 33.36 ms).
+- **Experimental 60 fps:** the FPSLocker code plan replaces the call at `main+0x886ac0` (`d8a2ed97`) with `MOV W0, #60` (`80078052`), leaving the original 30 fps getter unchanged. The plan checks the main build ID and original instruction bytes. Game owned retains the original 30 fps. A fixed 30 fps cap with the patch active causes slow motion, so only fixed 60 fps is offered. Switching between Game owned and fixed 60 fps uses the existing restart mechanism, without Java changes. The final profile passes validation but has not been rebuilt separately. See [60 FPS mod for 1.7.0](https://gbatemp.net/threads/naruto-x-boruto-ultimate-ninja-storm-connections-60-fps-mod-v1-7-0.684554/) and the [testing discussion](https://github.com/igawa6/peanuts-native/pull/637#issuecomment-7210190115).
 - **Memory** (`dumpsys meminfo` of the game process, during the jutsus of the fresh-cache runs): PSS 4.41 to 4.44 GB on Turnip (Graphics 1.69 GB, GL 637 MB), 4.02 to 4.03 GB on the Qualcomm driver (Graphics 1.13 GB, EGL 975 MB). Another app's game process held about 2.3 GB in the background during both runs. The heap region and `mem_used` in [game.tsv](game.tsv) are `profile_guess.py heap_signals`' answers to the phone's log (`SetHeapSize OOM: req 0xc9200000 > cap 0x8000000`, then `SetHeapSize 0xc9200000 + modules 0x5c00000 > app pool`). The 1.25 GB alias region beside it is the survey's guess, not measured.
 - **Fixed on the way, each in its own pull request:**
   - The UI covering the 3D frame in black, ghost copies of earlier UI frames and a white opening movie: the UI image reached NVN unordered. Fixed by sharing the GL texture with NVN through an AHardwareBuffer with both syncs ([rendering.md](../../../docs/reference/rendering.md#an-nvn-game-whose-ui-draws-with-opengl-through-egl-android), #847).
@@ -33,6 +38,8 @@ Update **1.70 (`v655360`)**, SDK 14.3.0. CyberConnect2's NUCC engine on NVN, Sca
 - Turnip 27.0.0-R2 (Mesa 27.0.0-devel git-2648b2059f) and the Qualcomm driver V@0676.32 (driver build 1a285a84ae).
 - The test app built from this profile's tree with #843, #844, #845, #847 and #850 (log: `build: commit 12f019b8e713, shader chain cdcf140b1558`). The base and 1.70 update NSPs imported and prepared by the app on the phone (the fresh-cache runs); earlier runs used a dump folder on the SD card.
 - Log driver lines: `Turnip (Mesa 27.0.0-devel (git-2648b2059f)), driver ID 18 ... custom (DM_VK_DRIVER)` and `Qualcomm Technologies Inc. Adreno Vulkan Driver (Driver Build: 1a285a84ae, ...), driver ID 8 ... the system's`.
+
+- POCO Pad X1: Snapdragon 7+ Gen 3, 8 GB, Android 16. US 1.70 tested with a temporary regional profile and experimental launcher builds. Game owned was also verified without Java changes. The 60 fps results are from the earlier experimental build.
 
 ## Builds
 
@@ -70,7 +77,7 @@ The US release (`0100FA10190A0000`) 1.70 has the same three build IDs, so it nee
 - Story mode, and play outside Free Battle's Practice (the 11 minutes on Turnip are Practice fights).
 - The first launch of the Turnip fresh-cache run was killed by the kernel after 1.3 s: three GPU faults (`CP: AHB bus error`, `gpu fault threshold exceeded`) while the shader parts were made, then `kgsl: out of memory`. The next launch, identical, ran clean, and the Qualcomm run had no fault. Seen once in three launches; not investigated.
 - A warm-cache launch with the seed built from the attached keys.
-- The US release (above): the build-ID mapping is not done and the US dump was not run.
+- The US release (above): tested with a temporary regional profile on the POCO Pad X1; the upstream build-ID mapping is still not done.
 - The alias region's size; other phones and other Adreno GPUs.
 - A crash in Android's own UI rendering (`libhwui.so` `ClipStack`, the game process's RenderThread) seen once at the character select on the Qualcomm driver; not seen again in the later runs. Its cause is not known.
-- A 60 fps option: an FPSLocker plan held 60 at real game speed in a fight on this phone, but it is not in this profile. It comes as its own pull request.
+- Experimental 60 fps: gameplay slows down when the device cannot sustain 60 fps. The final profile-only configuration still needs runtime validation.
